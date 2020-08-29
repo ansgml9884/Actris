@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PoseNet - Camera Feed Demo</title>
+    <link rel="stylesheet" href="camera.css">
+    <style>
+        @media only screen and (max-width: 600px) {
+
+            .footer-text,
+            .dg {
+                display: none;
+            }
+        }
+
+        /*
+         *  The following loading spinner CSS is from SpinKit project
+         *  https://github.com/tobiasahlin/SpinKit
+         */
+        .sk-spinner-pulse {
+            width: 20px;
+            height: 20px;
+            margin: auto 10px;
+            float: left;
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
+            animation: sk-pulseScaleOut 1s infinite ease-in-out;
+        }
+
+        @-webkit-keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sk-pulseScaleOut {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+       
+        
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="body">
+    <div id="info" style='display:none'>
+    </div>
+    <div id="loading" style='display:flex'>
+        <div class="spinner-text">
+            Loading PoseNet model...
+        </div>
+        <div class="sk-spinner sk-spinner-pulse"></div>
+        </div>
+
+   
+    <div id='main' style='display:none'>
+        <section class="sec1">
+            <canvas class ="game" id="gameCanvas" width="550px" height="715px"></canvas>
+            <script type="text/javascript" src="tetris.js"></script>
+        </section>
+        <section class="sec2">
+            <div width="700" height="600">
+            <video id="video" playsinline style="display: none;">
+            </video>
+            <canvas class ="motion" id="output"/>
+            </div>
+            <div>
+                aaa
+            <p><button class="pause">PAUSE</button></p>
+            <p><button class="exit" onclick="location.href='index.html'">EXIT</button></p>
+            </div>
+        </section>
+    </div>
+    <script src="camera.js"></script>
+</body>
+
+</html>
+

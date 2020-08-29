@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ranking.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Ranking</title>
+  </head>
+  <body>
+    <div class="jb-box">
+      <video muted autoplay loop>
+        <source src="videos/ranking2 - 5134.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="category">
+      <!--뒤로가기 버튼-->
+      <div>
+        <input class="backbtn" type="image" src="images/back.png" onclick="location.href='index.html'">
+      </div>
+      <!--랭킹 제목-->
+      <p>RANKING</p><br>
+      <div class="box">
+  
+        <!--테이블 테스트데이터 -->
+        <div>
+          <table class="tg" width="100%" border="0" cellspacing="32" cellpadding="0">
+            <thead>
+              <th>STAND</th>
+              <th>NAME</th>
+              <th>COMENT</th>
+              <th>REPLAY</th>
+              <th>SCORE</th>
+              <th>TIME</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-1wig">1ST</td>
+                <td class="tg-0lax">첫번째테스트</td>
+                <td class="tg-0lax">코멘트1</td>
+                <td class="tg-0lax">동영상1</td>
+                <td class="tg-0lax">123333</td>
+                <td class="tg-0lax">시간1</td>
+              </tr>
+              <tr>
+                <td class="tg-1wig">2ND</td>
+                <td class="tg-0lax">두번째테스트</td>
+                <td class="tg-0lax">코멘트2</td>
+                <td class="tg-0lax">동영상2</td>
+                <td class="tg-0lax">4565523</td>
+                <td class="tg-0lax">시간2</td>
+              </tr>
+              <tr>
+                <td class="tg-1wig">3RD</td>
+                <td class="tg-0lax">세번째테스트</td>
+                <td class="tg-0lax">코멘트3</td>
+                <td class="tg-0lax">동영상3</td>
+                <td class="tg-0lax">123234</td>
+                <td class="tg-0lax">시간3</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">4st</td>
+                <td class="tg-0lax">네번째테스트</td>
+                <td class="tg-0lax">코멘트4</td>
+                <td class="tg-0lax">동영상4</td>
+                <td class="tg-0lax">678678</td>
+                <td class="tg-0lax">시간4</td>
+              </tr>
+              <tr>
+                <td class="tg-0pky">5st</td>
+                <td class="tg-0lax">다섯번째테스트</td>
+                <td class="tg-0lax">코멘트5</td>
+                <td class="tg-0lax">동영상5</td>
+                <td class="tg-0lax">2334534</td>
+                <td class="tg-0lax">시간5</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--앞뒤로 넘기기 버튼-->
+          <footer>
+            <div class="btn">
+              <input class="btnleft" type="image" src="images/left.png">
+              <input class="btnright" type="image" src="images/right.png">
+            </div>
+          </footer>
+        </div>
+      </div>
+      <script>
+        //뒤로가기 막기
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+          history.go(1);
+        };
+      </script>
+  
+  </body>
+</html>
