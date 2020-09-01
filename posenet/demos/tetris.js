@@ -1,6 +1,6 @@
 //canvas
-let canvas = document.getElementById("gameCanvas");
-let ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
 //BOARD
 const BOARD_WIDTH = 12;
@@ -159,6 +159,8 @@ let spacePressed = false;
 let fPressed = false;
 let dPressed = false;
 
+let pause = false;
+
 export function executeAction(action) {
     switch(action) {
     case "moveRight":
@@ -181,6 +183,9 @@ export function executeAction(action) {
         break;
     case "hold":
         dPressed = true;
+        break;
+    case "pause":
+        pause = true;
         break;
     }
 }
@@ -206,6 +211,9 @@ export function completeAction(action) {
         break;
     case "hold":
         dPressed = false;
+        break;
+    case "pause":
+        pause = false;
         break;
     }
 }
@@ -321,6 +329,9 @@ document.addEventListener("keydown", (e) => {
     else if (e.keyCode == 68) {
         dPressed = true;
     }
+    else if (e.keyCode == 27) {
+        pause = !pause;
+    }
 });
 document.addEventListener("keyup", (e) => {
     if (e.keyCode == 37) {
@@ -348,8 +359,10 @@ document.addEventListener("keyup", (e) => {
 
 
 //게임 시작
-draw();
-let myTimer = setInterval(playGame, 25);
+export function startGame(){
+    draw();
+    let myTimer = setInterval(playGame, 25);
+}
 
 
 function getNewBlock() {
@@ -693,7 +706,7 @@ function manipulate() {
     if (controllKey(DROP_FAST, 10, 0)) {
         moveToDown(true);
     }
-    if (controllKey(DROP_IMMEDIATELY, 10, 5)) {
+    if (controllKey(DROP_IMMEDIATELY, 20, 5)) {
         if (moveToEnd() == false) {
             return false;
         }
@@ -716,6 +729,9 @@ function manipulate() {
 }
 
 function playGame() {
+    if (pause) {
+        return;
+    }
     manipulate();
     goToWork();
 }
@@ -854,6 +870,12 @@ function drawInfo() {
     //레벨
     drawText("Level", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 590, "center");
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 630, "center");
+
+    //pause
+    if (pause) {
+        drawText("Pause", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        drawText("ESC to continue", "20px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 230, "center");
+    }
 }
 
 function draw() {

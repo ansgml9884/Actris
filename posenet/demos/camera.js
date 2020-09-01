@@ -18,6 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 import dat from 'dat.gui';
 import Stats from 'stats.js';
 
+import {startGame} from './tetris.js'
 import {drawBoundingBox, drawKeypoints, drawSkeleton, isMobile, toggleLoadingUI, tryResNetButtonName, tryResNetButtonText, updateTryResNetButtonDatGuiCss} from './demo_util';
 
 const videoWidth = 600;
@@ -465,9 +466,9 @@ export async function bindPage() {
   setupFPS();
   detectPoseInRealTime(video, net);
 }
-
 navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 // kick off the demo
+startGame();
 bindPage();
 
