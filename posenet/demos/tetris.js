@@ -357,6 +357,10 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
+document.getElementById("pauseBtn").onclick = function() {
+    pause = !pause;
+}
+
 
 //게임 시작
 export function startGame(){
