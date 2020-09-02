@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="enter.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div style="text-align: center;">
+    <h2>HIGH SCORE</h2>
+    <h3>123124</h3>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
 </head>
-
-    <body>
-        <div class="jb-box">
-            <video muted autoplay loop>
-              <source src="videos/newRank.mp4" type="video/mp4">
-                <section class="a">
-                    aaaa
-                </section>
-                <section class="b">
-                    bbb
-                </section>
-                <section class="c">
-                    ccc
-                </section>
-            </video>
-
-          </div>
-
-    </body>
+<body style="text-align: center;">
+  <div id="addRanking">
+    <h1>ENTER YOUR NAME !</h1>
+    SCORE <h3 style="display: inline;">123123</h3><br>
+    NAME <input type="text" class="name"  v-model="name" style="text-align: left;"><br>
+    COMMENT <input type="text" class="note"  v-model="note" style="text-align: left;"><br>
+    <button class="done" v-on:click="insert">DONE</button>
+  </div>
+  <footer>
+  </footer>
+</body>
+<script>
+    new Vue({
+        el : "#addRanking",
+        data : {
+            ranking: null,
+            name: "",
+            note: "",
+            played_date: new Date().getDate()
+        },
+        methods : {
+            insert: function() {
+                axios.post('http://127.0.0.1:80/rankings', { 
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded'
+                    },
+                    name: this.name,
+                    note: this.note
+                })
+                .then(response => {
+                    this.ranking = response.data;
+                })
+                .catch(error => console.log(error));
+            }
+        }
+    });
+    </script>
 </html>

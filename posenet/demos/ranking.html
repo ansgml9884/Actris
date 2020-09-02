@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ranking.css">
     <title>Ranking</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
   </head>
   <body>
     <div class="jb-box">
@@ -23,7 +25,7 @@
   
         <!--테이블 테스트데이터 -->
         <div>
-          <table class="tg" width="100%" cellspacing="32" cellpadding="0">
+          <table id="rankingList" class="tg" width="100%" cellspacing="32" cellpadding="0">
             <thead>
               <th>STAND</th>
               <th>NAME</th>
@@ -32,48 +34,16 @@
               <th>SCORE</th>
               <th>TIME</th>
             </thead>
-            <tbody>
-              <tr>
-                <td class="tg-1wig">1ST</td>
-                <td class="tg-0lax">첫번째테스트</td>
-                <td class="tg-0lax">코멘트1</td>
-                <td class="tg-0lax">동영상1</td>
-                <td class="tg-0lax">123333</td>
-                <td class="tg-0lax">시간1</td>
-              </tr>
-              <tr>
-                <td class="tg-1wig">2ND</td>
-                <td class="tg-0lax">두번째테스트</td>
-                <td class="tg-0lax">코멘트2</td>
-                <td class="tg-0lax">동영상2</td>
-                <td class="tg-0lax">4565523</td>
-                <td class="tg-0lax">시간2</td>
-              </tr>
-              <tr>
-                <td class="tg-1wig">3RD</td>
-                <td class="tg-0lax">세번째테스트</td>
-                <td class="tg-0lax">코멘트3</td>
-                <td class="tg-0lax">동영상3</td>
-                <td class="tg-0lax">123234</td>
-                <td class="tg-0lax">시간3</td>
-              </tr>
-              <tr>
-                <td class="tg-0lax">4st</td>
-                <td class="tg-0lax">네번째테스트</td>
-                <td class="tg-0lax">코멘트4</td>
-                <td class="tg-0lax">동영상4</td>
-                <td class="tg-0lax">678678</td>
-                <td class="tg-0lax">시간4</td>
-              </tr>
-              <tr>
-                <td class="tg-0pky">5st</td>
-                <td class="tg-0lax">다섯번째테스트</td>
-                <td class="tg-0lax">코멘트5</td>
-                <td class="tg-0lax">동영상5</td>
-                <td class="tg-0lax">2334534</td>
-                <td class="tg-0lax">시간5</td>
-              </tr>
-            </tbody>
+              <tbody>
+                  <tr v-for="ranking in rankings" v-bind:key="ranking.id">
+                  <td>1</td>
+                  <td>{{ranking.name}}</td>
+                  <td>{{ranking.note}}</td>
+                  <td>{{ranking.replay_id}}</td>
+                  <td>{{ranking.score}}</td>
+                  <td>{{ranking.played_date}}</td>
+                  </tr>
+              </tbody>
           </table>
           <!--앞뒤로 넘기기 버튼-->
           <footer>
@@ -93,4 +63,20 @@
       </script>
   
   </body>
+<script>
+   new Vue({
+          el : "#rankingList",
+          data : {
+             rankings: null
+          },
+          created() {
+            axios.get('http://127.0.0.1:80/rankings')
+                .then(response => {
+                   this.rankings = response.data;
+                   console.log(this.rankings);
+               })
+               .catch(error => console.log(error));
+          }
+  });
+  </script>
 </html>
