@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="replay.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body class="body">
+    <section class="sec1">
+        <img class="game" src="images/border.png" >
+    </section>
+    <section class="sec2">
+        <br><br>
+        <div class="title">REPLAY</div>
+        <br><br>
+        <form id="speed">
+            <img src="images/left_arrow.png" width="50px" onClick="javascript:if(amount.value>0.5) amount.value/=2;">
+            <input type=text name=amount value=1 readonly style=margin-left:18%;>
+            <img src="images/right_arrow.png" width="50px" onClick="javascript:if(amount.value<4)amount.value*=2;">
+        </form>
+        <br><br>
+        <p><button class="exit" onclick="location.href='Main.html'">EXIT</button></p>
+    </section>
+<script>
+    //뒤로가기 막기
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+};
+</script>
+</body>
+</html>
+
+</style>

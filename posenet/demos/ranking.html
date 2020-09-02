@@ -11,7 +11,7 @@
   <body>
     <div class="jb-box">
       <video muted autoplay loop>
-        <source src="videos/ranking2 - 5134.mp4" type="video/mp4">
+        <source src="videos/ranking.mp4" type="video/mp4">
       </video>
     </div>
     <div class="category">
@@ -24,8 +24,8 @@
       <div class="box">
   
         <!--테이블 테스트데이터 -->
-        <div>
-          <table id="rankingList" class="tg" width="100%" cellspacing="32" cellpadding="0">
+        <div id="rankingList">
+          <table class="tg" width="100%" cellspacing="32" cellpadding="0">
             <thead>
               <th>STAND</th>
               <th>NAME</th>
@@ -35,8 +35,8 @@
               <th>TIME</th>
             </thead>
               <tbody>
-                  <tr v-for="ranking in rankings" v-bind:key="ranking.id">
-                  <td>1</td>
+                  <tr v-for="(ranking, index) in rankings" v-bind:key="ranking.id">
+                  <td>{{pageNo*5+index+1}}</td>
                   <td>{{ranking.name}}</td>
                   <td>{{ranking.note}}</td>
                   <td>{{ranking.replay_id}}</td>
@@ -48,11 +48,12 @@
           <!--앞뒤로 넘기기 버튼-->
           <footer>
             <div class="btn">
-              <img class="btnleft" src="images/left.png">
-              <img class="btnright" src="images/right.png">
+              <img class="btnleft" src="images/left.png" v-on:click="movePage('left')">
+              <img class="btnright" src="images/right.png" v-on:click="movePage('right')">
             </div>
           </footer>
         </div>
+      </div>
       </div>
       <script>
         //뒤로가기 막기
@@ -67,15 +68,42 @@
    new Vue({
           el : "#rankingList",
           data : {
-             rankings: null
+            pageNo : 0,
+            pageMx : 10000,
+            rankings: null
           },
           created() {
-            axios.get('http://127.0.0.1:80/rankings')
+            axios.get('http://127.0.0.1:80/rankings/'+this.pageNo)
                 .then(response => {
                    this.rankings = response.data;
-                   console.log(this.rankings);
                })
                .catch(error => console.log(error));
+          },
+          methods : {
+            getData : function(){
+              axios.get('http://127.0.0.1:80/rankings/'+this.pageNo)
+                .then(response => {
+                  if(response.data.length==0) {
+                    this.pageNo--;
+                    this.pageMx = this.pageNo;
+                  }
+                  else {
+                    this.rankings = response.data;
+                  }
+               })
+               .catch(error => {
+                 console.log(error)
+               });
+            },
+            movePage : function(v){
+              if(v=='left' && this.pageNo>0){
+                this.pageNo--;
+              }
+              if(v=='right' && this.pageNo<this.pageMx){
+                this.pageNo++;
+              }
+              this.getData();
+            }
           }
   });
   </script>

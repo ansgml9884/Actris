@@ -14,16 +14,16 @@ video { width: auto; }
 }
 
 body {
-    
     text-align: center;
 }
 .enter {
     background-color: rgba(224, 228, 235, 0.2);
-    height: 350px;
+    height: 300px;
 
 }
 
 .tg1 {
+    margin-top: 20px;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
     margin-left:auto; 
@@ -52,11 +52,13 @@ h2 {
     color:white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 6px 2px 2px rgb(97, 93, 93);
+    margin-bottom: -5px;
 }
 
-table {
-        padding: 2px;
-}
+
 .tg1 {
     width: 550px;
     font-size: 30px;
@@ -85,12 +87,42 @@ table {
     margin-right:auto;
     border-spacing: 10px;
     font-size: 30px;
+    background-color: rgba(224, 228, 235, 0.8);
+    width: 50%;
+    
    
 }
-
-.top {
-    background-color: rgba(224, 228, 235, 0.849);
+.text4 {
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgb(97, 93, 93);
+    
 }
+
+.text5 {
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgb(97, 93, 93);
+    
+}
+
+.rank {
+    color:rgb(223, 23, 23);
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgb(97, 93, 93);
+}
+
+th {
+    font-family: "Comic Sans", sans-serif;
+}
+
 
 
 
@@ -98,7 +130,6 @@ button {
     font-family: "proxima-nova", sans-serif;
     font-size: 30px;
     width: 20%;
-
     text-transform: uppercase!important;
     letter-spacing: 2px;
     color:white;
@@ -180,4 +211,10 @@ video { width: auto; }
 .jb-text p { margin-top: -24px; text-align: center; font-size: 48px; color: #ffffff; }
 .container {
 position: relative;
+}
+
+.img1 {
+    width: 100px;
+    height: 100px;
+   margin-bottom: -50px;
 }
