@@ -16,3 +16,4 @@ clone/
 *.pyc
 
 *.tgz
+/.metadata/

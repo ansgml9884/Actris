@@ -32,7 +32,7 @@
               <th>COMENT</th>
               <th>REPLAY</th>
               <th>SCORE</th>
-              <th>TIME</th>
+              <th>DATE</th>
             </thead>
               <tbody>
                   <tr v-for="(ranking, index) in rankings" v-bind:key="ranking.id">
@@ -41,7 +41,7 @@
                   <td>{{ranking.note}}</td>
                   <td>{{ranking.replay_id}}</td>
                   <td>{{ranking.score}}</td>
-                  <td>{{ranking.played_date}}</td>
+                  <td>{{convertDate(ranking.played_date)}}</td>
                   </tr>
               </tbody>
           </table>
@@ -70,12 +70,14 @@
           data : {
             pageNo : 0,
             pageMx : 10000,
-            rankings: null
+            rankings: null,
+            date : null
           },
           created() {
             axios.get('http://127.0.0.1:80/rankings/'+this.pageNo)
                 .then(response => {
                    this.rankings = response.data;
+                   console.log(this.rankings);
                })
                .catch(error => console.log(error));
           },
@@ -103,6 +105,16 @@
                 this.pageNo++;
               }
               this.getData();
+            },
+            convertDate : function(date){
+              if(date!=null) {
+                return date.substring(0,4)+'/' 
+                        +date.substring(5,7)+'/'
+                        +date.substring(8,10)+' ' 
+                        +(Number(date.substring(11,13))+9)+':'
+                        +date.substring(14,16)+':'
+                        +date.substring(17,19);
+              }
             }
           }
   });
