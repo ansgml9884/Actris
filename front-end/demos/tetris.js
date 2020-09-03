@@ -531,8 +531,6 @@ function goToWork() {
         }
 
         if (getNewBlock() == false) {
-            clearInterval(myTimer);
-            alert("Game Over");
             return false;
         }
     }
@@ -739,6 +737,7 @@ function playGame() {
     }
 
     let gameOver = false;
+
     if (!manipulate()) {
         gameOver = true;
     }
@@ -749,7 +748,7 @@ function playGame() {
     if (gameOver) {
         clearInterval(myTimer);
         alert("Game Over");
-        location.href = "enter.html";
+        location.href = "http://localhost:80/enter";
     }
 }
 function sendPost(url, arg) {
