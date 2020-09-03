@@ -25,15 +25,14 @@ public class Ranking {
    private String note;
    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private Timestamp played_date;
-   @Lob
-   private String replay_data;
+   private Long replay_id;
    
    @Builder
-   public Ranking(int score, String name, String note, String replay_data) {
+   public Ranking(int score, String name, String note, Long replay_id) {
       this.name = name;
       this.score = score;
       this.note = note;
-      this.replay_data = replay_data;
+      this.replay_id = replay_id;
    }
    
 }
