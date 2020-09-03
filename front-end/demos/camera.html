@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <audio autoplay id="myaudio">
+        <source src="music/Tenvi .mp3" type="audio/mp3">
+    </audio>
     <title>PoseNet - Camera Feed Demo</title>
     <link rel="stylesheet" href="camera.css">
     <style>
@@ -53,11 +56,10 @@
                 opacity: 0;
             }
         }
-       
-        
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body class="body">
     <div id="info" style='display:none'>
     </div>
@@ -66,16 +68,16 @@
             Loading PoseNet model...
         </div>
         <div class="sk-spinner sk-spinner-pulse"></div>
-        </div>
+    </div>
     <div id='main' style='display:none'>
         <section class="sec1">
-            <canvas class ="game" id="gameCanvas" width="550px" height="680px"/>
+            <canvas class="game" id="gameCanvas" width="550px" height="680px" />
         </section>
         <section class="sec2">
             <div id="motion">
                 <video id="video" playsinline style="display: none;">
                 </video>
-                <canvas id="output"/>
+                <canvas id="output" />
             </div>
             <br><br>
             <div>
@@ -86,5 +88,5 @@
     </div>
 </body>
 <script src="camera.js"></script>
-</html>
 
+</html>
