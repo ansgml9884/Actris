@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.actris.exception.RankingNotFoundException;
 import com.actris.model.Ranking;
 import com.actris.repository.RankingRepository;
-import com.example.demo.exception.EmployeeNotFoundException;
 
 @RestController
 public class RankingController {
@@ -26,7 +26,6 @@ public class RankingController {
    @GetMapping("/rankings/{pageNo}")
    public List<Ranking> pageAll(@PathVariable int pageNo) {
       Pageable page = PageRequest.of(pageNo, 5);
-      System.out.println(repository.findAllByOrderByScoreDesc(page));
       return repository.findAllByOrderByScoreDesc(page);
    }
 
@@ -38,7 +37,7 @@ public class RankingController {
 
    @GetMapping("/rankings/replay/{id}")
    Ranking one(@PathVariable Long id) {
-      return repository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+      return repository.findById(id).orElseThrow(() -> new RankingNotFoundException(id));
    }
 
 }
