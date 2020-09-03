@@ -1,60 +1,9 @@
-
-body { 
-  padding: 0px;
-  margin: 0px; 
-}
-
-.jb-box { 
-    min-width: 1024px; 
-    min-height: 100%; 
-    width: 100%; 
-    height: auto; 
-    overflow: hidden;
-    margin: 0px auto; 
-    position: fixed; 
-}
-
-video { 
-  width: auto; 
-}
-
-.jb-text { position: fixed; top: 20%; width: 100%; }
-
-.jb-text p { 
-  margin-top: -24px; 
-  text-align: center;
-  font-size: 70px; 
-  color: #ffffff; 
-  font-weight: bolder;
-  font-family: "proxima-nova", sans-serif;
-  text-shadow: 8px 5px 3px rgb(40, 40, 40);
-}
-
-.container {
-   position: relative;
-}
-
-
-
 .btn{
-<<<<<<< HEAD
-  top: 150px;
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 500;
-<<<<<<< HEAD
-  font-size: 30px;
-  text-transform: uppercase!important;
-=======
-  font-size: 25px!important;
-  text-shadow: 1px 1px 0px skyblue;
->>>>>>> 6c56b7746c2dd4385d42f8bc8d363fd95ed99e9d
-=======
   top: 250px;
   font-family: "proxima-nova", sans-serif;
   font-weight: 500;
   font-size: 40px!important;
   text-shadow: 3px 3px 0px rgb(40, 40, 40);
->>>>>>> d2dd85b77ee506e477ba4b4a67d4f3f59b054177
   letter-spacing: 2px;
   color: #fff;
   cursor: hand;
@@ -84,7 +33,7 @@ video {
   display: block;
   background: #071982;
   position: absolute;
-  -ms-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
   -webkit-transform: skewX(-20deg); 
   transform: skewX(-20deg);   
   left: -10%;
@@ -126,8 +75,6 @@ video {
   opacity:1;
   width: 120%;
 }
-<<<<<<< HEAD
-=======
 
 body { padding: 0px; margin: 0px; }
 .jb-box { min-width: 1024px; min-height: 100%; width: 100%; height: auto; 
@@ -138,4 +85,3 @@ video { width: auto; }
 .container {
    position: relative;
 }
->>>>>>> 6c56b7746c2dd4385d42f8bc8d363fd95ed99e9d
