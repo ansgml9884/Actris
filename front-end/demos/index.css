@@ -2,8 +2,8 @@
   top: 300px;
   font-family: "proxima-nova", sans-serif;
   font-weight: 500;
-  font-size: 13px;
-  text-transform: uppercase!important;
+  font-size: 25px!important;
+  text-shadow: 1px 1px 0px skyblue;
   letter-spacing: 2px;
   color: #fff;
   cursor: hand;
@@ -21,7 +21,6 @@
   z-index:10;
   
 }
-
 
 .btn:hover{
   border: 1px solid #071982;
@@ -42,10 +41,10 @@
   top: 0;
   z-index: -12;
   -moz-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
--o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
--webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-     box-shadow:2px 0px 14px rgba(0,0,0,.6);
+  -o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow:2px 0px 14px rgba(0,0,0,.6);
 } 
 
 .btn::after {
@@ -81,8 +80,8 @@ body { padding: 0px; margin: 0px; }
 .jb-box { min-width: 1024px; min-height: 100%; width: 100%; height: auto; 
         overflow: hidden; margin: 0px auto; position: fixed; }
 video { width: auto; }
-.jb-text { position: fixed; top: 20%; width: 100%; }
-.jb-text p { margin-top: -24px; text-align: center; font-size: 48px; color: #ffffff; }
+.jb-text { position: fixed; top: 20%; width: 100%;}
+.jb-text p { margin-top: -24px; text-align: center; font-size: 80px; color: #ffffff; text-shadow: 1px 1px 0px skyblue;}
 .container {
    position: relative;
 }
