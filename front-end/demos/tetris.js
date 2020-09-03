@@ -725,7 +725,7 @@ function manipulate() {
     }
 
     if (controllKey(HOLD, 1000, 1000)) {
-        if (holdThisBlock()) {
+        if (holdThisBlock() == false) {
             return false;
         }
     }
@@ -903,7 +903,7 @@ function drawInfo() {
     drawHold();    
 
     //점수
-    drawText(score, "70px Arial", "#FF9600", BOARD_MARGIN_LEFT + 300, BOARD_MARGIN_TOP - 10, "right");
+    drawText(score, "55px Arial", "#FF9600", BOARD_MARGIN_LEFT + 300, BOARD_MARGIN_TOP - 10, "right");
 
     //목표 제거 라인 갯수
     drawText("Goal", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 410, "center");
