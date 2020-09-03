@@ -363,9 +363,10 @@ document.getElementById("pauseBtn").onclick = function() {
 
 
 //게임 시작
+let myTimer = null;
 export function startGame(){
     draw();
-    let myTimer = setInterval(playGame, 25);
+    myTimer = setInterval(playGame, 25);
 }
 
 
@@ -736,8 +737,45 @@ function playGame() {
     if (pause) {
         return;
     }
-    manipulate();
-    goToWork();
+
+    let gameOver = false;
+    if (!manipulate()) {
+        gameOver = true;
+    }
+    if (!goToWork()) {
+        gameOver = true;
+    }
+
+    if (gameOver) {
+        clearInterval(myTimer);
+        alert("Game Over");
+        location.href = "enter.html";
+    }
+}
+function sendPost(url, arg) {
+    let myForm = document.createElement('form');
+
+    myForm.method = "post";
+    myForm.action = url;
+
+    let index = 0;
+
+    let argArr = arg.split("&");
+    for (let i = 0; i < argArr.length; i++) {
+        let leftStr = "";
+
+        myInputHidden = document.createElement("input");
+        myInputHidden.type = "hidden";
+        myInputHidden.name = argArr[i].split("=")[0];
+        index = argArr[i].indexOf("=") + 1;
+        myInputHidden.value = argArr[i].substr(index);
+        myForm.appendChild(myInputHidden);
+    }
+
+    myForm.appendChild(myInputHidden);
+
+    document.body.appendChild(myForm);
+    myForm.submit();
 }
 
 function drawRect(xpos, ypos, what) {
@@ -868,12 +906,12 @@ function drawInfo() {
     drawText(score, "70px Arial", "#FF9600", BOARD_MARGIN_LEFT + 300, BOARD_MARGIN_TOP - 10, "right");
 
     //목표 제거 라인 갯수
-    drawText("Goal", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 510, "center");
-    drawText(goal, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
+    drawText("Goal", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 410, "center");
+    drawText(goal, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 450, "center");
 
     //레벨
-    drawText("Level", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 590, "center");
-    drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 630, "center");
+    drawText("Level", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 510, "center");
+    drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
     if (pause) {
