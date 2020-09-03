@@ -18,7 +18,11 @@ video {
   width: auto; 
 }
 
-.jb-text { position: fixed; top: 20%; width: 100%;}
+.jb-text {
+   position: fixed; 
+   top: 20%;
+    width: 100%;
+}
 
 .jb-text p { 
   margin-top: -24px; 
@@ -40,7 +44,7 @@ video {
   font-family: "proxima-nova", sans-serif;
   font-weight: 500;
   font-size: 30px!important;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   color: #fff;
   cursor: hand;
   text-align: center;
