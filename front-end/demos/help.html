@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="help.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <h1>- HELP -</h1>
+    <div>
+        <input class="backbtn" type="image" src="images/back.png" onclick="location.href='index.html'">
+    </div>
 </head>
+
+
+
 <body>
-    
+    <section class="sec1">
+        <img class="img1" src="images/border.png">
+        <div class="text1">
+            <text>
+                설명중설명 주절리저루주러질
+            </text>
+        </div>
+        <input class="btnleft" type="image" src="images/left1.png">
+
+
+    </section>
+
+    <section class="sec2">
+        <img class="img2" src="images/border.png">
+        <div class="text2">
+            <text>
+                설명중설명 주절리저루주러질222222
+            </text>
+        </div>
+        <input class="btnright" type="image" src="images/right1.png">
+    </section>
+
+
+
+
+
+    <script>
+        //뒤로가기 막기
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+
 </body>
+
 </html>

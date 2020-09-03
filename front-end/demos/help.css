@@ -1,0 +1,88 @@
+html {
+    background: url(images/tet.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .backbtn {
+    margin-left: 30px;
+    margin-top: -30px;
+    width: 80px;
+    height: 80px;
+}
+
+  h1 {
+    color:rgb(254, 255, 255);
+    font-size: 60px;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 5px 2px 2px rgb(97, 93, 93);
+    text-align: center;
+    margin-bottom: -10px;
+    margin-top: -15px;
+
+
+}
+
+.sec1 {
+    height: 85%;
+    position:absolute;
+    width:50%;
+    left:0;
+}
+.sec2 {
+    height: 85%;
+    position:absolute;
+    width:50%;
+    right:0;
+}  
+
+.img1 {
+    margin-top: -30px;
+    margin-left: 10%;
+    width: 80%;
+    height: 70%;
+    margin-bottom: 5%;
+
+}
+
+.img2 {
+    margin-top: -30px;
+    margin-right: 170px;
+    width: 80%;
+    height: 70%;
+    float: right;
+}
+
+.text1 { 
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 70%;
+    height: 20%;
+    margin-top: -60px;
+    margin-left: 150px;
+    font-size: 25px;
+
+}
+.text2 { 
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 70%;
+    height: 20%;
+    margin-right: 150px;
+    margin-top: 500px;
+    margin-left: 100px;
+    font-size: 25px;
+}
+
+.btnleft {
+    float: left;
+    margin-left: 50px;
+    height: 80px;
+    width: 80px;
+}
+.btnright {
+    float: right;
+    margin-right: 50px;
+    height: 80px;
+    width: 80px;
+}
