@@ -1,6 +1,13 @@
-.jb-box { min-width: 1024px; min-height: 100%; width: 100%; height: auto; 
-    overflow: hidden; margin: 0px auto; position: fixed; 
-          background-size: cover;}
+
+.jb-box { 
+    width: 100%; 
+    height: auto; 
+    overflow: hidden; 
+    margin: 0px auto; 
+    position: fixed; 
+    background-size: cover;
+
+}
           
 video { width: auto; }
           
