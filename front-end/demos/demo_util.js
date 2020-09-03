@@ -40,25 +40,6 @@ export function isMobile() {
   return isAndroid() || isiOS();
 }
 
-function setDatGuiPropertyCss(propertyText, liCssString, spanCssString = '') {
-  var spans = document.getElementsByClassName('property-name');
-  for (var i = 0; i < spans.length; i++) {
-    var text = spans[i].textContent || spans[i].innerText;
-    if (text == propertyText) {
-      spans[i].parentNode.parentNode.style = liCssString;
-      if (spanCssString !== '') {
-        spans[i].style = spanCssString;
-      }
-    }
-  }
-}
-
-export function updateTryResNetButtonDatGuiCss() {
-  setDatGuiPropertyCss(
-      tryResNetButtonText, tryResNetButtonBackgroundCss,
-      tryResNetButtonTextCss);
-}
-
 /**
  * Toggles between the loading UI and the main canvas UI.
  */
