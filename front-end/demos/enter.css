@@ -8,6 +8,7 @@ video { width: auto; }
 
 .head {
     text-align: center;
+    margin-top:3%;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
 
@@ -26,21 +27,21 @@ body {
     margin-top: 20px;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
-    margin-left:auto; 
+    margin-left:32%; 
     margin-right:auto;
 }
 
 .tg2 {
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
-    margin-left:auto; 
+    margin-left:37%; 
     margin-right:auto;
 }
 
 .tg3 {
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
-    margin-left:auto; 
+    margin-left:37%; 
     margin-right:auto;
 }
 
@@ -75,10 +76,22 @@ h2 {
     font-size: 25px;
 }
 
-.inputs {
-    text-align: right;
+
+
+#name {
+    text-align: left;
     color: lightgray;
     font-size: 30px;
+    margin-left:28%;
+    border:1px;
+    background-color: transparent !important;
+}
+
+#comment {
+    text-align: left;
+    color: lightgray;
+    font-size: 30px;
+    margin-left:10%;
     border:1px;
     background-color: transparent !important;
 }
