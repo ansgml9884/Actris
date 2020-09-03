@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <audio autoplay id="myaudio">
-        <source src="music/Tenvi .mp3" type="audio/mp3">
+    <audio id="my_audio">
+        <source src="music/Tenvi .mp3">
     </audio>
     <title>PoseNet - Camera Feed Demo</title>
     <link rel="stylesheet" href="camera.css">
@@ -86,6 +86,11 @@
             </div>
         </section>
     </div>
+    <script type="text/javascript">
+    setTimeout(function(){
+      document.getElementById("my_audio").play();
+    }, 2000)
+    </script>
 </body>
 <script src="camera.js"></script>
 
