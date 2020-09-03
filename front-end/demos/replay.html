@@ -14,13 +14,14 @@
         <br><br>
         <div class="title">REPLAY</div>
         <br><br>
-        <form id="speed">
-            <img src="images/left_arrow.png" width="50px" onClick="javascript:if(amount.value>0.5) amount.value/=2;">
-            <input type=text name=amount value=1 readonly style=margin-left:18%;>
-            <img src="images/right_arrow.png" width="50px" onClick="javascript:if(amount.value<4)amount.value*=2;"> 
+        <form>
+            <img id="larrow" src="images/left_arrow.png" width="40px" onClick="javascript:if(amount.value>0.5) amount.value/=2;">
+            <input id="speed" type=text name=amount value=1 readonly;>
+            <img id="rarrow" src="images/right_arrow.png" width="40px" onClick="javascript:if(amount.value<4)amount.value*=2;"> 
         </form>
         <br><br>
-        <p><button class="exit" onclick="location.href='Main.html'">EXIT</button></p>
+        <p><button class="control" onclick="location.href=''">PAUSE</button></p>
+        <p><button class="control" onclick="location.href='index.html'">EXIT</button></p>
     </section>
 <script>
     //뒤로가기 막기
