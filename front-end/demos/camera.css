@@ -10,14 +10,13 @@ body{
 
 }
 
-.motion {
+#motion {
   margin-top : 70px;
   margin-right: 70px;
   width: 80%;
   height: 70%;
   float: right;
 }
-
 
 .sec1 {
   height: 99%;
@@ -31,17 +30,6 @@ body{
   width:50%;
   right:0;
 }  
-/* .pause {
-padding: 3%;
-margin-left: 18%;
-width: 50%;
-}
-
-.exit {
-padding: 3%;
-margin-left: 18%;
-width: 50%;
-} */
 
 button {
   font-family: "proxima-nova", sans-serif;
