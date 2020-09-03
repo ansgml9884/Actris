@@ -75,11 +75,12 @@ h2 {
     font-size: 25px;
 }
 
-.name {
+.inputs {
     text-align: right;
-}
-.comment {
-    text-align: right;
+    color: lightgray;
+    font-size: 30px;
+    border:1px;
+    background-color: transparent !important;
 }
 
 .toptable {
@@ -205,8 +206,15 @@ button:hover::after, .btn1O:hover::after{
     width: 120%;
 }
 
-.jb-box { min-width: 1024px; min-height: 100%; width: 100%; height: auto; 
-    overflow: hidden; margin: 0px auto; position: fixed; }
+.jb-box { 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    overflow: hidden;
+}
 video { width: auto; }
 .jb-text { position: fixed; top: 20%; width: 100%; }
 .jb-text p { margin-top: -24px; text-align: center; font-size: 48px; color: #ffffff; }
