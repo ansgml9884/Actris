@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="replay.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <audio id="my_audio">
+        <source src="music/Tenvi .mp3">
+    </audio>
 </head>
 <body class="body">
     <section class="sec1">
@@ -30,6 +33,11 @@
         history.go(1);
 };
 </script>
+<script type="text/javascript">
+    setTimeout(function(){
+      document.getElementById("my_audio").play();
+    }, 2000)
+    </script>
 </body>
 </html>
 

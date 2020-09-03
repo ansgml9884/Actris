@@ -1,9 +1,37 @@
-.jb-box { width: 100%; height: auto; 
-    overflow: hidden; margin: 0px auto; position: fixed; 
-          background-size: cover;
-        z-index: -1;}
+.jb-box { 
+    width: 100%; 
+    height: auto; 
+    overflow: hidden; 
+    margin: 0px auto; 
+    position: fixed; 
+    background-size: cover;
+    z-index: -1;}
+        
+video { 
+    width: auto; 
+}
+
+.jb-text {
+     position: fixed; 
+     top: 20%; 
+     width: 100%;
+}
+
+.jb-text p { 
+    margin-top: -24px; 
+    text-align: center;
+    font-size: 48px; 
+    color: #ffffff; 
+}
+
+.container {
+    position: relative;
+}
+
           
-video { width: auto; }
+video {
+     width: auto; 
+    }
             
 
 .head {
@@ -219,6 +247,7 @@ button:hover::after, .btn1O:hover::after{
     width: 120%;
 }
 
+
 .jb-box { 
     position: absolute;
     top: 0px;
@@ -227,12 +256,6 @@ button:hover::after, .btn1O:hover::after{
     height: 100%;
     z-index: -1000;
     overflow: hidden;
-}
-video { width: auto; }
-.jb-text { position: fixed; top: 20%; width: 100%; }
-.jb-text p { margin-top: -24px; text-align: center; font-size: 48px; color: #ffffff; }
-.container {
-position: relative;
 }
 
 .img1 {
