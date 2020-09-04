@@ -748,30 +748,27 @@ function playGame() {
     if (gameOver) {
         clearInterval(myTimer);
         alert("Game Over");
-        location.href = "http://localhost:80/enter";
+
+        sendPost("http://localhost:80/enter")
     }
 }
-function sendPost(url, arg) {
+function sendPost(url) {
     let myForm = document.createElement('form');
 
     myForm.method = "post";
     myForm.action = url;
 
-    let index = 0;
+    let myInputHidden1 = document.createElement("input");
+    myInputHidden1.type = "hidden";
+    myInputHidden1.name = "score";
+    myInputHidden1.value = score;
+    myForm.appendChild(myInputHidden1);
 
-    let argArr = arg.split("&");
-    for (let i = 0; i < argArr.length; i++) {
-        let leftStr = "";
-
-        myInputHidden = document.createElement("input");
-        myInputHidden.type = "hidden";
-        myInputHidden.name = argArr[i].split("=")[0];
-        index = argArr[i].indexOf("=") + 1;
-        myInputHidden.value = argArr[i].substr(index);
-        myForm.appendChild(myInputHidden);
-    }
-
-    myForm.appendChild(myInputHidden);
+    let myInputHidden2 = document.createElement("input");
+    myInputHidden2.type = "hidden";
+    myInputHidden2.name = "record";
+    myInputHidden2.value = 11;
+    myForm.appendChild(myInputHidden2);
 
     document.body.appendChild(myForm);
     myForm.submit();

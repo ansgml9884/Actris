@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,14 +32,13 @@ public class RankingController {
    }
 
    @PostMapping("/rankings")
-   Ranking newEmployee(@RequestBody Ranking newRanking) {
+   public Ranking newEmployee(@RequestBody Ranking newRanking) {
       newRanking.setPlayed_date(new Timestamp(System.currentTimeMillis()));
       return repository.save(newRanking);
    }
    
    @RequestMapping("/enter")
-   public ModelAndView board() {
-	   return new ModelAndView("enter");
+   public ModelAndView enter(@RequestParam("score") String score, @RequestParam("record") String record) {
+      return new ModelAndView("enter");
    }
-
 }

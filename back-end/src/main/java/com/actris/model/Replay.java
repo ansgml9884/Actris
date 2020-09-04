@@ -26,8 +26,7 @@ public class Replay {
 	   private String record;
 	   
 	   @Builder
-	   public Replay(Long id, String record) {
-		   this.id = id;
+	   public Replay(String record) {
 		   this.record = record;
 	   }
 }

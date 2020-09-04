@@ -33,7 +33,7 @@
         <thead>
           <tr>
             <th class="text1">SCORE</th>
-            <th class="score">123123</th>
+            <th class="score">${param.score}</th>
           </tr>
         </thead>
       </table>
@@ -53,7 +53,7 @@
           </tr>
         </thead>
       </table>
-   <br> <button class="done" v-on:click="insert"  onclick="location.href='http://localhost:1234/ranking.html'">DONE</button>
+   <br> <button class="done" v-on:click="insert(${param.record},${param.score})" >DONE</button>
   </div>
 
 <footer class="top">
@@ -87,7 +87,8 @@
             ranking : null,
             order : ["1ST", "2ND", "3RD"],
             name: "",
-            note: ""
+            note: "",
+            replay : null
         },
         created : function() {
           axios.get('http://127.0.0.1:80/rankings/0')
@@ -98,20 +99,31 @@
                .catch(error => console.log(error));
         },
         methods : {
-            insert: function() {
-                axios.post('http://127.0.0.1:80/rankings', { 
+            insert: function(record, score) {
+                axios.post('http://127.0.0.1:80/replay', { 
                     headers: {
                         'Content-type': 'application/x-www-form-urlencoded'
                     },
-                    name: this.name,
-                    note: this.note
+                    record : record
                 })
                 .then(response => {
-                    this.ranking = response.data;
-                    location.href='ranking.html';
+                    this.replay = response.data;
+                    axios.post('http://127.0.0.1:80/rankings', { 
+                        headers: {
+                            'Content-type': 'application/x-www-form-urlencoded'
+                        },
+                       	name : this.name,
+    					score : score,
+                        note : this.note,
+                        replay_id : this.replay.id
+                    })
+                    .then(response => {
+                        this.ranking = response.data;
+                        location.href="http://127.0.0.1:1234/ranking.html"
+                    })
+                    .catch(error => console.log(error));
                 })
                 .catch(error => console.log(error));
-
 
             }
         }
