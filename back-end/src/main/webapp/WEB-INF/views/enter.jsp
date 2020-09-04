@@ -38,7 +38,7 @@
             	<th><input class="inputconts" type="text" v-model="note" placeholder="Leave your comment"></input></th>
       		</tr>
       </table>
-   <br> <button id="donebtn" v-on:click="insert(${param.record},${param.score})" >DONE</button>
+   <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
 
 <footer class="top">
