@@ -52,7 +52,7 @@
           </tr>
         </thead>
       </table>
-   <br> <button class="done" v-on:click="insert(${param.record},${param.score})" >DONE</button>
+   <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
 
 <footer class="top">

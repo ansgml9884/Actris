@@ -724,15 +724,6 @@ function moveToEnd() {
     return getNewBlock();
 }
 
-/*
-const MOVE_RIGHT = 1;
-const MOVE_LEFT = 2;
-const ROTATE_RIGHT = 4;
-const ROTATE_LEFT = 8;
-const DROP_IMMEDIATELY = 16;
-const DROP_FAST = 32;
-const HOLD = 64;
-*/
 function manipulate() {
     if (controllKey(MOVE_RIGHT, 20, 0)) {
         playRecord.keys |= MOVE_RIGHT;
@@ -819,9 +810,9 @@ function sendPost(url) {
 
     let recordString = "";
     for (let i = 0; i < playRecords.length; i++) {
-        recordString += playRecords[i].cutTime + ",";
-        recordString += playRecords[i].pat + ",";
-        recordString += playRecords[i].keys + ",";
+        recordString += playRecords[i].cutTime + " ";
+        recordString += playRecords[i].pat + " ";
+        recordString += playRecords[i].keys + " ";
     }
     recordString = recordString.slice(0, -1);
     myInputHidden2.value = recordString;
