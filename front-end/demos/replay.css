@@ -24,11 +24,10 @@ body {
 .title {
     color:white;
     font-size: 70px;
-    margin-left: 29%;
-    text-shadow: 2px 2px 0px skyblue;
+    margin-top: 5%;
+    margin-left: 31%;
+    text-shadow: 8px 5px 3px rgb(40, 40, 40);
 }
-
-
 
 #speed {
     height: auto;
@@ -40,14 +39,14 @@ body {
     border:1px;
     color: white;
     background-color: black;
-    text-shadow: 1px 1px 0px skyblue;
+    text-shadow: 8px 5px 3px rgb(40, 40, 40);
     margin-bottom:5%;
 }
 
 #larrow {
     width: auto; height: auto;
     margin-top: 20%;
-    margin-left:23%;
+    margin-left:24%;
     max-width: 60px;
     max-height: 60px;
 }
@@ -58,12 +57,11 @@ body {
     max-height: 60px;
 }
 
-.control{
+button {
     font-family: "proxima-nova", sans-serif;
     font-size: 50px;
     width: 50%;
     margin-left: 18%;
-    text-transform: uppercase!important;
     letter-spacing: 2px;
     color: #fff;
     cursor: hand;
@@ -72,14 +70,15 @@ body {
     border: 1px solid #fff;
     border-radius:50px;
     position: relative;
+    margin-bottom:3%;
     overflow: hidden!important;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
     background: transparent!important;
-    z-index:10;
-}
+    
+  }
 
 button:hover{
     border: 1px solid #071982;
