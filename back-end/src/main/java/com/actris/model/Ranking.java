@@ -5,8 +5,9 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -16,9 +17,12 @@ import lombok.Setter;
 @Entity
 @Setter @Getter
 @NoArgsConstructor
+@SequenceGenerator(name = "RANKING_SEQ_GENERATOR", sequenceName = "RANKING_SEQ", initialValue = 1, allocationSize = 1)
+
 public class Ranking {
    
-   @Id @GeneratedValue
+   @Id 
+   @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "RANKING_SEQ_GENERATOR")
    private Long id;
    private String name;
    private int score;

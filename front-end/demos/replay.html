@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="replay.css">
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
     <audio id="my_audio">
         <source src="music/Tenvi .mp3">
     </audio>
 </head>
 <body class="body">
     <section class="sec1">
-        <img class="game" src="images/border.png" >
+        <canvas class="game" id="gameCanvas" width="550px" height="680px" />
     </section>
     <section class="sec2">
         <br><br>
@@ -23,7 +23,7 @@
             <img id="rarrow" src="images/right_arrow.png" width="40px" onClick="javascript:if(amount.value<4)amount.value*=2;"> 
         </form>
         <br><br>
-        <p><button class="control" onclick="location.href=''">PAUSE</button></p>
+        <p><button class="control" id="pauseBtn">PAUSE</button></p>
         <p><button class="control" onclick="location.href='index.html'">EXIT</button></p>
     </section>
 <script>
@@ -37,7 +37,19 @@
     setTimeout(function(){
       document.getElementById("my_audio").play();
     }, 2000)
+
+    var replay_id = new URL(window.location.href).searchParams.get("id");
+    console.log(replay_id);
+    var replay_data;
+    axios.get('http://127.0.0.1:80/replay/'+ replay_id)
+                .then(response => {
+                   replay_data = response.data;
+                   console.log(replay_data);
+               })
+               .catch(error => console.log(error));
+
     </script>
+    <script src="camera.js"></script>
 </body>
 </html>
 

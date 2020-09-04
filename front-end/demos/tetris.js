@@ -1,6 +1,6 @@
 //canvas
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+let canvas = document.getElementById("gameCanvas");
+let ctx = canvas.getContext("2d");
 
 //BOARD
 const BOARD_WIDTH = 12;

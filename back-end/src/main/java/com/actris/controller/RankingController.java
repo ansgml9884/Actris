@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.actris.exception.RankingNotFoundException;
 import com.actris.model.Ranking;
 import com.actris.repository.RankingRepository;
 
@@ -35,11 +34,6 @@ public class RankingController {
    Ranking newEmployee(@RequestBody Ranking newRanking) {
       newRanking.setPlayed_date(new Timestamp(System.currentTimeMillis()));
       return repository.save(newRanking);
-   }
-
-   @GetMapping("/rankings/replay/{id}")
-   Ranking one(@PathVariable Long id) {
-      return repository.findById(id).orElseThrow(() -> new RankingNotFoundException(id));
    }
    
    @RequestMapping("/enter")
