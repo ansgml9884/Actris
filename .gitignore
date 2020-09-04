@@ -17,3 +17,5 @@ clone/
 
 *.tgz
 /.metadata/
+
+/back-end/bin/
