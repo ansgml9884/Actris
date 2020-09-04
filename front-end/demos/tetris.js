@@ -87,13 +87,13 @@ const MAX_WAIT = [75, 64, 54, 45, 37, 30, 24, 19, 15, 12, 9, 6, 3, 1, 0];   //�
 const MAX_SURVIVAL = 75;    //충돌 후 생존시간
 
 //key value
-const MOVE_RIGHT = 0;
-const MOVE_LEFT = 1;
-const ROTATE_RIGHT = 2;
-const ROTATE_LEFT = 3;
-const DROP_IMMEDIATELY = 4;
-const DROP_FAST = 5;
-const HOLD = 6;
+const MOVE_RIGHT = 1;
+const MOVE_LEFT = 2;
+const ROTATE_RIGHT = 4;
+const ROTATE_LEFT = 8;
+const DROP_IMMEDIATELY = 16;
+const DROP_FAST = 32;
+const HOLD = 64;
 
 //실제 게임 판
 let data = [];
@@ -147,6 +147,30 @@ let mine = {
 
 let holdFlag = 0;
 let holdPatIndex = -1;
+
+
+//replay 관련
+let myTime = 0;
+let PlayRecord = function() {
+    this.cutTime = 0;
+    this.pat = 0;
+    this.keys = 0;
+
+    this.empty = function() {
+        if (this.cutTime == 0 && this.pat == 0 && this.keys == 0) {
+            return true;
+        }
+        return false;
+    }
+}
+let playRecords = [];
+
+let playRecord = new PlayRecord();
+playRecord.pat = (playRecord.pat | nextPatIndex[2]) << 3;
+playRecord.pat = (playRecord.pat | nextPatIndex[1]) << 3;
+playRecord.pat = (playRecord.pat | nextPatIndex[0]) << 3;
+playRecord.pat |= mine.patIndex;
+playRecords.push(playRecord);
 
 
 //event
@@ -363,6 +387,7 @@ document.getElementById("pauseBtn").onclick = function() {
 
 
 //게임 시작
+let gameOver = false;
 let myTimer = null;
 export function startGame(){
     draw();
@@ -379,6 +404,7 @@ function getNewBlock() {
         nextPatIndex[i] = nextPatIndex[i + 1];
     }
     nextPatIndex[2] = Math.floor(Math.random() * NUM_OF_PAT);
+    playRecord.pat = nextPatIndex[2];
 
     holdFlag = 0;
     mine.survival = MAX_SURVIVAL;
@@ -698,31 +724,47 @@ function moveToEnd() {
     return getNewBlock();
 }
 
+/*
+const MOVE_RIGHT = 1;
+const MOVE_LEFT = 2;
+const ROTATE_RIGHT = 4;
+const ROTATE_LEFT = 8;
+const DROP_IMMEDIATELY = 16;
+const DROP_FAST = 32;
+const HOLD = 64;
+*/
 function manipulate() {
     if (controllKey(MOVE_RIGHT, 20, 0)) {
+        playRecord.keys |= MOVE_RIGHT;
         moveToRight();
     }
     if (controllKey(MOVE_LEFT, 20, 0)) {
+        playRecord.keys |= MOVE_LEFT;
         moveToLeft();
     }
 
     if (controllKey(DROP_FAST, 10, 0)) {
+        playRecord.keys |= DROP_FAST;
         moveToDown(true);
     }
     if (controllKey(DROP_IMMEDIATELY, 20, 5)) {
+        playRecord.keys |= DROP_IMMEDIATELY;
         if (moveToEnd() == false) {
             return false;
         }
     }
 
     if (controllKey(ROTATE_RIGHT, 20, 10)) {
+        playRecord.keys |= ROTATE_RIGHT;
         rotateRight();
     }
     if (controllKey(ROTATE_LEFT, 20, 10)) {
+        playRecord.keys |= ROTATE_LEFT;
         rotateLeft();
     }
 
     if (controllKey(HOLD, 1000, 1000)) {
+        playRecord.keys |= HOLD;
         if (holdThisBlock() == false) {
             return false;
         }
@@ -735,9 +777,16 @@ function playGame() {
     if (pause) {
         return;
     }
-
-    let gameOver = false;
-
+    if (gameOver) {
+        clearInterval(myTimer);
+        alert("Game Over");
+        
+        sendPost("http://localhost:80/enter");
+        return;
+    }
+    
+    playRecord = new PlayRecord();
+    
     if (!manipulate()) {
         gameOver = true;
     }
@@ -745,12 +794,12 @@ function playGame() {
         gameOver = true;
     }
 
-    if (gameOver) {
-        clearInterval(myTimer);
-        alert("Game Over");
-
-        sendPost("http://localhost:80/enter")
+    if (!playRecord.empty()) {
+        playRecord.cutTime = myTime;
+        playRecords.push(playRecord);
     }
+
+    myTime++;
 }
 function sendPost(url) {
     let myForm = document.createElement('form');
@@ -767,7 +816,16 @@ function sendPost(url) {
     let myInputHidden2 = document.createElement("input");
     myInputHidden2.type = "hidden";
     myInputHidden2.name = "record";
-    myInputHidden2.value = 11;
+
+    let recordString = "";
+    for (let i = 0; i < playRecords.length; i++) {
+        recordString += playRecords[i].cutTime + ",";
+        recordString += playRecords[i].pat + ",";
+        recordString += playRecords[i].keys + ",";
+    }
+    recordString = recordString.slice(0, -1);
+    myInputHidden2.value = recordString;
+
     myForm.appendChild(myInputHidden2);
 
     document.body.appendChild(myForm);
