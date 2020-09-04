@@ -7,18 +7,23 @@
   </script>
   <audio autoplay id="myaudio">
     <source src="music/happy life-DZ65faDFG42jncg8KEyzuBeh.mp3" type="audio/mp3">
-    </audio>
-  <!-- <audio id='audio' src='music/vol.8.mp3'></audio> -->
+  </audio>
+  <audio id='btnaudio' src='music/vol.8.mp3'></audio>
 <link rel="stylesheet" href="index.css">
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-<!-- <script>
-  function play(){
-    var audio = document.getElementById("audio");
-    audio.play();
-  }
-  </script> -->
+<script type="text/javascript"> 
+  function play() { 
+      var audio = document.getElementById('btnaudio'); 
+      if (audio.paused) { 
+          audio.play(); 
+      }else{ 
+          audio.pause(); 
+          audio.currentTime = 0 
+      } 
+  } 
+</script>
+  
 
 </head>
 
@@ -29,15 +34,13 @@
       </video>
       <div class="jb-text">
         <p>Actris</p>
-        <div>
-        </div>
         <div id="main">
           <header>
             <!--버튼-->
             <div style="text-align: center;">
-              <a class="btn camera" href="camera.html" onClick="play()" >START GAME</a><br>
-              <a class="btn rank" href="ranking.html" onClick="play()">RANKING</a><br>
-              <a class="btn help" href="help.html" onClick="play()">HELP</a><br>
+              <a class="btn camera" href="camera.html" onmouseover="play()">START GAME</a><br>
+              <a class="btn rank" href="ranking.html" onmouseover="play()">RANKING</a><br>
+              <a class="btn help" href="help.html" onmouseover="play()">HELP</a><br>
             </div>
           </div>
         </header>
