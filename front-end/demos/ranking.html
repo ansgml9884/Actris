@@ -25,8 +25,9 @@
       <img class="cup" src="images/podium.png"/>
       <!--랭킹 제목-->
       <p>- RANKING -</p><br>
+      <!-- build용 임시 태그-->
+      <a href="replay.html"></a>
       <div class="box">
-  
         <!--테이블 테스트데이터 -->
         <div id="rankingList">
           <table class="tg" width="100%" cellspacing="32" cellpadding="0">
@@ -43,7 +44,7 @@
                   <td>{{pageNo*5+index+1}}</td>
                   <td>{{ranking.name}}</td>
                   <td>{{ranking.note}}</td>
-                  <td><img src="images/replay.png" width="40px" height="40px" onclick="location.href='replay.html'"></td>
+                  <td><img src="images/replay.png" width="40px" height="40px" v-on:click="showReplay(ranking.replay_id)"></td>
                   <td>{{ranking.score}}</td>
                   <td>{{convertDate(ranking.played_date)}}</td>
                   </tr>
@@ -119,6 +120,9 @@
                         +date.substring(14,16)+':'
                         +date.substring(17,19);
               }
+            },
+            showReplay : function(id){
+              location.href="replay.html?id="+id;
             }
           }
   });
