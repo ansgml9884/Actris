@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="enter.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <audio id="myaudio" autoplay>
+  <audio autoplay loop>
     <source src="music/bgm_enter_FirecrackSoundEffect.mp3">
   </audio>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,39 +20,25 @@
     </video>
   </div>
 
-  <div class="head">
-    <h1>HIGH SCORE</h1>
-    <h3>123124</h3>
-  </div>
+ <h2 id="congrats">CONGRATURATION !</h2>
 
   <div class="enter" >
-    <h2> CONGRATURATION !</h2>
 
-      <table class="tg1">
-        <thead>
-          <tr>
-            <th class="text1">SCORE</th>
-            <th class="score">${param.score}</th>
-          </tr>
-        </thead>
+      <table class="scoreinputs">
+      		<tr>
+            	<th class="inputconts">SCORE</th>
+            	<th>${param.score}</th>
+            </tr>
+            <tr>
+            	<th class="inputconts">NAME</th>
+            	<th><input class="inputconts" type="text" v-model="name" placeholder="Enter your name"></input></th>
+      		</tr>
+      		<tr>
+      			<th class="inputconts">COMMENT</th>
+            	<th><input class="inputconts" type="text" v-model="note" placeholder="Leave your comment"></input></th>
+      		</tr>
       </table>
-      <table class="tg2">
-        <thead>
-          <tr>
-            <th>NAME</th>
-            <th><input id="name" type="text" v-model="name" placeholder="Enter your name"></input></th>
-          </tr>
-        </thead>
-      </table>
-      <table class="tg3">
-        <thead>
-          <tr>
-            <th class="comment">COMMENT</th>
-            <th><input id="comment" type="text" v-model="note" placeholder="Leave your comment"></input></th>
-          </tr>
-        </thead>
-      </table>
-   <br> <button class="done" v-on:click="insert(${param.record},${param.score})" >DONE</button>
+   <br> <button id="donebtn" v-on:click="insert(${param.record},${param.score})" >DONE</button>
   </div>
 
 <footer class="top">
@@ -62,8 +48,8 @@
     <thead>
       <tr>
         <th></th>
-        <th class="text4">SCORE</th>
-        <th class="text5">NAME</th>
+        <th class="tablehead">SCORE</th>
+        <th class="tablehead">NAME</th>
       </tr>
     </thead>
     <tbody>
@@ -111,8 +97,8 @@
                         headers: {
                             'Content-type': 'application/x-www-form-urlencoded'
                         },
-                       	name : this.name,
-    					score : score,
+                          name : this.name,
+                   score : score,
                         note : this.note,
                         replay_id : this.replay.id
                     })

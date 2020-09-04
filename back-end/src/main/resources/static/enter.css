@@ -23,11 +23,6 @@ video {
     font-size: 48px; 
     color: #ffffff; 
 }
-
-.container {
-    position: relative;
-}
-
           
 video {
      width: auto; 
@@ -35,48 +30,46 @@ video {
             
 
 .head {
+	font-size:28px;
     text-align: center;
     margin-top:3%;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 body {
     text-align: center;
 }
+
+#congrats{
+	margin-top:5%;
+}
+
 .enter {
+	margin-top: 4%;
+	padding-top: 1%;
     background-color: rgba(224, 228, 235, 0.2);
-    height: 300px;
-
+    height: 280px;
 }
 
-.tg1 {
-    margin-top: 20px;
+.scoreinputs {
+	margin-top:1%;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
-    margin-left:32%; 
+    margin-left:auto; 
     margin-right:auto;
+    width: 400px;
+    font-size: 30px;
 }
 
-.tg2 {
-    color: rgb(247, 246, 242);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left:37%; 
-    margin-right:auto;
+.inputconts {
+	text-align:left;
 }
 
-.tg3 {
-    color: rgb(247, 246, 242);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left:37%; 
-    margin-right:auto;
+#donebtn {
+	margin-top:1%;
 }
 
-.text1 {
-    size: 50px;
-
-}
 h2 {
     color:white;
     font-family: Arial, Helvetica, sans-serif;
@@ -87,26 +80,7 @@ h2 {
     margin-bottom: -5px;
 }
 
-
-.tg1 {
-    width: 550px;
-    font-size: 30px;
-}
-.tg2 {
-    width: 400px;
-    font-size: 30px;
-}
-.tg3 {
-    width: 400px;
-    font-size: 30px;
-}
-.score {
-    font-size: 25px;
-}
-
-
-
-#name {
+.inputconts {
     text-align: left;
     color: lightgray;
     font-size: 30px;
@@ -135,17 +109,7 @@ h2 {
     
    
 }
-.text4 {
-    color:black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-family: "Comic Sans", sans-serif;
-    font-weight: bold;
-    text-shadow: 2px 2px 2px rgb(97, 93, 93);
-    
-}
-
-.text5 {
+.tablehead {
     color:black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
