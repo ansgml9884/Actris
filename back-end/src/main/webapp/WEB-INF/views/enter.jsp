@@ -6,10 +6,9 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="enter.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <audio autoplay id="myaudio">
-    <source src="music/bgm_enter_Firecrack Sound Effect.mp3" type="audio/mp3">
+  <audio id="myaudio" autoplay>
+    <source src="music/bgm_enter_FirecrackSoundEffect.mp3">
   </audio>
-
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
 </head>
