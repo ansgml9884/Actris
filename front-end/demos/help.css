@@ -38,39 +38,20 @@ html {
     right:0;
 }  
 
-.img1 {
+.poseimg {
     margin-top: -30px;
     margin-left: 10%;
     width: 80%;
     height: 70%;
     margin-bottom: 5%;
-
 }
 
-.img2 {
-    margin-top: -30px;
-    margin-right: 170px;
-    width: 80%;
-    height: 70%;
-    float: right;
-}
-
-.text1 { 
+.exptext { 
     background-color: rgba(255, 255, 255, 0.9);
     width: 70%;
     height: 20%;
-    margin-top: -60px;
-    margin-left: 150px;
-    font-size: 25px;
-
-}
-.text2 { 
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 70%;
-    height: 20%;
-    margin-right: 150px;
-    margin-top: 500px;
-    margin-left: 100px;
+    margin-top: -5%;
+    margin-left: 15%;
     font-size: 25px;
 }
 
