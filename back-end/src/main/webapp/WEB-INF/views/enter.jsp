@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="enter.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <audio autoplay id="myaudio">
-    <source src="music/Firecrack Sound Effect [Royalty Free World].mp3" type="audio/mp3">
+    <source src="/music/Firecrack Sound Effect [Royalty Free World].mp3" type="audio/mp3">
   </audio>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

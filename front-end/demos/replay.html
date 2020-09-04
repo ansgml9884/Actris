@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="replay.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
     <audio id="my_audio">
-        <source src="music/Tenvi .mp3">
+        <source src="/music/bgm_play_Tenvi.mp3">
     </audio>
 </head>
 <body class="body">
@@ -16,7 +16,11 @@
     <section class="sec2">
         <br><br>
         <div class="title">REPLAY</div>
+        <br><br><br>
+        <div class="rank" id="name">NAME : </div>
         <br><br>
+        <div class="rank" id="score">SCORE : </div>
+        
         <form>
             <img id="larrow" src="images/left_arrow.png" width="40px" onClick="javascript:if(amount.value>0.5) amount.value/=2;">
             <input id="speed" type=text name=amount value=1 readonly;>
@@ -24,7 +28,7 @@
         </form>
         <br><br>
         <p><button class="control" id="pauseBtn">PAUSE</button></p>
-        <p><button class="control" onclick="location.href='index.html'">EXIT</button></p>
+        <p><button class="control" onclick="location.href='ranking.html'">EXIT</button></p>
     </section>
 <script>
     //뒤로가기 막기
@@ -38,9 +42,14 @@
       document.getElementById("my_audio").play();
     }, 2000)
 
-    var replay_id = new URL(window.location.href).searchParams.get("id");
-    console.log(replay_id);
-    var replay_data;
+    var url = new URL(window.location.href);
+    var replay_id = url.searchParams.get("id");
+    var name = url.searchParams.get("name");
+    var score = url.searchParams.get("score");
+
+    document.getElementById('name').innerHTML += name;
+    document.getElementById('score').innerHTML += score;
+    
     axios.get('http://127.0.0.1:80/replay/'+ replay_id)
                 .then(response => {
                    replay_data = response.data;
@@ -52,5 +61,3 @@
     <script src="camera.js"></script>
 </body>
 </html>
-
-</style>

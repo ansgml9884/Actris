@@ -28,6 +28,11 @@ body {
     text-shadow: 2px 2px 0px skyblue;
 }
 
+.rank {
+    color:white;
+    font-size: 40px;
+    margin-left: 29%;
+}
 
 
 #speed {
