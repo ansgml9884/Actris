@@ -16,10 +16,10 @@
         var audio = document.getElementById('btnaudio'); 
         if (audio.paused) { 
           audio.play(); 
+          audio.volume = 0.3
         }else{ 
           audio.pause(); 
           audio.currentTime = 0 
-          audio.volume = 0.3
         } 
       } 
     </script>
