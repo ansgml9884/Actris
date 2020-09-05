@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 
+
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -391,7 +392,7 @@ document.getElementById("pauseBtn").onclick = function() {
 
 function showTimer(){
     startTimer--;
-    if(startTimer==-1){
+    if(startTimer<0){
         startLock = false;
         completeAction("pause");
     }
@@ -989,7 +990,7 @@ function drawInfo() {
             }
             setTimeout(function(){
                 clearInterval(startInterval);
-            }, 7001);
+            }, 10001);
         }
     }
 }
