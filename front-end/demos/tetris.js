@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -184,6 +186,8 @@ let fPressed = false;
 let dPressed = false;
 
 let pause = false;
+let startLock = true; //5초 뒤 false;
+let startTimer = 5;
 
 export function executeAction(action) {
     switch(action) {
@@ -385,12 +389,22 @@ document.getElementById("pauseBtn").onclick = function() {
     pause = !pause;
 }
 
+function showTimer(){
+    startTimer--;
+    if(startTimer==-1){
+        startLock = false;
+        completeAction("pause");
+    }
+}
+
+var startInterval = setInterval(showTimer, 1000);
 
 //게임 시작
 let gameOver = false;
 let myTimer = null;
 export function startGame(){
     draw();
+    executeAction("pause");
     myTimer = setInterval(playGame, 25);
 }
 
@@ -764,15 +778,19 @@ function manipulate() {
     return true;
 }
 
+
 function playGame() {
     if (pause) {
         return;
     }
     if (gameOver) {
         clearInterval(myTimer);
-        alert("Game Over");
-        
-        sendPost("http://localhost:80/enter");
+        Swal.fire({
+            title: 'Game Over!',
+            text: "Your score is " + score
+        }).then((result)=>{
+            sendPost("http://localhost:80/enter");
+        });
         return;
     }
     
@@ -959,9 +977,20 @@ function drawInfo() {
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
-    if (pause) {
-        drawText("Pause", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
-        drawText("ESC to continue", "20px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 230, "center");
+    if (pause){
+        if(!startLock) {
+            drawText("Pause", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+            drawText("ESC to continue", "20px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 230, "center");
+        }else{
+            if(startTimer>0){
+                drawText(startTimer, "90px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+            }else{ 
+                drawText("Game Start!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+            }
+            setTimeout(function(){
+                clearInterval(startInterval);
+            }, 7001);
+        }
     }
 }
 
