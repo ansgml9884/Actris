@@ -1,6 +1,33 @@
+@font-face{
+    font-family: "Tetris";
+    src:local(※),
+    url("font/Tetris.ttf") format("truetype");
+    font-style:normal;
+    font-weight:normal;
+  }
+
 html {
     background-color: black;
 }
+
+#bgvideo { 
+    min-width: 100%; 
+    min-height: 100%;  
+    height: auto; 
+    position: fixed; 
+    z-index:-10;
+}
+
+#layer {
+    background-color: rgba(248, 247, 216);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:-9;
+}
+
 .game {
     margin-left: 10%;
     width: 90%;
@@ -9,32 +36,34 @@ html {
 }
 
 .sec1 {
-    height: 99%;
-    position:absolute;
+    position:fixed;
     width:50%;
     left:0;
 }
 .sec2 {
-    height: 99%;
-    position:absolute;
+    position:fixed;
     width:50%;
     right:0;
 }  
 
-.title {
+#title {
     color:white;
+    font-family:"Tetris";
     font-size: 70px;
+    font-weight: bold;
     margin-top: 5%;
-    margin-left: 31%;
+    margin-left: 25%;
     text-shadow: 8px 5px 3px rgb(40, 40, 40);
 }
 
 .rank {
     color:white;
-    font-size: 40px;
-    margin-left: 29%;
+    font-size: 50px;
+    margin-left: 25%;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgb(40, 40, 40);
 }
-
 
 #speed {
     height: auto;
@@ -43,9 +72,11 @@ html {
     width:20%;
     text-align: center;
     font-size:60pt;
+    font-family: "Comic Sans", sans-serif;
+    font-weight: bold;
     border:1px;
     color: white;
-    background-color: black;
+    background-color: transparent;
     text-shadow: 8px 5px 3px rgb(40, 40, 40);
     margin-bottom:5%;
 }
@@ -65,10 +96,10 @@ html {
 }
 
 button {
-    font-family: "proxima-nova", sans-serif;
+    font-family:"Tetris";
     font-size: 50px;
-    width: 50%;
-    margin-left: 18%;
+    width: 40%;
+    margin-left: 22%;
     letter-spacing: 2px;
     color: #fff;
     cursor: hand;

@@ -55,13 +55,13 @@ html {
     font-size: 25px;
 }
 
-.btnleft {
+.left {
     float: left;
     margin-left: 50px;
     height: 80px;
     width: 80px;
 }
-.btnright {
+.right {
     float: right;
     margin-right: 50px;
     height: 80px;
