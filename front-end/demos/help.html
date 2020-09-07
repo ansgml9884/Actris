@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <h1>- HELP -</h1>
     <div>
@@ -43,9 +44,21 @@
 
 
     <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
+            var cnt = 1;
             $("#right").click(function () {
-                $("#help1").load("help2.html");
+                $("#help1").load("help"+ cnt +".html");
+                cnt += 1;
+                if (  cnt == 4 ) cnt = 1;
+            });
+        });
+
+        $(document).ready(function () {
+            var cnt = 1;
+            $("#left").click(function () {
+                $("#help1").load("help"+ cnt +".html");
+                cnt -= 1;
+                if (  cnt == 1 ) cnt = 1;
             });
         });
 
