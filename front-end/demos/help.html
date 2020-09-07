@@ -7,6 +7,7 @@
     <audio autoplay id="myaudio">
         <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,45 +18,36 @@
 </head>
 
 <body>
-    
-        <div id="help1">
-            <section class="sec1">
-                <img class="poseimg" src="images/1.jpg">
-                <div class="exptext">
-                    <text>
-                        페이지1
-                    </text>
-                </div>
-                <img class="btnleft" src="images/left1.png">
-            </section>
 
-            <section class="sec2">
-                <img class="poseimg" src="images/2.jpg">
-                <div class="exptext">
-                    <text>
-                        페이지1
-                    </text>
-                </div>
-                <img class="btnright" src="images/right1.png" onclick="right()">
-            </section>
-        </div>
+    <div id="help1">
+        <section class="sec1">
+            <img class="poseimg" src="images/1.jpg">
+            <div class="exptext">
+                <text>
+                    페이지1
+                </text>
+            </div>
+            <img id="left" class="btnleft" src="images/left1.png">
+        </section>
+
+        <section class="sec2">
+            <img class="poseimg" src="images/2.jpg">
+            <div class="exptext">
+                <text>
+                    페이지1
+                </text>
+            </div>
+            <img id="right" class="btnright" src="images/right1.png">
+        </section>
+    </div>
 
 
     <script>
-        function right() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("help1").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET","help2.html",true);
-            xhttp.send();
-        }
-
-
-
-
+        $(document).ready(function () {
+            $("#right").click(function () {
+                $("#help1").load("help2.html");
+            });
+        });
 
         //뒤로가기 막기
         history.pushState(null, null, location.href);
