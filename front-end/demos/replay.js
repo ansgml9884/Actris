@@ -128,7 +128,7 @@ for (let y = 0; y < VIRTUAL_HEIGHT; y++) {
 //각종 게임 정보들
 let nextPatIndex = [];
 for (let i = 0; i < 3; i++) {
-    nextPatIndex[i] = Math.floor(Math.random() * NUM_OF_PAT);
+    nextPatIndex[i] = 0;
 }
 
 let level = 1;
@@ -139,7 +139,7 @@ let mine = {
     x: 5,
     y: 1,
     dir: 0,
-    patIndex: Math.floor(Math.random() * NUM_OF_PAT),
+    patIndex: 0,
 
     wait: MAX_WAIT[level - 1],
     survival: MAX_SURVIVAL
@@ -150,11 +150,11 @@ let holdPatIndex = -1;
 
 
 //replay 관련
-let myTime = 0;
-let PlayRecord = function() {
-    this.cutTime = 0;
-    this.pat = 0;
-    this.keys = 0;
+let gameTime = 0;
+let PlayRecord = function(cutTime, pat, keys) {
+    this.cutTime = cutTime;
+    this.pat = pat;
+    this.keys = keys;
 
     this.empty = function() {
         if (this.cutTime == 0 && this.pat == 0 && this.keys == 0) {
@@ -164,11 +164,25 @@ let PlayRecord = function() {
     }
 }
 let playRecords = [];
+let recordIndex = 0;
 
 //getRecordTest
-function getRecords(records) {
-    alert(records);
-    console.log(records);
+// function getRecords(records) {
+//     // alert(records);
+//     // console.log(records);
+//     records = "0 1381 0 19 0 2 27 0 2 34 0 2 40 0 2 62 3 16 90 0 1 107 0 8 115 0 2 126 0 2 150 5 16 182 0 1 187 0 1 194 0 1 201 0 1 217 3 16 250 0 1 300 5 16 344 0 4 352 0 2 385 0 1 412 5 16 441 0 1 456 0 4 531 0 4 549 0 4 561 0 1 569 0 1 576 0 1 582 0 1 590 0 1 597 2 16 628 0 4 636 0 1 662 0 1 687 1 16 757 0 4 808 0 1 829 0 1 830 0 1 831 0 1 832 0 1 833 0 1 834 0 1 835 0 1 836 0 1 837 0 1 838 0 1 839 0 1 840 0 1 841 0 1 842 0 1 843 0 1 844 0 1 845 0 1 850 0 16 899 0 2 907 0 4 928 0 4 980 0 4 989 0 4 1005 0 2 1010 0 4 1014 0 4 1035 0 4 1042 0 4 1063 0 2 1071 0 4 1096 1 16 1137 0 4 1156 0 4 1173 0 4 1182 0 4 1202 0 4 1212 0 2 1232 1 16 1288 0 2 1309 0 2 1310 0 2 1311 0 2 1312 0 2 1313 0 2 1320 0 2 1328 0 2 1339 0 1 1349 0 1 1370 0 1 1371 0 1 1372 0 1 1373 0 1 1374 0 1 1375 0 1 1376 0 1 1377 0 1 1378 0 1 1379 0 1 1380 0 1 1383 0 1 1395 0 2 1416 0 2 1417 0 2 1418 0 2 1419 0 2 1420 0 2 1421 0 2 1422 0 2 1423 0 2 1424 0 2 1425 0 2 1426 0 2 1427 0 2 1428 0 2 1429 0 2 1430 0 2 1431 0 2 1432 0 2 1433 0 2 1438 0 1 1474 4 16 1512 0 8 1519 0 2 1528 0 2 1535 0 2 1542 0 2 1549 0 2 1561 5 16 1585 6 64 1618 0 2 1626 0 1 1647 0 1 1648 0 1 1649 0 1 1650 0 1 1651 0 1 1652 0 1 1653 0 1 1654 0 1 1655 0 1 1656 0 1 1657 0 1 1658 0 1 1659 0 1 1660 0 1 1661 0 1 1662 0 1 1663 0 1 1664 0 1 1665 0 1 1668 2 16 1707 0 8 1719 0 1 1727 0 1 1735 0 1 1757 0 2 1823 3 16 1952 0 64 1979 0 2 1987 0 2 1995 0 2 2002 0 2 2009 0 2 2022 6 16 2196 4 16 2212 3 16 2222 0 16 2231 0 16 2253 1 16 2265 2 16 2269 2 16 2277 4 16 2288 2 16 2309 5 16 2331 1 16"
+// }
+
+let records = "0 1381 0 19 0 2 27 0 2 34 0 2 40 0 2 62 3 16 90 0 1 107 0 8 115 0 2 126 0 2 150 5 16 182 0 1 187 0 1 194 0 1 201 0 1 217 3 16 250 0 1 300 5 16 344 0 4 352 0 2 385 0 1 412 5 16 441 0 1 456 0 4 531 0 4 549 0 4 561 0 1 569 0 1 576 0 1 582 0 1 590 0 1 597 2 16 628 0 4 636 0 1 662 0 1 687 1 16 757 0 4 808 0 1 829 0 1 830 0 1 831 0 1 832 0 1 833 0 1 834 0 1 835 0 1 836 0 1 837 0 1 838 0 1 839 0 1 840 0 1 841 0 1 842 0 1 843 0 1 844 0 1 845 0 1 850 0 16 899 0 2 907 0 4 928 0 4 980 0 4 989 0 4 1005 0 2 1010 0 4 1014 0 4 1035 0 4 1042 0 4 1063 0 2 1071 0 4 1096 1 16 1137 0 4 1156 0 4 1173 0 4 1182 0 4 1202 0 4 1212 0 2 1232 1 16 1288 0 2 1309 0 2 1310 0 2 1311 0 2 1312 0 2 1313 0 2 1320 0 2 1328 0 2 1339 0 1 1349 0 1 1370 0 1 1371 0 1 1372 0 1 1373 0 1 1374 0 1 1375 0 1 1376 0 1 1377 0 1 1378 0 1 1379 0 1 1380 0 1 1383 0 1 1395 0 2 1416 0 2 1417 0 2 1418 0 2 1419 0 2 1420 0 2 1421 0 2 1422 0 2 1423 0 2 1424 0 2 1425 0 2 1426 0 2 1427 0 2 1428 0 2 1429 0 2 1430 0 2 1431 0 2 1432 0 2 1433 0 2 1438 0 1 1474 4 16 1512 0 8 1519 0 2 1528 0 2 1535 0 2 1542 0 2 1549 0 2 1561 5 16 1585 6 64 1618 0 2 1626 0 1 1647 0 1 1648 0 1 1649 0 1 1650 0 1 1651 0 1 1652 0 1 1653 0 1 1654 0 1 1655 0 1 1656 0 1 1657 0 1 1658 0 1 1659 0 1 1660 0 1 1661 0 1 1662 0 1 1663 0 1 1664 0 1 1665 0 1 1668 2 16 1707 0 8 1719 0 1 1727 0 1 1735 0 1 1757 0 2 1823 3 16 1952 0 64 1979 0 2 1987 0 2 1995 0 2 2002 0 2 2009 0 2 2022 6 16 2196 4 16 2212 3 16 2222 0 16 2231 0 16 2253 1 16 2265 2 16 2269 2 16 2277 4 16 2288 2 16 2309 5 16 2331 1 16"
+let recordStrings = records.split(' ');
+for (let i = 0; i < recordStrings.length; i += 3) {
+    playRecords.push(
+        new PlayRecord(
+            Number(recordStrings[i]),
+            Number(recordStrings[i + 1]),
+            Number(recordStrings[i + 2])
+        )
+    );
 }
 
 // let playRecord = new PlayRecord();
@@ -178,6 +192,11 @@ function getRecords(records) {
 // playRecord.pat |= mine.patIndex;
 // playRecords.push(playRecord);
 
+let record = playRecords[recordIndex++];
+mine.patIndex = record.pat & 7;
+nextPatIndex[0] = (record.pat >>= 3) & 7;
+nextPatIndex[1] = (record.pat >>= 3) & 7;
+nextPatIndex[2] = (record.pat >>= 3) & 7;
 
 //event
 let leftPressed = false;
@@ -420,8 +439,7 @@ function getNewBlock() {
     for (let i = 0; i < 2; i++) {
         nextPatIndex[i] = nextPatIndex[i + 1];
     }
-    nextPatIndex[2] = Math.floor(Math.random() * NUM_OF_PAT);
-    playRecord.pat = nextPatIndex[2];
+    nextPatIndex[2] = playRecords[recordIndex].pat;
 
     holdFlag = 0;
     mine.survival = MAX_SURVIVAL;
@@ -742,37 +760,35 @@ function moveToEnd() {
 }
 
 function manipulate() {
-    if (controllKey(MOVE_RIGHT, 20, 0)) {
-        playRecord.keys |= MOVE_RIGHT;
+    if (playRecords[recordIndex].cutTime != gameTime) {
+        return true;
+    }
+    let record = playRecords[recordIndex];
+
+    if ((record.keys & MOVE_RIGHT) == MOVE_RIGHT) {
         moveToRight();
     }
-    if (controllKey(MOVE_LEFT, 20, 0)) {
-        playRecord.keys |= MOVE_LEFT;
+    if ((record.keys & MOVE_LEFT) == MOVE_LEFT) {
         moveToLeft();
     }
 
-    if (controllKey(DROP_FAST, 10, 0)) {
-        playRecord.keys |= DROP_FAST;
+    if ((record.keys & DROP_FAST) == DROP_FAST) {
         moveToDown(true);
     }
-    if (controllKey(DROP_IMMEDIATELY, 20, 5)) {
-        playRecord.keys |= DROP_IMMEDIATELY;
+    if ((record.keys & DROP_IMMEDIATELY) == DROP_IMMEDIATELY) {
         if (moveToEnd() == false) {
             return false;
         }
     }
 
-    if (controllKey(ROTATE_RIGHT, 20, 10)) {
-        playRecord.keys |= ROTATE_RIGHT;
+    if ((record.keys & ROTATE_RIGHT) == ROTATE_RIGHT) {
         rotateRight();
     }
-    if (controllKey(ROTATE_LEFT, 20, 10)) {
-        playRecord.keys |= ROTATE_LEFT;
+    if ((record.keys & ROTATE_LEFT) == ROTATE_LEFT) {
         rotateLeft();
     }
 
-    if (controllKey(HOLD, 1000, 1000)) {
-        playRecord.keys |= HOLD;
+    if ((record.keys & HOLD) == HOLD) {
         if (holdThisBlock() == false) {
             return false;
         }
@@ -788,16 +804,8 @@ function playGame() {
     }
     if (gameOver) {
         clearInterval(gameInterval);
-        Swal.fire({
-            title: 'Game Over!',
-            text: "Your score is " + score
-        }).then((result)=>{
-            sendPost("http://localhost:1234/ranking.html");
-        });
         return;
     }
-    
-    playRecord = new PlayRecord();
     
     if (!manipulate()) {
         gameOver = true;
@@ -806,12 +814,10 @@ function playGame() {
         gameOver = true;
     }
 
-    if (!playRecord.empty()) {
-        playRecord.cutTime = myTime;
-        playRecords.push(playRecord);
+    if (playRecords[recordIndex].cutTime == gameTime) {
+        recordIndex++;
     }
-
-    myTime++;
+    gameTime++;
 }
 
 
@@ -962,6 +968,11 @@ function drawInfo() {
                 drawText("Game Start!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
             }
         }
+    }
+
+    //Game over
+    if (gameOver) {
+        drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
     }
 }
 
