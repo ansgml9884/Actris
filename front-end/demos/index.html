@@ -3,44 +3,32 @@
   <head>
     <link rel="stylesheet" href="index.css">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript">
-    </script>
+    
     <audio autoplay id="myaudio">
       <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
     <audio id='btnaudio' src='music/btn_index_mouseover.mp3'></audio>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
     <script type="text/javascript"> 
       function play() { 
-        var audio = document.getElementById('btnaudio'); 
-        if (audio.paused) { 
+        let audio = document.getElementById('btnaudio'); 
           audio.play(); 
           audio.volume = 0.3
-        }else{ 
-          audio.pause(); 
-          audio.currentTime = 0 
-        } 
       } 
     </script>
   </head>
 
 <body>
-  <div class="jb-box">
-    <video muted autoplay loop>
-      <source src="videos/Network.mp4" type="video/mp4">
-      </video>
-      <div class="jb-text">
-        <p>Actris</p>
-        <div id="main">
-          <header>
-            <div style="text-align: center;">
-              <a class="btn camera" href="camera.html" onmouseover="play()">START GAME</a><br>
-              <a class="btn rank" href="ranking.html" onmouseover="play()">RANKING</a><br>
-              <a class="btn help" href="help.html" onmouseover="play()">HELP</a><br>
-            </div>
-          </header> 
-        </div>
-      </div>
-  </div>
+  <video id="bgvideo" muted autoplay loop>
+    <source src="videos/Network.mp4" type="video/mp4">
+  </video>
+
+  <h2 class="contents">Actris</h2>
+  <div class="contents">
+    <a class="btn" href="camera.html" onmouseover="play()">START GAME</a><br>
+    <a class="btn" href="ranking.html" onmouseover="play()">RANKING</a><br>
+    <a class="btn" href="help.html" onmouseover="play()">HELP</a><br>
+   </div>
 </body>
 </html>
