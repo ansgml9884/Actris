@@ -380,6 +380,18 @@ document.getElementById("pauseBtn").onclick = function() {
     pause = !pause;
 }
 
+let speedText = document.getElementById("speed");
+document.getElementById("larrow").onclick = function() {
+    if (1 < speedText.value) {
+        speedText.value /= 2;
+    }
+}
+document.getElementById("rarrow").onclick = function() {
+    if (speedText.value < 8) {
+        speedText.value *= 2;
+    }
+}
+
 //게임 시작 관련
 function showTimer(){
     startTimer--;
@@ -397,8 +409,8 @@ let gameInterval = null;
 axios.get('http://127.0.0.1:80/replay/'+ replay_id)
     .then(response => {
         let records = response.data.record;
-
         let recordStrings = records.split(' ');
+
         for (let i = 0; i < recordStrings.length; i += 3) {
             playRecords.push(
                 new PlayRecord(
@@ -800,17 +812,19 @@ function playGame() {
         return;
     }
     
-    if (!manipulate()) {
-        gameOver = true;
+    for (let i = 0; i < speedText.value; i++) {
+        if (!manipulate()) {
+            gameOver = true;
+        }
+        if (!goToWork()) {
+            gameOver = true;
+        }
+    
+        if (playRecords[recordIndex].cutTime == gameTime) {
+            recordIndex++;
+        }
+        gameTime++;
     }
-    if (!goToWork()) {
-        gameOver = true;
-    }
-
-    if (playRecords[recordIndex].cutTime == gameTime) {
-        recordIndex++;
-    }
-    gameTime++;
 }
 
 
