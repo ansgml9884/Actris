@@ -39,10 +39,10 @@ html {
 }  
 
 .poseimg {
-    margin-top: -30px;
+    margin-top: -10px;
     margin-left: 10%;
     width: 80%;
-    height: 70%;
+    height: 60%;
     margin-bottom: 5%;
 }
 
@@ -50,7 +50,7 @@ html {
     background-color: rgba(255, 255, 255, 0.9);
     width: 70%;
     height: 20%;
-    margin-top: -5%;
+    margin-top: 2;
     margin-left: 15%;
     font-size: 25px;
 }

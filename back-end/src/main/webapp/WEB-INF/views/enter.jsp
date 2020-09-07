@@ -38,7 +38,19 @@
             	<th><input class="inputconts" type="text" v-model="note" placeholder="Leave your comment"></input></th>
       		</tr>
       </table>
+<<<<<<< Updated upstream
    <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
+=======
+      <table class="tg3">
+        <thead>
+          <tr>
+            <th class="comment">COMMENT</th>
+            <th><input id="comment" type="text" v-model="note" placeholder="Leave your comment"></input></th>
+          </tr>
+        </thead>
+      </table>
+   <br> <button id="done" class="done" v-on:click="insert"  onclick="location.href='http://localhost:1234/ranking.html'">DONE</button>
+>>>>>>> Stashed changes
   </div>
 
 <footer class="top">
@@ -113,5 +125,8 @@
             }
         }
     });
+
+ 
+ 
     </script>
 </html>
