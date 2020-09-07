@@ -193,7 +193,7 @@ let pause = false;
 let startLock = true; //5초 뒤 false;
 let startTimer = 5;
 
-export function executeAction(action) {
+function executeAction(action) {
     switch(action) {
     case "moveRight":
         rightPressed = true;
@@ -221,7 +221,7 @@ export function executeAction(action) {
         break;
     }
 }
-export function completeAction(action) {
+function completeAction(action) {
     switch(action) {
     case "moveRight":
         rightPressed = false;
@@ -406,11 +406,10 @@ var startInterval = setInterval(showTimer, 1000);
 //게임 시작
 let gameOver = false;
 let gameInterval = null;
-export function startGame(){
-    draw();
-    executeAction("pause");
-    gameInterval = setInterval(playGame, 25);
-}
+
+draw();
+executeAction("pause");
+gameInterval = setInterval(playGame, 25);
 
 
 function getNewBlock() {
