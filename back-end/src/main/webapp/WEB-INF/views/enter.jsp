@@ -6,15 +6,15 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="enter.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <audio autoplay loop>
-    <source src="music/bgm_enter_FirecrackSoundEffect.mp3">
-  </audio>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
 </head>
 <body>
   <div id="addRanking">
   <div class="jb-box">
+      <audio id="my_audio">
+        <source src="music/bgm_enter_FirecrackSoundEffect.mp3">
+    </audio>
     <video muted autoplay loop>
       <source src="videos/Fireworks.mp4" type="video/mp4">
     </video>
@@ -38,19 +38,7 @@
             	<th><input class="inputconts" type="text" v-model="note" placeholder="Leave your comment"></input></th>
       		</tr>
       </table>
-<<<<<<< Updated upstream
    <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
-=======
-      <table class="tg3">
-        <thead>
-          <tr>
-            <th class="comment">COMMENT</th>
-            <th><input id="comment" type="text" v-model="note" placeholder="Leave your comment"></input></th>
-          </tr>
-        </thead>
-      </table>
-   <br> <button id="done" class="done" v-on:click="insert"  onclick="location.href='http://localhost:1234/ranking.html'">DONE</button>
->>>>>>> Stashed changes
   </div>
 
 <footer class="top">
@@ -76,6 +64,11 @@
 </footer>
 </div>
 </body>
+    <script type="text/javascript">
+    setTimeout(function(){
+      document.getElementById("my_audio").play();
+    }, 1000)
+    </script>
 <script>
     new Vue({
         el : "#addRanking",
@@ -121,11 +114,9 @@
                     .catch(error => console.log(error));
                 })
                 .catch(error => console.log(error));
-
             }
         }
     });
-
  
  
     </script>
