@@ -1,7 +1,15 @@
+@font-face{
+  font-family: "Tetris";
+  src:local(※),
+  url("font/Tetris.ttf") format("truetype");
+  font-style:normal;
+  font-weight:normal;
+}
+
 body { 
   padding: 0px;
   margin: 0px; 
-}
+} 
 
 .jb-box { 
     min-width: 1024px; 
@@ -26,7 +34,7 @@ video {
   font-size: 100px; 
   color: #ffffff; 
   font-weight: bolder;
-  font-family: "proxima-nova", sans-serif;
+  font-family: "Tetris";
   text-shadow: 8px 5px 3px rgb(40, 40, 40);
 }
 
@@ -36,7 +44,7 @@ video {
 
 .btn{
   top: 200px;
-  font-family: "proxima-nova", sans-serif;
+  font-family: "Tetris";
   font-weight: bolder;
   font-size: 50px!important;
   letter-spacing: 3px;
@@ -54,7 +62,6 @@ video {
   transition: all .3s ease-in-out;
   background: transparent!important;
 }
-
 .btn:hover{
   border: 2px solid #071982;
     color: #80ffd3!important;
@@ -79,7 +86,6 @@ video {
   transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
   box-shadow:2px 0px 14px rgba(0,0,0,.6);
 } 
-
 .btn::after {
   content: '';
   width: 0%;

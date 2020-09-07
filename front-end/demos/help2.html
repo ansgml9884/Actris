@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="help.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <div id="help2">
+        <section class="sec1">
+            <img class="poseimg" src="images/3.jpg">
+            <div class="exptext">
+                <text>
+                    페이지2
+                </text>
+            </div>
+            <img class="btnleft" src="images/left1.png" onclick="left()">
+        </section>
+
+        <section class="sec2">
+            <img class="poseimg" src="images/4.jpg">
+            <div class="exptext">
+                <text>
+                    페이지2
+                </text>
+            </div>
+            <img class="btnright" src="images/right1.png" onclick="right()">
+        </section>
+    </div>
+
+
+    <script>
+        function left() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("help2").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "help.html", true);
+            xhttp.send();
+        }
+ 
+
+        function right() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("help1").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "help2.html", true);
+            xhttp.send();
+        }
+
+
+
+
+
+        //뒤로가기 막기
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+
+</body>
+
+</html>

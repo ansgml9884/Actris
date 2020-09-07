@@ -24,13 +24,13 @@
       </div>
       <img class="cup" src="images/podium.png"/>
       <!--랭킹 제목-->
-      <p>- RANKING -</p><br>
+      <h2>- RANKING -</h2>
       <!-- build용 임시 태그-->
       <a href="replay.html"></a>
       <div class="box">
         <!--테이블 테스트데이터 -->
         <div id="rankingList">
-          <table class="tg" width="100%" cellspacing="32" cellpadding="0">
+          <table class="tg" width="100%" cellspacing="40" cellpadding="0">
             <thead>
               <th>STAND</th>
               <th>NAME</th>
@@ -40,13 +40,13 @@
               <th>DATE</th>
             </thead>
               <tbody>
-                  <tr v-for="(ranking, index) in rankings" v-bind:key="ranking.id">
+                  <tr class="tablerow" v-for="(ranking, index) in rankings" v-bind:key="ranking.id">
                   <td>{{pageNo*5+index+1}}</td>
                   <td>{{ranking.name}}</td>
                   <td>{{ranking.note}}</td>
                   <td><img src="images/replay.png" width="40px" height="40px" v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
                   <td>{{ranking.score}}</td>
-                  <td>{{convertDate(ranking.played_date)}}</td>
+                  <td id="date">{{convertDate(ranking.played_date)}}</td>
                   </tr>
               </tbody>
           </table>
