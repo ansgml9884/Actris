@@ -35,41 +35,6 @@
     </div>
 
 
-    <script>
-        function left() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("help2").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "help.html", true);
-            xhttp.send();
-        }
- 
-
-        function right() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("help1").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "help2.html", true);
-            xhttp.send();
-        }
-
-
-
-
-
-        //뒤로가기 막기
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
-        };
-    </script>
-
 </body>
 
 </html>
