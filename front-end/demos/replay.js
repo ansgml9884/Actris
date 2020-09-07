@@ -1,6 +1,3 @@
-import Swal from 'sweetalert2';
-
-
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -404,8 +401,8 @@ var startInterval = setInterval(showTimer, 1000);
 let gameOver = false;
 let gameInterval = null;
 export function startGame(){
-    executeAction("pause");
     draw();
+    executeAction("pause");
     gameInterval = setInterval(playGame, 25);
 }
 
