@@ -1,6 +1,3 @@
-import Swal from 'sweetalert2';
-
-
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -168,12 +165,18 @@ let PlayRecord = function() {
 }
 let playRecords = [];
 
-let playRecord = new PlayRecord();
-playRecord.pat = (playRecord.pat | nextPatIndex[2]) << 3;
-playRecord.pat = (playRecord.pat | nextPatIndex[1]) << 3;
-playRecord.pat = (playRecord.pat | nextPatIndex[0]) << 3;
-playRecord.pat |= mine.patIndex;
-playRecords.push(playRecord);
+//getRecordTest
+function getRecords(records) {
+    alert(records);
+    console.log(records);
+}
+
+// let playRecord = new PlayRecord();
+// playRecord.pat = (playRecord.pat | nextPatIndex[2]) << 3;
+// playRecord.pat = (playRecord.pat | nextPatIndex[1]) << 3;
+// playRecord.pat = (playRecord.pat | nextPatIndex[0]) << 3;
+// playRecord.pat |= mine.patIndex;
+// playRecords.push(playRecord);
 
 
 //event
@@ -190,7 +193,7 @@ let pause = false;
 let startLock = true; //5초 뒤 false;
 let startTimer = 5;
 
-export function executeAction(action) {
+function executeAction(action) {
     switch(action) {
     case "moveRight":
         rightPressed = true;
@@ -218,7 +221,7 @@ export function executeAction(action) {
         break;
     }
 }
-export function completeAction(action) {
+function completeAction(action) {
     switch(action) {
     case "moveRight":
         rightPressed = false;
@@ -403,11 +406,10 @@ var startInterval = setInterval(showTimer, 1000);
 //게임 시작
 let gameOver = false;
 let gameInterval = null;
-export function startGame(){
-    executeAction("pause");
-    draw();
-    gameInterval = setInterval(playGame, 25);
-}
+
+draw();
+executeAction("pause");
+gameInterval = setInterval(playGame, 25);
 
 
 function getNewBlock() {
@@ -790,7 +792,7 @@ function playGame() {
             title: 'Game Over!',
             text: "Your score is " + score
         }).then((result)=>{
-            sendPost("http://localhost:80/enter");
+            sendPost("http://localhost:1234/ranking.html");
         });
         return;
     }
@@ -811,36 +813,7 @@ function playGame() {
 
     myTime++;
 }
-function sendPost(url) {
-    let myForm = document.createElement('form');
 
-    myForm.method = "post";
-    myForm.action = url;
-
-    let myInputHidden1 = document.createElement("input");
-    myInputHidden1.type = "hidden";
-    myInputHidden1.name = "score";
-    myInputHidden1.value = score;
-    myForm.appendChild(myInputHidden1);
-
-    let myInputHidden2 = document.createElement("input");
-    myInputHidden2.type = "hidden";
-    myInputHidden2.name = "record";
-
-    let recordString = "";
-    for (let i = 0; i < playRecords.length; i++) {
-        recordString += playRecords[i].cutTime + " ";
-        recordString += playRecords[i].pat + " ";
-        recordString += playRecords[i].keys + " ";
-    }
-    recordString = recordString.slice(0, -1);
-    myInputHidden2.value = recordString;
-
-    myForm.appendChild(myInputHidden2);
-
-    document.body.appendChild(myForm);
-    myForm.submit();
-}
 
 function drawRect(xpos, ypos, what) {
     ctx.beginPath();
