@@ -10,7 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <h1>- HELP -</h1>
     <div>
@@ -20,7 +21,7 @@
 
 <body>
 
-    <div id="help1">
+    <div id="help1" class="help1">
         <section class="sec1">
             <img class="poseimg" src="images/1.jpg">
             <div class="exptext">
@@ -28,7 +29,7 @@
                     페이지1
                 </text>
             </div>
-            <img id="left" class="btnleft" src="images/left1.png">
+            <img id="left" class="left" src="images/left1.png">
         </section>
 
         <section class="sec2">
@@ -38,29 +39,57 @@
                     페이지1
                 </text>
             </div>
-            <img id="right" class="btnright" src="images/right1.png">
+            <img id="right" class="right" src="images/right1.png">
         </section>
     </div>
 
 
     <script>
-    $(document).ready(function () {
-            var cnt = 1;
-            $("#right").click(function () {
-                $("#help1").load("help"+ cnt +".html");
-                cnt += 1;
-                if (  cnt == 4 ) cnt = 1;
-            });
-        });
+
+        // let nowPage = "help1";
+        //     $(document).ready(function () {
+        //         $("#right").click(function () {
+        //             if(nowPage == "#help1")  //현재 help1 페이지일 때, help2.html로 보내기
+        //             {
+        //                   $("help1").load("help2.html");
+        //                   nowPage = "help2";
+        //             }
+
+        //             if(nowPage == "help2")  //현재 help2 페이지일 때, help3.html로 보내기
+        //             {
+        //                   $("help2").load("help3.html");
+        //                   nowPage = "help3";
+        //             }
+
+        //             if(nowPage == "help3")  //현재 help3 페이지일 때, help1.html로 보내기
+        //             {
+        //                   $("help3").load("help1.html");
+        //                   nowPage = "help1";
+        //             }
+
+        //         });
+        //     });
+
 
         $(document).ready(function () {
             var cnt = 1;
-            $("#left").click(function () {
-                $("#help1").load("help"+ cnt +".html");
-                cnt -= 1;
-                if (  cnt == 1 ) cnt = 1;
+            $("#right").click(function () {
+                $("#help1").load("help" + cnt + ".html");
+                cnt += 1;
+                if (cnt == 4) cnt = 1;
             });
         });
+
+
+        // $(document).ready(function () {
+        //     var cnt = 1;
+        //     $("#left").click(function () {
+        //         $("#help1").load("help"+ cnt +".html");
+        //         cnt -= 1;
+        //         if (  cnt == 1 ) cnt = 1;
+        //     });
+        // });
+
 
         //뒤로가기 막기
         history.pushState(null, null, location.href);
