@@ -8,9 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <audio autoplay id="myaudio">
+        <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
+    </audio>
     <h1>- HELP -</h1>
     <div>
-        <img class="backbtn" src="images/back.png" _onclick="location.href='index.html'" />
+        <img class="backbtn" src="images/back.png"  onclick="location.href='index.html'"/>
     </div>
 </head>
 
@@ -48,7 +51,8 @@
 
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
-        history.go(1);
+            history.go(1);
+        };
     </script>
 </body>
 
