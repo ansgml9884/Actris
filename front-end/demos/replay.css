@@ -6,15 +6,13 @@
     font-weight:normal;
   }
 
-html {
-    background-color: black;
-}
-
 #bgvideo { 
     min-width: 100%; 
     min-height: 100%;  
     height: auto; 
     position: fixed; 
+    top: 0px;
+    left: 0px;
     z-index:-10;
 }
 

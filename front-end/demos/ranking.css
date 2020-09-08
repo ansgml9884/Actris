@@ -1,30 +1,29 @@
-
-
-.jb-box { 
-    position: absolute;
+#bgvideo { 
+    margin-left:0;
+    min-width: 100%; 
+    min-height: 100%;  
+    height: auto; 
+    position: fixed; 
     top: 0px;
     left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: -1000;
-    overflow: hidden;
-
+    z-index:-10;
 }
-          
-video { width: auto; }
-          
-.backbtn {
+
+#backbtn {
+    position: fixed;
     margin-left: 40px;
     margin-top: 30px;
     width: 80px;
     height: 80px;
 }
 
-.cup {
+#cup {
     width: 150px;
     height: 130px;
-    margin-left: 53%;
-    margin-top: -3%;
+    display: block;
+    margin-top: 2%;
+    margin-left:auto;
+    margin-right:auto;
     margin-bottom: 1%;
 }
 
@@ -34,91 +33,78 @@ h2 {
     font-size: 50px;
     font-family: "Comic Sans", sans-serif;
     font-weight: bold;
+    word-spacing: 100px;
     text-shadow: 6px 2px 2px rgb(97, 93, 93);
     margin-top: 0%;
-    margin-left: 38%;
+    text-align: center;
     margin-bottom: 2%;
 }
 
-.box {
-    margin-left: 9%;
-    border-radius: 30px 30px 30px 30px;
+#box {
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 20px;
     box-sizing: border-box;
-    width: 1600px;
-    height: 580px;
+    width: 1700px;
+    height: auto;
     box-shadow: 0px 0px 40px grey;
     background-color: rgba(255, 255, 255, 0.5);
-              
-}
-td {
-    text-align: center;
     
 }
-.tg {  
+#rankingList {  
+    width: 1700px;
     font-size: 30px;
     font-family: "Comic Sans", sans-serif;
     font-weight: bold;
     text-shadow: 0px 0px 0px rgb(99, 94, 94);
     letter-spacing: 2px;
 }
-.category {
-    position: fixed;
-    word-spacing: 150px;
-    font-size: 20px;
-    width: auto; 
-    font-family: "Comic Sans", sans-serif;
-    font-weight: bold;
-    text-shadow: 6px 2px 2px rgb(99, 94, 94);
-}
-
 th {
-    word-spacing: 150px;
     font-size: 35px;
     font-family: "Comic Sans", sans-serif;
     font-weight: bold;
     color: rgba(112, 128, 144, 0.6);
     text-shadow: 2px 2px 2px rgb(80, 77, 77);
 }
-
+#tableRow {
+    box-shadow: 0px 0px 25px  rgb(97, 157, 236)
+}
 td {
-    word-spacing: 150px;
+    text-align: center;
     font-size: 35px;
     font-family: "Comic Sans", sans-serif;
     color: rgba(47, 79, 79, 0.7);
     text-shadow: 1px 1px 1px rgb(80, 77, 77);
 }
 
+#name {
+    min-width:200px;
+}
+#note {
+    min-width:450px;
+}
 #date {
-    word-spacing: 50px;
-    font-size: 30px;
+    min-width:250px;
+    word-spacing: 20px;
+    font-size: 28px;
     font-family: "Comic Sans", sans-serif;
     color: rgba(47, 79, 79, 0.4);
     text-shadow: 1px 1px 1px rgb(80, 77, 77);
 }
-
-.tablerow {
-    box-shadow: 0px 0px 25px  rgb(97, 157, 236)
+#btnLR { 
+    margin-top:2%;
 }
-   
-.btnleft {
+
+#btnleft {
     float: left;
-    margin-left: 550px;
+    margin-left: 15%;
     height: 80px;
     width: 80px;
-  
 }
-.btnright {
+#btnright {
     float: right;
-    margin-right: 600px;
+    margin-right: 15%;
     height: 80px;
     width: 80px;
 }
 
-footer { 
-    position:fixed; 
-    left:0px; 
-    bottom:0px; 
-    height:120px; 
-    width:100%; 
-
-}
