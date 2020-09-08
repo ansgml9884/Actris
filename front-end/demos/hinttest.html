@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hinttest.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <audio id="my_audio">
+        <source src="music/bgm_play_Tenvi.mp3">
+    </audio>
+</head>
+
+<body class="body">    
+    <video id="bgvideo" muted autoplay loop>
+        <source src="videos/Playgame.mp4" type="video/mp4">
+        <div id="layer"></div>
+    </video>
+
+    <section class="sec1">
+        <img class="game" id="gameCanvas" width="550px" height="600px" src="images/제목 없음.png"/>
+    </section>
+
+    <section class="sec2">
+        <br><br>
+        <div id="title">HINT TEST</div>
+
+        <p><button class="control" id="pauseBtn">PAUSE</button></p>
+        <p><button class="control" onclick="location.href='ranking.html'">EXIT</button></p>
+    </section>
+<script>
+
+    //뒤로가기 막기
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+};
+</script>
+</body>
+</html>
