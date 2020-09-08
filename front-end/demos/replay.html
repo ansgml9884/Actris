@@ -1,6 +1,5 @@
-  
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,22 +9,29 @@
         <source src="music/bgm_play_Tenvi.mp3">
     </audio>
 </head>
-<body class="body">
+
+<body class="body">    
+    <video id="bgvideo" muted autoplay loop>
+        <source src="videos/Playgame.mp4" type="video/mp4">
+        <div id="layer"></div>
+    </video>
+
     <section class="sec1">
         <canvas class="game" id="gameCanvas" width="550px" height="680px" />
     </section>
+
     <section class="sec2">
         <br><br>
-        <div class="title">REPLAY</div>
+        <div id="title">REPLAY</div>
         <br><br><br>
-        <div class="rank" id="name">NAME : </div>
+        <div class="rank" id="name"></div>
         <br><br>
-        <div class="rank" id="score">SCORE : </div>
+        <div class="rank" id="score"></div>
         
         <form>
-            <img id="larrow" src="images/left_arrow.png" width="40px" onClick="javascript:if(amount.value>0.5) amount.value/=2;">
+            <img id="larrow" src="images/left_arrow.png" width="40px">
             <input id="speed" type=text name=amount value=1 readonly;>
-            <img id="rarrow" src="images/right_arrow.png" width="40px" onClick="javascript:if(amount.value<4)amount.value*=2;"> 
+            <img id="rarrow" src="images/right_arrow.png" width="40px">
         </form>
         <br><br>
         <p><button class="control" id="pauseBtn">PAUSE</button></p>

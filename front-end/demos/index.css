@@ -15,8 +15,6 @@ body {
     min-width: 100%; 
     min-height: 100%;  
     height: auto; 
-    overflow: hidden;
-    margin: 0px; 
     position: fixed; 
 }
 
