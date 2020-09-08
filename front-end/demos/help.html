@@ -18,49 +18,49 @@
 </head>
 
 <body>
+    <a href="help2.html"></a>
+    <a href="help3.html"></a>
     <div id="help1">
         <section class="sec1">
-            <img class="poseimg" src="images/1.jpg" />
-            <div class="exptext">
-                <text> 페이지1 </text>
+            <div class="pose">
+                <br><br><h1>Basic Pose</h1>
+                <img src="images/basic.png" width="350px">
             </div>
-            <img id="left" class="left" src="images/left1.png" onclick="left()" />
+            <img id="left" class="left" src="images/left1.png" onclick="move('left')" />
         </section>
-
         <section class="sec2">
-            <img class="poseimg" src="images/2.jpg" />
-            <div class="exptext">
-                <text> 페이지1 </text>
+            <div class="pose">
+                <br><br><h1>Move</h1><br>
+                <img src="images/moveblock.png" width="250px"/>
+                <img src="images/move.gif" width="280px"/ >
             </div>
-            <img id="right" class="right" src="images/right1.png" onclick="right();" />
+        </section>
+        <section class="sec3">
+            <div class="pose">
+                <br><br><h1>Rotate</h1><br>
+                <img src="images/rotate.png" width="250px"/>
+                <img src="images/rotate.gif" width="280px"/ >
+            </div>
+            <img id="right" class="right" src="images/right1.png" onclick="move('right');" />
         </section>
     </div>
     <script>
-        let cnt = 0;
-        function right() {
-            cnt += 1;
-            //if (  cnt == 5 ) cnt = 1;  // 4번째 페이지에서 1번째로
-            $("#help1").load("help" + cnt + ".html");
+        let cnt = 1;
+        function move(dir) {
+            if(dir=='right' && cnt<3){
+                cnt+=1;
+            }
+            if(dir=='left' && cnt>1){
+                cnt-=1;
+            }
+            let loadPage = 'help'+cnt+'.html';
+            if(cnt==1) {
+                location.href='help.html';
+            }
+            else {
+                $("#help1").load(loadPage);
+            }
         }
-        
-        function left() {
-            cnt -= 1;
-            $("#help1").load("help" + cnt + ".html");
-        }
-
-            // var nowPage = "#help1";
-            //     $(document).ready(function(){
-            //         $("#right").click(function(){
-            //             if(nowPage == "#help1")
-            //             {
-            //                 $(location).attr('href', '');
-            //             }
-
-            //         });
-            //     });
-
-
-
 
         $(document).ready(function () { });
 
@@ -70,5 +70,4 @@
         };
     </script>
 </body>
-
 </html>

@@ -25,36 +25,48 @@ html {
 
 }
 
+.pose {
+    text-align: center;
+    margin-top:7%;
+    margin-left:15%;
+    border:10px solid;
+    border-radius: 80px;
+    border-color: darkgreen;
+    width : 500px;
+    height: 750px;
+    background-color: rgba( 255, 255, 255, 0.5 );
+}
+
 .sec1 {
     height: 85%;
     position:absolute;
-    width:50%;
+    width:30%;
     left:0;
 }
 .sec2 {
     height: 85%;
     position:absolute;
-    width:50%;
-    right:0;
+    width:30%;
+    left:32%;
 }  
-
-.poseimg {
-    margin-top: -10px;
-    margin-left: 10%;
-    width: 80%;
-    height: 60%;
-    margin-bottom: 5%;
-}
-
-.exptext { 
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 70%;
-    height: 20%;
-    margin-top: 2;
-    margin-left: 15%;
-    font-size: 25px;
-}
-
+.sec3 {
+    height: 85%;
+    position:absolute;
+    width:30%;
+    left:64%;
+}  
+.sec4 {
+    height: 85%;
+    position:absolute;
+    width:30%;
+    left:15%;
+}  
+.sec5 {
+    height: 85%;
+    position:absolute;
+    width:30%;
+    left:50%;
+}  
 .left {
     float: left;
     margin-left: 50px;
@@ -63,7 +75,6 @@ html {
 }
 .right {
     float: right;
-    margin-right: 50px;
     height: 80px;
     width: 80px;
 }

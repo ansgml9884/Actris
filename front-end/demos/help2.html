@@ -1,40 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="help.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
-        src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-</head>
-
-<body>
-
-        <section class="sec1">
-            <img class="poseimg" src="images/3.jpg">
-            <div class="exptext">
-                <text>
-                    페이지2
-                </text>
-            </div>
-            <img class="left" src="images/left1.png" onclick="left()" onclick="left()">
-        </section>
-
-        <section class="sec2">
-            <img class="poseimg" src="images/4.jpg">
-            <div class="exptext">
-                <text>
-                    페이지2
-                </text>
-            </div>
-            <img id="right" class="right" src="images/right1.png" onclick="right();">
-        </section>
+<html lang="ko">
+<section class="sec4">
+    <div class="pose">
+        <br><br><h1>Soft Drop</h1><br>
+        <img src="images/moveblock.png" width="250px"/>
+        <img src="images/fastdown.gif" width="280px"/ >
     </div>
-</body>
-
+    <img id="left" class="left" src="images/left1.png" onclick="move('left')" />
+</section>
+<section class="sec2">
+</section>
+<section class="sec5">
+    <div class="pose">
+        <br><br><h1>Fast Drop</h1><br>
+        <img src="images/rotate.png" width="250px"/>
+        <img src="images/drop.gif" width="280px"/ >
+    </div>
+    <img id="right" class="right" src="images/right1.png" onclick="move('right');" />
+</section>
 </html>
