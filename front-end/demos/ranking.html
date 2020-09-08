@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="ranking.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <audio id="myaudio" autoplay>
     <source src="music/bgm_ranking_TalesWeaverOST.mp3">
   </audio>
+  <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
 </head>
-  
+
 <body>
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/ranking.mp4" type="video/mp4">
   </video>
-  
+
   <div>
-    <img id="backbtn" src="images/back.png" onclick="location.href='index.html'">
+    <img id="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="back()">
   </div>
-  <img id="cup" src="images/podium.png"/>
+  <img id="cup" src="images/podium.png" />
   <h2 class="title">- RANKING -</h2>
   <!-- build용 임시 태그 -->
   <a href="replay.html"></a>
@@ -39,7 +41,8 @@
           <td>{{pageNo*5+index+1}}</td>
           <td id="name">{{ranking.name}}</td>
           <td id="note">{{ranking.note}}</td>
-          <td><img src="images/replay.png" width="40px" height="40px" v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
+          <td><img src="images/replay.png" width="40px" height="40px"
+              v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
           <td>{{ranking.score}}</td>
           <td id="date">{{convertDate(ranking.played_date)}}</td>
         </tr>
@@ -54,66 +57,72 @@
 </body>
 
 <script>
+  // function back() { 
+  //       let audio = document.getElementById('backsound'); 
+  //         audio.play(); 
+
+  // }
   //뒤로가기 막기
   history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-          history.go(1);
-        };
+  window.onpopstate = function () {
+    history.go(1);
+  };
 
-   new Vue({
-          el : "#rankingList",
-          data : {
-            pageNo : 0,
-            pageMx : 10000,
-            rankings: null,
-            date : null
-          },
-          created() {
-            axios.get('http://127.0.0.1:80/rankings/'+this.pageNo)
-                .then(response => {
-                   this.rankings = response.data;
-                   console.log(this.rankings);
-               })
-               .catch(error => console.log(error));
-          },
-          methods : {
-            getData : function(){
-              axios.get('http://127.0.0.1:80/rankings/'+this.pageNo)
-                .then(response => {
-                  if(response.data.length==0) {
-                    this.pageNo--;
-                    this.pageMx = this.pageNo;
-                  }
-                  else {
-                    this.rankings = response.data;
-                  }
-               })
-               .catch(error => {
-                 console.log(error)
-               });
-            },
-            movePage : function(v){
-              if(v=='left' && this.pageNo>0){
-                this.pageNo--;
-              }
-              if(v=='right' && this.pageNo<this.pageMx){
-                this.pageNo++;
-              }
-              this.getData();
-            },
-            convertDate : function(date){
-              if(date!=null) {
-                return date.substring(5,7)+'/'
-                        +date.substring(8,10)+' ' 
-                        +(Number(date.substring(11,13))+9)+':'
-                        +date.substring(14,16)+':'
-                        +date.substring(17,19);
-              }
-            },
-            showReplay : function(id, name, score){
-              location.href="replay.html?id="+id+'&name='+name+'&score='+score;
+  new Vue({
+    el: "#rankingList",
+    data: {
+      pageNo: 0,
+      pageMx: 10000,
+      rankings: null,
+      date: null
+    },
+    created() {
+      axios.get('http://127.0.0.1:80/rankings/' + this.pageNo)
+        .then(response => {
+          this.rankings = response.data;
+          console.log(this.rankings);
+        })
+        .catch(error => console.log(error));
+    },
+    methods: {
+      getData: function () {
+        axios.get('http://127.0.0.1:80/rankings/' + this.pageNo)
+          .then(response => {
+            if (response.data.length == 0) {
+              this.pageNo--;
+              this.pageMx = this.pageNo;
             }
-          }
+            else {
+              this.rankings = response.data;
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          });
+      },
+      movePage: function (v) {
+        if (v == 'left' && this.pageNo > 0) {
+          this.pageNo--;
+        }
+        if (v == 'right' && this.pageNo < this.pageMx) {
+          this.pageNo++;
+        }
+        this.getData();
+      },
+      convertDate: function (date) {
+        if (date != null) {
+          return date.substring(5, 7) + '/'
+            + date.substring(8, 10) + ' '
+            + (Number(date.substring(11, 13)) + 9) + ':'
+            + date.substring(14, 16) + ':'
+            + date.substring(17, 19);
+        }
+      },
+      showReplay: function (id, name, score) {
+        location.href = "replay.html?id=" + id + '&name=' + name + '&score=' + score;
+      }
+    }
   });
-  </script>
+</script>
+
 </html>
