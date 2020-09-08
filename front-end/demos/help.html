@@ -1,58 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="help.css">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="help.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <h1>- HELP -</h1>
     <div>
-        <img class="backbtn" src="images/back.png" onclick="location.href='index.html'">
+        <img class="backbtn" src="images/back.png" _onclick="location.href='index.html'" />
     </div>
 </head>
+
 <body>
     <div id="help1">
         <section class="sec1">
-            <img class="poseimg" src="images/1.jpg">
+            <img class="poseimg" src="images/1.jpg" />
             <div class="exptext">
-                <text>
-                    페이지1
-                </text>
+                <text> 페이지1 </text>
             </div>
-            <img id="left" class="left" src="images/left1.png">
+            <img id="left" class="left" src="images/left1.png" onclick="left()" />
         </section>
 
         <section class="sec2">
-            <img class="poseimg" src="images/2.jpg">
+            <img class="poseimg" src="images/2.jpg" />
             <div class="exptext">
-                <text>
-                    페이지1
-                </text>
+                <text> 페이지1 </text>
             </div>
-            <img id="right" class="right" src="images/right1.png" onclick="right();">
+            <img id="right" class="right" src="images/right1.png" onclick="right();" />
         </section>
     </div>
     <script>
-        let cnt = 2;
+        let cnt = 0;
         function right() {
-            $("#help1").load("help"+ cnt +".html");
             cnt += 1;
-
-          //  if (  cnt == 5 ) cnt = 1;   4번째 페이지에서 1번째로
+            //if (  cnt == 5 ) cnt = 1;  // 4번째 페이지에서 1번째로
+            $("#help1").load("help" + cnt + ".html");
+        }
+        function left() {
+            cnt -= 1;
+            $("#help1").load("help" + cnt + ".html");
         }
 
-        $(document).ready(function () {
+        $(document).ready(function () { });
 
-        });
-
-        //뒤로가기 막기
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
-            history.go(1);
-        };
+        history.go(1);
     </script>
-
 </body>
+
 </html>
