@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="replay.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <audio id="my_audio">
         <source src="music/bgm_play_Tenvi.mp3">
     </audio>
+    <audio id='btnaudio1' src='music/pause (mp3cut.net).mp3'></audio>
+    <audio id='btnaudio2' src='music/exit (mp3cut.net).mp3'></audio>
 </head>
 
-<body class="body">    
+<body class="body">
     <video id="bgvideo" muted autoplay loop>
         <source src="videos/Playgame.mp4" type="video/mp4">
         <div id="layer"></div>
@@ -27,36 +30,45 @@
         <div class="rank" id="name"></div>
         <br><br>
         <div class="rank" id="score"></div>
-        
+
         <form>
             <img id="larrow" src="images/left_arrow.png" width="40px">
             <input id="speed" type=text name=amount value=1 readonly;>
             <img id="rarrow" src="images/right_arrow.png" width="40px">
         </form>
         <br><br>
-        <p><button class="control" id="pauseBtn">PAUSE</button></p>
-        <p><button class="control" onclick="location.href='ranking.html'">EXIT</button></p>
+        <p><button class="control" id="pauseBtn" onmouseover="pause()">PAUSE</button></p>
+        <p><button class="control" onclick="location.href='ranking.html'" onmouseover="exit()">EXIT</button></p>
     </section>
-<script>
-    //뒤로가기 막기
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-};
-</script>
+    <script>
+        function pause() {
+            let audio = document.getElementById('btnaudio1');
+            audio.play();
+        }
+        function exit() {
+            let audio = document.getElementById('btnaudio2');
+            audio.play();
+        }
+        //뒤로가기 막기
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
     <script type="text/javascript">
-    setTimeout(function(){
-      document.getElementById("my_audio").play();
-    }, 2000)
+        setTimeout(function () {
+            document.getElementById("my_audio").play();
+        }, 2000)
 
-    var url = new URL(window.location.href);
-    var replay_id = url.searchParams.get("id");
-    var name = url.searchParams.get("name");
-    var score = url.searchParams.get("score");
+        var url = new URL(window.location.href);
+        var replay_id = url.searchParams.get("id");
+        var name = url.searchParams.get("name");
+        var score = url.searchParams.get("score");
 
-    document.getElementById('name').innerHTML += name;
-    document.getElementById('score').innerHTML += score;
+        document.getElementById('name').innerHTML += name;
+        document.getElementById('score').innerHTML += score;
     </script>
     <script src="replay.js"></script>
 </body>
+
 </html>

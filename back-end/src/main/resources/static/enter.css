@@ -4,9 +4,43 @@
     min-height: 100%;  
     height: auto; 
     position: fixed; 
+<<<<<<< HEAD
+    background-size: cover;
+    z-index: -1;}
+        
+video { 
+    width: auto; 
+}
+
+.jb-text {
+     position: fixed; 
+     top: 20%; 
+     width: 100%;
+}
+
+.jb-text p { 
+    margin-top: -24px; 
+    text-align: center;
+    font-size: 48px; 
+    color: #ffffff; 
+}
+          
+video {
+     width: auto; 
+    }
+            
+
+.head {
+   font-size:28px;
+    text-align: center;
+    margin-top:3%;
+    color: rgb(247, 246, 242);
+    font-family: Arial, Helvetica, sans-serif;
+=======
     top: 0px;
     left: 0px;
     z-index:-10;
+>>>>>>> 7466c2f2ae60a2274e08ac802496fe7367db1019
 }
            
 body {
@@ -14,12 +48,12 @@ body {
 }
 
 #congrats{
-	margin-top:5%;
+   margin-top:5%;
 }
 
 .enter {
-	margin-top: 4%;
-	padding-top: 1%;
+   margin-top: 4%;
+   padding-top: 1%;
     background-color: rgba(224, 228, 235, 0.2);
     height: 250px;
 }
@@ -33,7 +67,7 @@ h2 {
     margin-bottom: -5px;
 }
 .scoreinputs {
-	margin-top:1%;
+   margin-top:1%;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
     margin-left:auto; 
@@ -42,8 +76,15 @@ h2 {
     font-size: 30px;
 }
 
+<<<<<<< HEAD
+.inputconts {
+   text-align:left;
+}
+
+=======
+>>>>>>> 7466c2f2ae60a2274e08ac802496fe7367db1019
 #donebtn {
-	margin-top:1%;
+   margin-top:1%;
 }
 
 
