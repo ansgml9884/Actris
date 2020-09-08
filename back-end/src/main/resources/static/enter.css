@@ -30,7 +30,7 @@ video {
             
 
 .head {
-	font-size:28px;
+   font-size:28px;
     text-align: center;
     margin-top:3%;
     color: rgb(247, 246, 242);
@@ -42,18 +42,18 @@ body {
 }
 
 #congrats{
-	margin-top:5%;
+   margin-top:5%;
 }
 
 .enter {
-	margin-top: 4%;
-	padding-top: 1%;
+   margin-top: 4%;
+   padding-top: 1%;
     background-color: rgba(224, 228, 235, 0.2);
     height: 280px;
 }
 
 .scoreinputs {
-	margin-top:1%;
+   margin-top:1%;
     color: rgb(247, 246, 242);
     font-family: Arial, Helvetica, sans-serif;
     margin-left:auto; 
@@ -63,11 +63,11 @@ body {
 }
 
 .inputconts {
-	text-align:left;
+   text-align:left;
 }
 
 #donebtn {
-	margin-top:1%;
+   margin-top:1%;
 }
 
 h2 {
