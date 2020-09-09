@@ -1,5 +1,64 @@
+@media only screen and (max-width: 600px) {
+
+  .footer-text,
+  .dg {
+      display: none;
+  }
+}
+/*
+*  The following loading spinner CSS is from SpinKit project
+*  https://github.com/tobiasahlin/SpinKit
+*/
+.sk-spinner-pulse {
+  width: 20px;
+  height: 20px;
+  margin: auto 10px;
+  float: left;
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
+  animation: sk-pulseScaleOut 1s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-pulseScaleOut {
+  0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+  }
+
+  100% {
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+      opacity: 0;
+  }
+}
+
+@keyframes sk-pulseScaleOut {
+  0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+  }
+
+  100% {
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+      opacity: 0;
+  }
+}
+
 body{
-  background-color: #040e30;
+  background-image:url("images/tetrisWallpaper.jpg")
+}
+
+#bgscreen{
+  min-width: 100%; 
+  min-height: 100%;  
+  height: auto; 
+  position: fixed; 
+}
+
+html { 
+  cursor:url(images/cur116.cur), auto;
 }
 
 .game {
