@@ -39,21 +39,18 @@
     </table>
     <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
->>>>>>> b90e3ac8ae4e6595d032a7e3c2a70b529b3ae7c8
-
-		<footer>
-			<img id="crown" src="images/crown.png" />
-			<div id="top3">- TOP3 -</div>
-			<table id="top3table" cellspacing="30" cellpadding="5">
-				<tr id="tableRow" v-for="(ranking,index) in rankings"
-					v-bind:key="ranking.id">
-					<td class="rank">{{order[index]}}</td>
-					<td class="rankconts">{{ranking.score}}</td>
-					<td class="rankconts">{{ranking.name}}</td>
-				</tr>
-			</table>
-		</footer>
-	</div>
+  <footer>
+	<img id="crown" src="images/crown.png" />
+	<div id="top3">- TOP3 -</div>
+		<table id="top3table" cellspacing="30" cellpadding="5">
+			<tr id="tableRow" v-for="(ranking,index) in rankings" v-bind:key="ranking.id">
+				<td class="rank">{{order[index]}}</td>
+				<td class="rankconts">{{ranking.score}}</td>
+				<td class="rankconts">{{ranking.name}}</td>
+			</tr>
+		</table>
+	</footer>
+  </div>
 </body>
 
 <script type="text/javascript">
