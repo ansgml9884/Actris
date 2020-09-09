@@ -1,5 +1,5 @@
-import Swal from 'sweetalert2';
 import { isShow } from './camera';
+import Swal from 'sweetalert2';
 
 
 //canvas

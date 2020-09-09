@@ -20,7 +20,6 @@ import * as tf from '@tensorflow/tfjs';
 import {executeAction, completeAction} from './tetris.js'
 
 const color = 'aqua';
-const boundingBoxColor = 'red';
 const lineWidth = 2;
 
 export const tryResNetButtonName = 'tryResNetButton';

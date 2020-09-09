@@ -213,6 +213,7 @@ export async function bindPage() {
   setupFPS();
   detectPoseInRealTime(video, net);
 }
+
 navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
