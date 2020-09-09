@@ -1,3 +1,5 @@
+const clonedeep = require("lodash.clonedeep");
+
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -725,6 +727,7 @@ function removeCompleteLine() {
 
     if (goal <= 0) {
         if (level == 15) {
+            goal = 0;
             return false;
         }
         else {
@@ -924,7 +927,7 @@ function moveToEnd() {
 }
 
 function manipulate() {
-    if (brain.method == -1 || (brain.method & HOLD) == HOLD) {
+    if ((brain.method == -1) || ((brain.method & HOLD) == HOLD)) {
         if (!holdThisBlock()) {
             return false;
         }
@@ -1043,7 +1046,7 @@ function feelSurround(patIndex) {
                 let samePoint = false;
 
                 for (let k = 0; k < checkedPoints.length; k++) {
-                    if (brain.x == checkedPoints[k].x && brain.y == checkedPoints[k].y) {
+                    if (tempX == checkedPoints[k].x && tempY == checkedPoints[k].y) {
                         samePoint = true;
                         break;
                     }
@@ -1181,7 +1184,7 @@ function think() {
         equal = true;
     }
 
-    let topBasisForJudges = [];
+    topBasisForJudges = [];
     let patIndex;
 
     for (let i = 0; i < 2; i++) {
@@ -1213,7 +1216,8 @@ function think() {
             }
         }
 
-        topBasisForJudges[i] = getTopBasisForJudge();
+        topBasisForJudges[i] = clonedeep(getTopBasisForJudge());
+
         if (equal || holdFlag == 1) {
             break;
         }
@@ -1231,14 +1235,8 @@ function think() {
         brain.method |= topBasisForJudges[0].method;
     }
 
-    //test code
-    if (brain.method == 0) {
-        let test = 0;
-    }
-
     brain.problem = false;
 }
-
 
 function playGame() {
     if (pause) {
@@ -1411,7 +1409,12 @@ function drawInfo() {
 
     //Game over
     if (gameOver) {
-        drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        if (level == 15 && goal == 0) {
+            drawText("You win!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
+        else {
+            drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
     }
 }
 

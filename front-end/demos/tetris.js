@@ -544,6 +544,7 @@ function removeCompleteLine() {
 
     if (goal <= 0) {
         if (level == 15) {
+            goal = 0;
             return false;
         }
         else {
@@ -993,6 +994,16 @@ function drawInfo() {
             }else{ 
                 drawText("Game Start!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
             }
+        }
+    }
+
+    //Game over
+    if (gameOver) {
+        if (level == 15 && goal == 0) {
+            drawText("You win!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
+        else {
+            drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
         }
     }
 }
