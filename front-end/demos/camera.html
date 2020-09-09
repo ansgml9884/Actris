@@ -12,19 +12,10 @@
 </head>
 
 <body class="body">
-    <div id="bgscreen"></div>
-
-    <div id="info" style='display:none'>
-    </div>
-    <div id="loading" style='display:flex'>
-        <div class="spinner-text">
-            Loading PoseNet model...
-        </div>
-        <div class="sk-spinner sk-spinner-pulse"></div>
-    </div>
+    <div id="loading" style='display:flex'></div>
     <div id='main' style='display:none'>
         <section class="sec1">
-            <canvas class="game" id="gameCanvas" width="550px" height="680px" />
+            <canvas id="gameCanvas" width="550px" height="680px" />
         </section>
         <section class="sec2">
             <div id="motion">
@@ -39,12 +30,17 @@
             </div>
         </section>
     </div>
-    <script type="text/javascript">
+</body>
+<script src="camera.js"></script>
+<script type="text/javascript">
     setTimeout(function(){
       document.getElementById("my_audio").play();
     }, 2000)
-    </script>
-</body>
-<script src="camera.js"></script>
+
+    $(document).ready(function() {
+    $("#gameCanvas").fadeIn(10000);
+    $("#output").fadeIn(10000);
+    });
+</script>
 
 </html>

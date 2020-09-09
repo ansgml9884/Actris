@@ -47,21 +47,14 @@
 }
 
 body{
-  background-image:url("images/tetrisWallpaper.jpg")
-}
-
-#bgscreen{
-  min-width: 100%; 
-  min-height: 100%;  
-  height: auto; 
-  position: fixed; 
+  background-image:url("images/tetrisWallpaperBW.jpg")
 }
 
 html { 
   cursor:url(images/cur116.cur), auto;
 }
 
-.game {
+#gameCanvas {
   margin-left: 10%;
   width: 90%;
   height: auto;
@@ -74,6 +67,10 @@ html {
   width: 80%;
   height: 60%;
   float: right;
+}
+
+#output {
+  border-radius: 30px;
 }
 
 .sec1 {
