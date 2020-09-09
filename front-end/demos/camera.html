@@ -25,7 +25,7 @@
             </div>
             <br><br>
             <div>
-                <p><button id="pauseBtn" onclick="clickSound()">PAUSE</button></p>
+                <p><button id="pauseBtn">PAUSE</button></p>
                 <p><button onclick="location.href='index.html'">EXIT</button></p>
             </div>
         </section>
@@ -33,11 +33,6 @@
 </body>
 <script src="camera.js"></script>
 <script type="text/javascript">
-
-    function clickSound() {
-        let audio = document.getElementById('btnclick')
-        audio.play();
-    }
     setTimeout(function(){
         document.getElementById("my_audio").play();
     }, 2000)

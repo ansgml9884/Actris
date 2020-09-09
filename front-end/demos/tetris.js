@@ -389,6 +389,8 @@ document.addEventListener("keyup", (e) => {
 
 document.getElementById("pauseBtn").onclick = function() {
     pause = !pause;
+    let audio = document.getElementById('btnclick')
+        audio.play();
 }
 
 function showTimer(){
