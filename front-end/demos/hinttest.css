@@ -6,7 +6,8 @@
     font-weight:normal;
   }
 
-html {
+html { 
+    cursor:url(images/cur116.cur), auto;
     background-color: black;
 }
 
