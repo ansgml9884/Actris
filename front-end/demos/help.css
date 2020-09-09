@@ -12,6 +12,12 @@ html {
     height: 80px;
 }
 
+.backbtn:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+ }
+
   h1 {
     color:rgb(254, 255, 255);
     font-size: 60px;
@@ -85,3 +91,15 @@ html {
     height: 80px;
     width: 80px;
 }
+
+.left:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+ }
+
+.right:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+ }

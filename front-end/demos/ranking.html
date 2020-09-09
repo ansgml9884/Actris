@@ -10,6 +10,8 @@
   <audio id="myaudio" autoplay>
     <source src="music/bgm_ranking_TalesWeaverOST.mp3">
   </audio>
+  <audio id='leftsound' src='music/left.mp3'></audio>
+  <audio id='rightsound' src='music/right.mp3'></audio>
   <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
 </head>
 
@@ -19,7 +21,8 @@
   </video>
 
   <div>
-    <img id="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="back()">
+    <img id="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="backsound()">
+
   </div>
   <img id="cup" src="images/podium.png" />
   <h2 class="title">- RANKING -</h2>
@@ -50,18 +53,28 @@
     </table>
     <!--앞뒤로 넘기기 버튼-->
     <div id="btnLR">
-      <img id="btnleft" src="images/left.png" v-on:click="movePage('left')">
-      <img id="btnright" src="images/right.png" v-on:click="movePage('right')">
+      <img id="btnleft" src="images/left.png" v-on:click="movePage('left')" onmouseover="this.src='images/leftover.png'" onmouseout="this.src='images/left.png'" onmouseup="leftsound()">
+      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseover="this.src='images/rightover.png'" onmouseout="this.src='images/right.png'" onmouseup="rightsound()" >
     </div>
   </div>
 </body>
 
 <script>
-  // function back() { 
-  //       let audio = document.getElementById('backsound'); 
-  //         audio.play(); 
-
-  // }
+  function leftsound() { 
+    let audio = document.getElementById('leftsound'); 
+      audio.play(); 
+      audio.volume = 0.7
+  } 
+  function rightsound() { 
+    let audio = document.getElementById('rightsound'); 
+      audio.play(); 
+      audio.volume = 0.6
+  } 
+  function backsound() { 
+    let audio = document.getElementById('backsound'); 
+      audio.play(); 
+      audio.volume = 0.6
+  } 
   //뒤로가기 막기
   history.pushState(null, null, location.href);
   window.onpopstate = function () {

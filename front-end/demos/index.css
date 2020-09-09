@@ -6,6 +6,26 @@
   font-weight:normal;
 }
 
+body{
+  background-color: #040e30;
+}
+
+#bgscreen {
+  min-width: 100%; 
+  min-height: 100%;  
+  height: auto; 
+  position: fixed; 
+  z-index: -10;
+}
+
+#bgvideo { 
+  min-width: 100%; 
+  min-height: 100%;  
+  height: auto; 
+  position: fixed; 
+  z-index: -5;
+}
+
 #fullscreenbtn {
   position: fixed;
   margin-left: 40px;
@@ -18,13 +38,6 @@ body {
   padding: 0px;
   margin: 0px; 
 } 
-
-#bgvideo { 
-    min-width: 100%; 
-    min-height: 100%;  
-    height: auto; 
-    position: fixed; 
-}
 
 .contents {
   position: fixed; 
