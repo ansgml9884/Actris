@@ -45,7 +45,7 @@
                 <img class="block" src="images/rotate.png" width="250px" />
                 <img src="images/rotate.gif" width="280px" />
             </div>
-            <img id="right" class="right" src="images/right1.png" onclick="move('right');" />
+            <img id="right" class="right" src="images/right1.png" onclick="move('right')" />
         </section>
     </div>
     <script>
@@ -57,6 +57,7 @@
 
         let cnt = 1;
         function move(dir) {
+<<<<<<< HEAD
             if (dir == 'right' && cnt < 3) {
                 cnt += 1;
             }
@@ -66,9 +67,21 @@
             let loadPage = 'help' + cnt + '.html';
             if (cnt == 1) {
                 location.href = 'help.html';
+=======
+            if(dir=='right'){
+                if(cnt==3) return;
+                cnt+=1;
+            }
+            else if(dir=='left'){
+                if(cnt==1) return;
+                cnt-=1;
+            } 
+            if(cnt==1) {
+                $("#help1").load('help.html #help1');
+>>>>>>> ccb2c0965f2f8708959ffa97333ce53733da417a
             }
             else {
-                $("#help1").load(loadPage);
+                $("#help1").load('help'+cnt+'.html');
             }
         }
 
