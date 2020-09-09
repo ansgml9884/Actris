@@ -5,6 +5,11 @@
   font-style:normal;
   font-weight:normal;
 }
+<<<<<<< HEAD
+html {
+  cursor:url(images/cur116.cur), auto;
+}
+=======
 
 body{
   background-image:url("images/tetrisWallpaper.jpg")
@@ -17,6 +22,7 @@ body{
   position: fixed; 
 }
 
+>>>>>>> 18d9fd6a34f08297d827fc192025c9681721fca2
 #fullscreenbtn {
   position: fixed;
   margin-left: 40px;
