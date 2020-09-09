@@ -87,12 +87,14 @@ html {
     margin-left:24%;
     max-width: 60px;
     max-height: 60px;
+    filter: drop-shadow(3px 3px 3px rgb(25, 65, 197)); 
 }
 #rarrow {
     width: auto; height: auto;
     margin-right:15%;
     max-width: 60px;
     max-height: 60px;
+    filter: drop-shadow(3px 3px 3px rgb(141, 138, 158)); 
 }
 
 button {

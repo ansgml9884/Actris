@@ -11,6 +11,8 @@
     <audio autoplay id="myaudio">
         <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
+    <audio id='leftsound' src='music/left.mp3'></audio>
+    <audio id='rightsound' src='music/right.mp3'></audio>
     <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
     <h1>- HELP -</h1>
     <div>
@@ -28,7 +30,7 @@
                 <h1>Basic Pose</h1>
                 <img src="images/basic.png" width="350px">
             </div>
-            <img id="left" class="left" src="images/left1.png" onclick="move('left')" />
+            <img id="left" class="left" src="images/left1.png" onclick="move('left')" onmouseup="leftsound()" />
         </section>
         <section class="sec2">
             <div class="pose">
@@ -45,10 +47,20 @@
                 <img class="block" src="images/rotate.png" width="250px" />
                 <img src="images/rotate.gif" width="280px" />
             </div>
-            <img id="right" class="right" src="images/right1.png" onclick="move('right')" />
+            <img id="right" class="right" src="images/right1.png" onclick="move('right')" onmouseup="rightsound()" />
         </section>
     </div>
     <script>
+        function leftsound() {
+            let audio = document.getElementById('leftsound');
+            audio.play();
+            audio.volume = 0.7
+        }
+        function rightsound() {
+            let audio = document.getElementById('rightsound');
+            audio.play();
+            audio.volume = 0.6
+        }
         function backsound() {
             let audio = document.getElementById('backsound');
             audio.play();
@@ -57,19 +69,19 @@
 
         let cnt = 1;
         function move(dir) {
-            if(dir=='right'){
-                if(cnt==3) return;
-                cnt+=1;
+            if (dir == 'right') {
+                if (cnt == 3) return;
+                cnt += 1;
             }
-            else if(dir=='left'){
-                if(cnt==1) return;
-                cnt-=1;
-            } 
-            if(cnt==1) {
+            else if (dir == 'left') {
+                if (cnt == 1) return;
+                cnt -= 1;
+            }
+            if (cnt == 1) {
                 $("#help1").load('help.html #help1');
             }
             else {
-                $("#help1").load('help'+cnt+'.html');
+                $("#help1").load('help' + cnt + '.html');
             }
         }
 
