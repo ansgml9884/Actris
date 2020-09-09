@@ -11,44 +11,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	<iframe src="music/silence.mp3" allow="autoplay" id="audio"
-		style="display: none"></iframe>
-	<audio id="my_audio" autoplay>
-		<source src="music/bgm_enter_FirecrackSoundEffect.mp3"
-			type="audio/mp3">
-	</audio>
-	<audio id='donesound' src='music/bgm_done_BtnSoundEffect.mp3'></audio>
-	<video id="bgvideo" muted autoplay loop>
-		<source src="videos/Fireworks.mp4" type="video/mp4">
-	</video>
-	<h2 id="congrats">CONGRATURATION !</h2>
-	<!-- Ranking 추가 -->
-	<div id="addRanking">
-		<div class="enter">
-			<table class="scoreinputs">
-				<tr>
-					<th class="inputconts">SCORE</th>
-					<th>${param.score}</th>
-				</tr>
-				<tr>
-					<th class="inputconts">NAME</th>
-					<th><input class="inputconts" type="text" v-model="name"
-						placeholder="Enter your name" maxlength="8"
-						oninput="numberMaxLength(this)"></input></th>
-				</tr>
-				<tr>
-					<th class="inputconts">COMMENT</th>
-					<th><input class="inputconts" type="text" v-model="note"
-						placeholder="Leave your comment" maxlength="15"
-						oninput="numberMaxLength(this)"></input></th>
-				</tr>
-			</table>
-			<br>
-			<button class="done" onmouseover="donesound()"
-				v-on:click="insert('${param.record}',${param.score})">DONE</button>
-		</div>
-=======
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Fireworks.mp4" type="video/mp4">
   </video>
@@ -77,21 +39,18 @@
     </table>
     <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
->>>>>>> b90e3ac8ae4e6595d032a7e3c2a70b529b3ae7c8
-
-		<footer>
-			<img id="crown" src="images/crown.png" />
-			<div id="top3">- TOP3 -</div>
-			<table id="top3table" cellspacing="30" cellpadding="5">
-				<tr id="tableRow" v-for="(ranking,index) in rankings"
-					v-bind:key="ranking.id">
-					<td class="rank">{{order[index]}}</td>
-					<td class="rankconts">{{ranking.score}}</td>
-					<td class="rankconts">{{ranking.name}}</td>
-				</tr>
-			</table>
-		</footer>
-	</div>
+  <footer>
+	<img id="crown" src="images/crown.png" />
+	<div id="top3">- TOP3 -</div>
+		<table id="top3table" cellspacing="30" cellpadding="5">
+			<tr id="tableRow" v-for="(ranking,index) in rankings" v-bind:key="ranking.id">
+				<td class="rank">{{order[index]}}</td>
+				<td class="rankconts">{{ranking.score}}</td>
+				<td class="rankconts">{{ranking.name}}</td>
+			</tr>
+		</table>
+	</footer>
+  </div>
 </body>
 
 <script type="text/javascript">

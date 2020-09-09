@@ -20,25 +20,10 @@ import * as tf from '@tensorflow/tfjs';
 import {executeAction, completeAction} from './tetris.js'
 
 const color = 'aqua';
-const boundingBoxColor = 'red';
 const lineWidth = 2;
 
 export const tryResNetButtonName = 'tryResNetButton';
 export const tryResNetButtonText = '[New] Try ResNet50';
-const tryResNetButtonTextCss = 'width:100%;text-decoration:underline;';
-const tryResNetButtonBackgroundCss = 'background:#e61d5f;';
-
-function isAndroid() {
-  return /Android/i.test(navigator.userAgent);
-}
-
-function isiOS() {
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
-export function isMobile() {
-  return isAndroid() || isiOS();
-}
 
 /**
  * Toggles between the loading UI and the main canvas UI.
@@ -155,14 +140,18 @@ export function moveBlock(y, x, r, part){
       leftWrist = [y,x];
     }else if(holdLock && y+50>=leftWrist[0]){
       holdLock = false;
+      pauseLock = leftMoveLock = rightMoveLock = false;      
       completeAction("hold");
-    }else if(!holdLock && leftWrist[0]-y>100){
-      if(latestRightWrist[0]<y+15){
-        console.log('hint');
-        console.log(latestRightWrist[0], y);  
-      }else{
-        executeAction("hold");
-        holdLock = true;
+    }else if(!holdLock){
+      if(leftWrist[0]-y>100){
+        if(latestRightWrist[0]<y+30){
+          console.log('hint');
+          holdLock = true;
+          pauseLock = leftMoveLock = rightMoveLock = true; 
+        }else{
+          executeAction("hold");
+          holdLock = true;
+        }
       }
     }
   }
@@ -171,13 +160,19 @@ export function moveBlock(y, x, r, part){
     latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
-    }else if(!pauseLock && rightWrist[0]-y>100){
-      if(latestLeftWrist[0]<y+15){
-        console.log('hint');
-        console.log(latestLeftWrist[0], y);
-      }else{
-        executeAction("pause");
-        pauseLock = true;
+    }else if(pauseLock && y+50>=rightWrist[0]){
+      pauseLock = false;
+      holdLock = leftMoveLock = rightMoveLock = false;      
+    }else if(!pauseLock){
+      if(rightWrist[0]-y>100){
+        if(latestLeftWrist[0]<y+30){
+          console.log('hint');
+          pauseLock = true;
+          holdLock = leftMoveLock = rightMoveLock = true; 
+        }else{
+          executeAction("pause");
+          pauseLock = true;
+        }
       }
     }
   }
@@ -233,17 +228,6 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
     drawPoint(ctx, y * scale, x * scale, 3, color, keypoint.part);
     moveBlock(y * scale, x * scale, 3, keypoint.part);
   }
-}
-
-export function drawBoundingBox(keypoints, ctx) {
-  const boundingBox = posenet.getBoundingBox(keypoints);
-
-  ctx.rect(
-      boundingBox.minX, boundingBox.minY, boundingBox.maxX - boundingBox.minX,
-      boundingBox.maxY - boundingBox.minY);
-
-  ctx.strokeStyle = boundingBoxColor;
-  ctx.stroke();
 }
 
 export async function renderToCanvas(a, ctx) {

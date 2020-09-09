@@ -1,3 +1,4 @@
+import { isShow } from './camera';
 import Swal from 'sweetalert2';
 
 
@@ -388,6 +389,8 @@ document.addEventListener("keyup", (e) => {
 
 document.getElementById("pauseBtn").onclick = function() {
     pause = !pause;
+    let audio = document.getElementById('btnclick')
+        audio.play();
 }
 
 function showTimer(){
@@ -978,6 +981,7 @@ function drawInfo() {
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
+    isShow(pause);
     document.getElementById("pauseBtn").innerHTML = pause && !startLock ? "CONTINUE" : "PAUSE";
     if (pause){
         if(!startLock) {

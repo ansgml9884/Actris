@@ -11,6 +11,7 @@ html {
     margin-top: -30px;
     width: 80px;
     height: 80px;
+    filter: drop-shadow(8px 8px 8px rgb(32, 25, 25)); 
 }
 
 .backbtn:hover {
@@ -42,6 +43,7 @@ html {
     width : 500px;
     height: 750px;
     background-color: rgba( 255, 255, 255, 0.5 );
+    filter: drop-shadow(15px 8px 8px rgb(0, 0, 0)); 
 }
 
 .sec1 {
@@ -86,11 +88,13 @@ html {
     margin-left: 50px;
     height: 80px;
     width: 80px;
+    filter: drop-shadow(8px 8px 8px rgb(32, 25, 25)); 
 }
 .right {
     float: right;
     height: 80px;
     width: 80px;
+    filter: drop-shadow(8px 8px 8px rgb(32, 25, 25));  
 }
 
 .left:hover {

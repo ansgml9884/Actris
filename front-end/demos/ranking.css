@@ -19,11 +19,13 @@ html {
     margin-top: 30px;
     width: 80px;
     height: 80px;
+    filter: drop-shadow(4px 4px 4px rgb(32, 25, 25)); 
 }
 #backbtn:hover {
     -ms-transform: scale(1.1);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+
  }
 
 #cup {
@@ -34,6 +36,7 @@ html {
     margin-left:auto;
     margin-right:auto;
     margin-bottom: 1%;
+    filter: drop-shadow(8px 8px 8px rgb(32, 25, 25)); 
 }
 
 h2 {
@@ -59,7 +62,6 @@ h2 {
     box-shadow: 0px 0px 40px grey;
     background-color: rgba(255, 255, 255, 0.5);
 
-    
 }
 #rankingList {  
     width: 1700px;
@@ -93,6 +95,7 @@ td {
 #note {
     min-width:450px;
 }
+
 #date {
     min-width:250px;
     word-spacing: 20px;
@@ -110,6 +113,7 @@ td {
     margin-left: 15%;
     height: 80px;
     width: 80px;
+    filter: drop-shadow(4px 4px 4px rgb(32, 25, 25)); 
 }
 
 #btnleft:hover {
@@ -122,5 +126,7 @@ td {
     margin-right: 15%;
     height: 80px;
     width: 80px;
+    filter: drop-shadow(4px 4px 4px rgb(32, 25, 25)); 
 }
+
 

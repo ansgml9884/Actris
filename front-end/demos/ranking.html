@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="ranking.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+
   <audio id="myaudio" autoplay>
     <source src="music/bgm_ranking_TalesWeaverOST.mp3">
   </audio>
@@ -44,7 +46,7 @@
           <td>{{pageNo*5+index+1}}</td>
           <td id="name">{{ranking.name}}</td>
           <td id="note">{{ranking.note}}</td>
-          <td><img src="images/replay.png" width="40px" height="40px"
+          <td><img id="replayimg" src="images/replay.png" width="40px" height="40px"
               v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
           <td>{{ranking.score}}</td>
           <td id="date">{{convertDate(ranking.played_date)}}</td>
@@ -54,33 +56,53 @@
     <!--앞뒤로 넘기기 버튼-->
     <div id="btnLR">
       <img id="btnleft" src="images/left.png" v-on:click="movePage('left')" onmouseup="leftsound()">
-      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseup="rightsound()" >
+      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseup="rightsound()">
     </div>
+  </div>
   </div>
 </body>
 
 <script>
-  function leftsound() { 
-    let audio = document.getElementById('leftsound'); 
-      audio.play(); 
-      audio.volume = 0.7
-  } 
-  function rightsound() { 
-    let audio = document.getElementById('rightsound'); 
-      audio.play(); 
-      audio.volume = 0.6
-  } 
-  function backsound() { 
-    let audio = document.getElementById('backsound'); 
-      audio.play(); 
-      audio.volume = 0.6
-  } 
+  //효과음
+  function leftsound() {
+    let audio = document.getElementById('leftsound');
+    audio.play();
+    audio.volume = 0.7
+  }
+  function rightsound() {
+    let audio = document.getElementById('rightsound');
+    audio.play();
+    audio.volume = 0.6
+  }
+  function backsound() {
+    let audio = document.getElementById('backsound');
+    audio.play();
+    audio.volume = 0.6
+  }
   //뒤로가기 막기
   history.pushState(null, null, location.href);
   window.onpopstate = function () {
     history.go(1);
   };
 
+  //버튼 img바뀌기
+  $(function() { 
+    $("#btnleft").hover(function(){ 
+        $(this).attr("src", $(this).attr("src").replace("images/left.png", "images/leftover.png")); 
+    }, function(){ 
+        $(this).attr("src", $(this).attr("src").replace("images/leftover.png", "images/left.png")); 
+    }); 
+});
+  $(function() { 
+    $("#btnright").hover(function(){ 
+        $(this).attr("src", $(this).attr("src").replace("images/right.png", "images/rightover.png")); 
+    }, function(){ 
+        $(this).attr("src", $(this).attr("src").replace("images/rightover.png", "images/right.png")); 
+    }); 
+});
+
+</script>
+<script>
   new Vue({
     el: "#rankingList",
     data: {

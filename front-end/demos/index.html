@@ -19,10 +19,6 @@
     <source src="videos/Network.mp4">
   </video>
 
-  <div id="btnOnOff" v-if="btnOn">
-    <img id="fullscreenbtn" src="images/expand_fullscreen.png" v-on:click="toggleOnOff()">
-  </div>
-
   <h2 class="contents">Actris</h2>
   <div class="contents">
     <a class="btn" onmouseover="play()" onclick="clickSound();setTimeout('toCamera()', 2000);">START GAME</a><br>
@@ -31,8 +27,6 @@
     <a class="btn" href="help.html" onmouseover="play()">HELP</a><br>
    </div>
 </body>
-</html>
-
 <script>
   function play() { 
     let audio = document.getElementById('btnmouseover'); 
@@ -50,29 +44,7 @@
   $(".btn").on("click", function() {
     $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
     $(".contents").fadeOut(1500);
-    $("#bgscreen").fadeIn(2000);
+    $("#myaudio").animate({volume: 0},2000);
   });
-
-  new Vue({
-    el:"#btnOnOff",
-    data: {
-      btnOn: true
-    },
-    methods: {
-      toggleOnOff: function() {
-        let docV = document.documentElement;
-        this.btnOn = !this.btnOn;
-        if (docV.requestFullscreen)
-          docV.requestFullscreen();
-        else if (docV.webkitRequestFullscreen)
-          docV.webkitRequestFullscreen();
-        else if (docV.mozRequestFullScreen)
-          docV.mozRequestFullScreen();
-        else if (docV.msRequestFullscreen)
-          docV.msRequestFullscreen();
-      }
-    }
-  })
-
-  
 </script>
+</html>
