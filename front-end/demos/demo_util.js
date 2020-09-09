@@ -235,11 +235,6 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   }
 }
 
-/**
- * Draw the bounding box of a pose. For example, for a whole person standing
- * in an image, the bounding box will begin at the nose and extend to one of
- * ankles
- */
 export function drawBoundingBox(keypoints, ctx) {
   const boundingBox = posenet.getBoundingBox(keypoints);
 
@@ -251,9 +246,6 @@ export function drawBoundingBox(keypoints, ctx) {
   ctx.stroke();
 }
 
-/**
- * Converts an arary of pixel data into an ImageData object
- */
 export async function renderToCanvas(a, ctx) {
   const [height, width] = a.shape;
   const imageData = new ImageData(width, height);
@@ -273,9 +265,6 @@ export async function renderToCanvas(a, ctx) {
   ctx.putImageData(imageData, 0, 0);
 }
 
-/**
- * Draw an image on a canvas
- */
 export function renderImageToCanvas(image, size, canvas) {
   canvas.width = size[0];
   canvas.height = size[1];
@@ -284,11 +273,6 @@ export function renderImageToCanvas(image, size, canvas) {
   ctx.drawImage(image, 0, 0);
 }
 
-/**
- * Draw heatmap values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's heatmap outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
 export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   const ctx = canvas.getContext('2d');
   const radius = 5;
@@ -297,10 +281,6 @@ export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   drawPoints(ctx, scaledValues, radius, color);
 }
 
-/**
- * Used by the drawHeatMapValues method to draw heatmap points on to
- * the canvas
- */
 function drawPoints(ctx, points, radius, color) {
   const data = points.buffer().values;
 
@@ -317,11 +297,6 @@ function drawPoints(ctx, points, radius, color) {
   }
 }
 
-/**
- * Draw offset vector values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's offset vector outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
 export function drawOffsetVectors(
     heatMapValues, offsets, outputStride, scale = 1, ctx) {
   const offsetPoints =
