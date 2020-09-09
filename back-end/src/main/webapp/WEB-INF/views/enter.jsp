@@ -11,13 +11,12 @@
 </head>
 
 <body>
-  <iframe src="music/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
-  <audio id="my_audio" autoplay>
-    <source src="music/bgm_enter_FirecrackSoundEffect.mp3" type="audio/mp3">
-  </audio>
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Fireworks.mp4" type="video/mp4">
   </video>
+  <audio id="my_audio" autoplay>
+    <source src="music/bgm_enter_FirecrackSoundEffect.mp3" type="audio/mp3">
+  </audio>
   <h2 id="congrats">CONGRATURATION !</h2>
   <!-- Ranking 추가 -->
   <div id="addRanking">
