@@ -5,8 +5,7 @@
   font-style:normal;
   font-weight:normal;
 }
-
-html {
+html { 
   cursor:url(images/cur116.cur), auto;
 }
 
@@ -19,14 +18,6 @@ body{
   min-height: 100%;  
   height: auto; 
   position: fixed; 
-}
-
-#fullscreenbtn {
-  position: fixed;
-  margin-left: 40px;
-  margin-top: 30px;
-  width: 80px;
-  height: 80px;
 }
 
 body { 

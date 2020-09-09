@@ -44,7 +44,7 @@
           <td>{{pageNo*5+index+1}}</td>
           <td id="name">{{ranking.name}}</td>
           <td id="note">{{ranking.note}}</td>
-          <td><img src="images/replay.png" width="40px" height="40px"
+          <td><img id="replayimg" src="images/replay.png" width="40px" height="40px"
               v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
           <td>{{ranking.score}}</td>
           <td id="date">{{convertDate(ranking.played_date)}}</td>
@@ -53,8 +53,9 @@
     </table>
     <!--앞뒤로 넘기기 버튼-->
     <div id="btnLR">
-      <img id="btnleft" src="images/left.png" v-on:click="movePage('left')" onmouseup="leftsound()">
-      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseup="rightsound()" >
+      <img id="btnleft" src="images/left.png" v-on:click="movePage('left')" onmouseover="this.src='images/leftover.png'" onmouseout="this.src='images/left.png'" onmouseup="leftsound()">
+      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseover="this.src='images/rightover.png'" onmouseout="this.src='images/right.png'" onmouseup="rightsound()" >
+    </div>
     </div>
   </div>
 </body>

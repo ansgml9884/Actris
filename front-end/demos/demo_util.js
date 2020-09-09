@@ -61,16 +61,6 @@ let rotateLock = false;
 
 export function moveBlock(y, x, r, part){
 
-if(dropLock) console.log("dropLock");
-if(fastDownLock) console.log("fastDownLock");
-if(leftMoveLock) console.log("leftMoveLock");
-if(rightMoveLock) console.log("rightMoveLock");
-if(holdLock) console.log("holdLock");
-if(pauseLock) console.log("pauseLock");
-if(leftRotateLock) console.log("leftRotateLock");
-if(rightRotateLock) console.log("rightRotateLock");
-if(rotateLock) console.log("rotateLock");
-
   if(part=='leftShoulder'){
     if(leftShoulder==null){
       leftShoulder = [y,x];
@@ -153,14 +143,16 @@ if(rotateLock) console.log("rotateLock");
       holdLock = false;
       pauseLock = leftMoveLock = rightMoveLock = false;      
       completeAction("hold");
-    }else if(!holdLock && leftWrist[0]-y>100){
-      executeAction("hold");
-      holdLock = true;
-    }else if(!holdLock && leftWrist[0]-y>70){
-      if(latestRightWrist[0]<y+10){
-        console.log('hint');
-        holdLock = true;
-        pauseLock = leftMoveLock = rightMoveLock = true; 
+    }else if(!holdLock){
+      if(leftWrist[0]-y>100){
+        if(latestRightWrist[0]<y+30){
+          console.log('hint');
+          holdLock = true;
+          pauseLock = leftMoveLock = rightMoveLock = true; 
+        }else{
+          executeAction("hold");
+          holdLock = true;
+        }
       }
     }
   }
@@ -169,13 +161,19 @@ if(rotateLock) console.log("rotateLock");
     latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
-    }else if(!pauseLock && rightWrist[0]-y>100){
-      if(latestLeftWrist[0]<y+15){
-        console.log('hint');
-        console.log(latestLeftWrist[0], y);
-      }else{
-        executeAction("pause");
-        pauseLock = true;
+    }else if(pauseLock && y+50>=rightWrist[0]){
+      pauseLock = false;
+      holdLock = leftMoveLock = rightMoveLock = false;      
+    }else if(!pauseLock){
+      if(rightWrist[0]-y>100){
+        if(latestLeftWrist[0]<y+30){
+          console.log('hint');
+          pauseLock = true;
+          holdLock = leftMoveLock = rightMoveLock = true; 
+        }else{
+          executeAction("pause");
+          pauseLock = true;
+        }
       }
     }
   }
