@@ -5,6 +5,25 @@
   font-style:normal;
   font-weight:normal;
 }
+<<<<<<< HEAD
+html { 
+=======
+
+html {
+>>>>>>> b90e3ac8ae4e6595d032a7e3c2a70b529b3ae7c8
+  cursor:url(images/cur116.cur), auto;
+}
+
+body{
+  background-image:url("images/tetrisWallpaper.jpg")
+}
+
+#bgvideo { 
+  min-width: 100%; 
+  min-height: 100%;  
+  height: auto; 
+  position: fixed; 
+}
 
 #fullscreenbtn {
   position: fixed;
@@ -18,13 +37,6 @@ body {
   padding: 0px;
   margin: 0px; 
 } 
-
-#bgvideo { 
-    min-width: 100%; 
-    min-height: 100%;  
-    height: auto; 
-    position: fixed; 
-}
 
 .contents {
   position: fixed; 

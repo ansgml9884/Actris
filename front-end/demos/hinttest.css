@@ -6,7 +6,8 @@
     font-weight:normal;
   }
 
-html {
+html { 
+    cursor:url(images/cur116.cur), auto;
     background-color: black;
 }
 
@@ -57,7 +58,7 @@ html {
 }
 
 #pauseBtn {
-    margin-top: 50%;
+    margin-top: 60%;
 }
 
 button {

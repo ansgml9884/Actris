@@ -57,26 +57,30 @@ export function toggleLoadingUI(
 function toTuple({y, x}) {
   return [y, x];
 }
-var leftShoulder = null;
-var leftWrist = null;
-var rightWrist = null;
+let leftShoulder = null;
+let leftWrist = null;
+let rightWrist = null;
+let latestLeftWrist = null;
+let latestRightWrist = null;
 
-var dropLock = false;
-var fastDownLock = false;
-var leftMoveLock = false;
-var rightMoveLock = false;
-var holdLock = false;
-var pauseLock = false;
-var leftRotateLock = false;
-var rightRotateLock = false;
-var rotateLock = false;
+let dropLock = false;
+let fastDownLock = false;
+let leftMoveLock = false;
+let rightMoveLock = false;
+let holdLock = false;
+let pauseLock = false;
+let leftRotateLock = false;
+let rightRotateLock = false;
+let rotateLock = false;
 
 export function moveBlock(y, x, r, part){
-  //앉았는지 판별 fastDown
+
   if(part=='leftShoulder'){
     if(leftShoulder==null){
       leftShoulder = [y,x];
-    }else if(fastDownLock && y-50<=leftShoulder[0]){
+    }
+    //fastDown - 자리에 앉기
+    else if(fastDownLock && y-50<=leftShoulder[0]){
       fastDownLock = false;
       rotateLock = false;
       completeAction("fastDown");
@@ -88,36 +92,31 @@ export function moveBlock(y, x, r, part){
         rotateLock = true;
       }
     }
+    //drop - 제자리 뛰기
+    else if(dropLock && y>=leftShoulder[0]-20){
+      dropLock = false;
+      completeAction("drop");
+    }else if(!dropLock && y+50<leftShoulder[0]){
+      executeAction("drop");
+      dropLock = true;
+    }
   }
-  //좌측 이동 - 왼손 왼쪽으로 moveLeft
+  
   if(part=='leftWrist'){
+    latestLeftWrist = [y,x];
     if(leftWrist==null){
       leftWrist = [y,x];
-    }else if(leftMoveLock && x+50>=leftWrist[1]){
+    }
+    //moveLeft - 왼손 왼쪽으로
+    else if(leftMoveLock && x+50>=leftWrist[1]){
       leftMoveLock = false;
       completeAction("moveLeft");
     }else if(!leftMoveLock && leftWrist[1]-x>100){
       executeAction("moveLeft");
       leftMoveLock = true;
     }
-  }
-  //우측 이동 - 오른손 오른쪽으로 moveRight
-  if(part=='rightWrist'){
-    if(rightWrist==null){
-      rightWrist = [y,x];
-    }else if(rightMoveLock && x<=rightWrist[1]+50){
-      rightMoveLock = false;
-      completeAction("moveRight");
-    }else if(!rightMoveLock && x-rightWrist[1]>100){
-      executeAction("moveRight");
-      rightMoveLock = true;
-    }
-  }
-  //좌로 회전 - 왼손 아래로 rotateLeft
-  if(part=='leftWrist'){
-    if(leftWrist==null){
-      leftWrist = [y,x];
-    }else if(leftRotateLock && y<=leftWrist[0]+50){
+    //rotateLeft - 왼손 아래로
+    else if(leftRotateLock && y<=leftWrist[0]+50){
       leftRotateLock = false;
       completeAction("rotateLeft");
     }else if(!rotateLock && !leftRotateLock && y-leftWrist[0]>100){
@@ -125,11 +124,22 @@ export function moveBlock(y, x, r, part){
       leftRotateLock = true;
     }
   }
-  //우로 회전 -  오른손 아래로 rotateright
+
   if(part=='rightWrist'){
+    latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
-    }else if(rightRotateLock && y<=rightWrist[0]+50){
+    }
+    //moveRight - 오른손 오른쪽으로
+    else if(rightMoveLock && x<=rightWrist[1]+50){
+      rightMoveLock = false;
+      completeAction("moveRight");
+    }else if(!rightMoveLock && x-rightWrist[1]>100){
+      executeAction("moveRight");
+      rightMoveLock = true;
+    }
+    //rotateRight - 오른손 아래로
+    else if(rightRotateLock && y<=rightWrist[0]+50){
       rightRotateLock = false;
       completeAction("rotateRight");
     }else if(!rotateLock && !rightRotateLock && y-rightWrist[0]>100){
@@ -137,37 +147,38 @@ export function moveBlock(y, x, r, part){
       rightRotateLock = true;
     }
   }
+  //hint - 양손 들기
   //hold - 왼손 들기 hold
   if(part=='leftWrist'){
+    latestLeftWrist = [y,x];
     if(leftWrist==null){
       leftWrist = [y,x];
     }else if(holdLock && y+50>=leftWrist[0]){
       holdLock = false;
       completeAction("hold");
     }else if(!holdLock && leftWrist[0]-y>100){
-      executeAction("hold");
-      holdLock = true;
+      if(latestRightWrist[0]<y+15){
+        console.log('hint');
+        console.log(latestRightWrist[0], y);  
+      }else{
+        executeAction("hold");
+        holdLock = true;
+      }
     }
   }
   //pause - 오른손 들기 
   if(part=='rightWrist'){
+    latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
     }else if(!pauseLock && rightWrist[0]-y>100){
-      executeAction("pause");
-      pauseLock = true;
-    }
-  }
-  //drop - 제자리 뛰기
-  if(part=='leftShoulder'){
-    if(leftShoulder==null){
-      leftShoulder = [y,x];
-    }else if(dropLock && y>=leftShoulder[0]-20){
-      dropLock = false;
-      completeAction("drop");
-    }else if(!dropLock && y+50<leftShoulder[0]){
-      executeAction("drop");
-      dropLock = true;
+      if(latestLeftWrist[0]<y+15){
+        console.log('hint');
+        console.log(latestLeftWrist[0], y);
+      }else{
+        executeAction("pause");
+        pauseLock = true;
+      }
     }
   }
 }
@@ -224,11 +235,6 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   }
 }
 
-/**
- * Draw the bounding box of a pose. For example, for a whole person standing
- * in an image, the bounding box will begin at the nose and extend to one of
- * ankles
- */
 export function drawBoundingBox(keypoints, ctx) {
   const boundingBox = posenet.getBoundingBox(keypoints);
 
@@ -240,9 +246,6 @@ export function drawBoundingBox(keypoints, ctx) {
   ctx.stroke();
 }
 
-/**
- * Converts an arary of pixel data into an ImageData object
- */
 export async function renderToCanvas(a, ctx) {
   const [height, width] = a.shape;
   const imageData = new ImageData(width, height);
@@ -262,9 +265,6 @@ export async function renderToCanvas(a, ctx) {
   ctx.putImageData(imageData, 0, 0);
 }
 
-/**
- * Draw an image on a canvas
- */
 export function renderImageToCanvas(image, size, canvas) {
   canvas.width = size[0];
   canvas.height = size[1];
@@ -273,11 +273,6 @@ export function renderImageToCanvas(image, size, canvas) {
   ctx.drawImage(image, 0, 0);
 }
 
-/**
- * Draw heatmap values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's heatmap outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
 export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   const ctx = canvas.getContext('2d');
   const radius = 5;
@@ -286,10 +281,6 @@ export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   drawPoints(ctx, scaledValues, radius, color);
 }
 
-/**
- * Used by the drawHeatMapValues method to draw heatmap points on to
- * the canvas
- */
 function drawPoints(ctx, points, radius, color) {
   const data = points.buffer().values;
 
@@ -306,11 +297,6 @@ function drawPoints(ctx, points, radius, color) {
   }
 }
 
-/**
- * Draw offset vector values, one of the model outputs, on to the canvas
- * Read our blog post for a description of PoseNet's offset vector outputs
- * https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5
- */
 export function drawOffsetVectors(
     heatMapValues, offsets, outputStride, scale = 1, ctx) {
   const offsetPoints =

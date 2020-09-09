@@ -1,3 +1,7 @@
+html {
+    cursor:url(images/cur116.cur), auto;
+}
+
 #bgvideo { 
     margin-left:0;
     min-width: 100%; 
@@ -16,6 +20,11 @@
     width: 80px;
     height: 80px;
 }
+#backbtn:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+ }
 
 #cup {
     width: 150px;
@@ -49,6 +58,7 @@ h2 {
     height: auto;
     box-shadow: 0px 0px 40px grey;
     background-color: rgba(255, 255, 255, 0.5);
+
     
 }
 #rankingList {  
@@ -101,6 +111,12 @@ td {
     height: 80px;
     width: 80px;
 }
+
+#btnleft:hover {
+    background-image: url(images/leftover.png);
+
+}
+
 #btnright {
     float: right;
     margin-right: 15%;
