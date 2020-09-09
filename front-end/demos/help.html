@@ -11,9 +11,10 @@
     <audio autoplay id="myaudio">
         <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
+    <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
     <h1>- HELP -</h1>
     <div>
-        <img class="backbtn" src="images/back.png"  onclick="location.href='index.html'"/>
+        <img class="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="backsound()" />
     </div>
 </head>
 
@@ -23,39 +24,48 @@
     <div id="help1">
         <section class="sec1">
             <div class="pose">
-                <br><br><h1>Basic Pose</h1>
+                <br><br>
+                <h1>Basic Pose</h1>
                 <img src="images/basic.png" width="350px">
             </div>
             <img id="left" class="left" src="images/left1.png" onclick="move('left')" />
         </section>
         <section class="sec2">
             <div class="pose">
-                <br><br><h1>Move</h1><br>
-                <img class="block" src="images/moveblock.png" width="250px"/>
-                <img src="images/move.gif" width="280px"/ >
+                <br><br>
+                <h1>Move</h1><br>
+                <img class="block" src="images/moveblock.png" width="250px" />
+                <img src="images/move.gif" width="280px" />
             </div>
         </section>
         <section class="sec3">
             <div class="pose">
-                <br><br><h1>Rotate</h1><br>
-                <img class="block" src="images/rotate.png" width="250px"/>
-                <img src="images/rotate.gif" width="280px"/ >
+                <br><br>
+                <h1>Rotate</h1><br>
+                <img class="block" src="images/rotate.png" width="250px" />
+                <img src="images/rotate.gif" width="280px" />
             </div>
             <img id="right" class="right" src="images/right1.png" onclick="move('right');" />
         </section>
     </div>
     <script>
+        function backsound() {
+            let audio = document.getElementById('backsound');
+            audio.play();
+            audio.volume = 0.6
+        }
+
         let cnt = 1;
         function move(dir) {
-            if(dir=='right' && cnt<3){
-                cnt+=1;
+            if (dir == 'right' && cnt < 3) {
+                cnt += 1;
             }
-            if(dir=='left' && cnt>1){
-                cnt-=1;
+            if (dir == 'left' && cnt > 1) {
+                cnt -= 1;
             }
-            let loadPage = 'help'+cnt+'.html';
-            if(cnt==1) {
-                location.href='help.html';
+            let loadPage = 'help' + cnt + '.html';
+            if (cnt == 1) {
+                location.href = 'help.html';
             }
             else {
                 $("#help1").load(loadPage);
@@ -70,4 +80,5 @@
         };
     </script>
 </body>
+
 </html>

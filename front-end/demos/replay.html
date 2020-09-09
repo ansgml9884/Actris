@@ -11,6 +11,8 @@
     </audio>
     <audio id='btnaudio1' src='music/pause (mp3cut.net).mp3'></audio>
     <audio id='btnaudio2' src='music/exit (mp3cut.net).mp3'></audio>
+    <audio id='faster' src='music/right.mp3'></audio>
+    <audio id='slower' src='music/left.mp3'></audio>
 </head>
 
 <body class="body">
@@ -32,15 +34,25 @@
         <div class="rank" id="score"></div>
 
         <form>
-            <img id="larrow" src="images/left_arrow.png" width="40px">
+            <img id="larrow" src="images/left_arrow.png" width="40px" onmouseup="slower()">
             <input id="speed" type=text name=amount value=1 readonly;>
-            <img id="rarrow" src="images/right_arrow.png" width="40px">
+            <img id="rarrow" src="images/right_arrow.png" width="40px" onmouseup="faster()">
         </form>
         <br><br>
         <p><button class="control" id="pauseBtn" onmouseover="pause()">PAUSE</button></p>
         <p><button class="control" onclick="location.href='ranking.html'" onmouseover="exit()">EXIT</button></p>
     </section>
     <script>
+        function faster() {
+            let audio = document.getElementById('faster');
+            audio.play();
+            audio.volume = 0.4
+        }
+        function slower() {
+            let audio = document.getElementById('slower');
+            audio.play();
+            audio.volume = 0.5
+        }
         function pause() {
             let audio = document.getElementById('btnaudio1');
             audio.play();
