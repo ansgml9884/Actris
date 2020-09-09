@@ -43,6 +43,7 @@ html {
     width : 500px;
     height: 750px;
     background-color: rgba( 255, 255, 255, 0.5 );
+    filter: drop-shadow(15px 8px 8px rgb(0, 0, 0)); 
 }
 
 .sec1 {
