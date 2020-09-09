@@ -44,7 +44,7 @@
   $(".btn").on("click", function() {
     $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
     $(".contents").fadeOut(1500);
-    $("#bgscreen").fadeIn(2000);
+    $("#myaudio").animate({volume: 0},2000);
   });
 </script>
 </html>
