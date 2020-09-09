@@ -11,44 +11,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	<iframe src="music/silence.mp3" allow="autoplay" id="audio"
-		style="display: none"></iframe>
-	<audio id="my_audio" autoplay>
-		<source src="music/bgm_enter_FirecrackSoundEffect.mp3"
-			type="audio/mp3">
-	</audio>
-	<audio id='donesound' src='music/bgm_done_BtnSoundEffect.mp3'></audio>
-	<video id="bgvideo" muted autoplay loop>
-		<source src="videos/Fireworks.mp4" type="video/mp4">
-	</video>
-	<h2 id="congrats">CONGRATURATION !</h2>
-	<!-- Ranking 추가 -->
-	<div id="addRanking">
-		<div class="enter">
-			<table class="scoreinputs">
-				<tr>
-					<th class="inputconts">SCORE</th>
-					<th>${param.score}</th>
-				</tr>
-				<tr>
-					<th class="inputconts">NAME</th>
-					<th><input class="inputconts" type="text" v-model="name"
-						placeholder="Enter your name" maxlength="8"
-						oninput="numberMaxLength(this)"></input></th>
-				</tr>
-				<tr>
-					<th class="inputconts">COMMENT</th>
-					<th><input class="inputconts" type="text" v-model="note"
-						placeholder="Leave your comment" maxlength="15"
-						oninput="numberMaxLength(this)"></input></th>
-				</tr>
-			</table>
-			<br>
-			<button class="done" onmouseover="donesound()"
-				v-on:click="insert('${param.record}',${param.score})">DONE</button>
-		</div>
-=======
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Fireworks.mp4" type="video/mp4">
   </video>
