@@ -14,6 +14,7 @@
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Fireworks.mp4" type="video/mp4">
   </video>
+   <audio id='donesound' src="music/bgm_done_BtnSoundEffect.mp3"></audio>
   <audio id="my_audio" autoplay>
     <source src="music/bgm_enter_FirecrackSoundEffect.mp3" type="audio/mp3">
   </audio>
@@ -37,7 +38,7 @@
         			maxlength="15" oninput="numberMaxLength(this)"></input></th>
       </tr>
     </table>
-    <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
+    <br> <button class="done" onmouseenter="donesound()" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
   <footer>
 	<img id="crown" src="images/crown.png" />
@@ -57,6 +58,7 @@
 	function donesound() {
     let audio = document.getElementById("donesound");
     audio.play();
+    audio.volume = 0.6;
 }
     setTimeout(function(){
       document.getElementById("my_audio").play();
