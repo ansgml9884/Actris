@@ -14,8 +14,7 @@
   </head>
 
 <body>
-  <image id="bgscreen" src="images/tetrisWallpaper.jpg"></image>
-
+  <a href="camera.html"></a>
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Network.mp4">
   </video>
@@ -51,6 +50,7 @@
   $(".btn").on("click", function() {
     $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
     $(".contents").fadeOut(1500);
+    $("#bgscreen").fadeIn(2000);
   });
 
   new Vue({

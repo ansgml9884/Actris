@@ -7,15 +7,7 @@
 }
 
 body{
-  background-color: #040e30;
-}
-
-#bgscreen {
-  min-width: 100%; 
-  min-height: 100%;  
-  height: auto; 
-  position: fixed; 
-  z-index: -10;
+  background-image:url("images/tetrisWallpaper.jpg")
 }
 
 #bgvideo { 
@@ -23,7 +15,6 @@ body{
   min-height: 100%;  
   height: auto; 
   position: fixed; 
-  z-index: -5;
 }
 
 #fullscreenbtn {
