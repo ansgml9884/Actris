@@ -9,6 +9,7 @@
         <source src="music/bgm_play_Tenvi.mp3">
     </audio>
     <audio id='btnclick' src='music/btn_pause.mp3'></audio>
+    <audio id='btnmouseover' src='music/btn_exit.mp3'></audio>
 </head>
 
 <body class="body">
@@ -26,7 +27,7 @@
             <br><br>
             <div>
                 <p><button id="pauseBtn">PAUSE</button></p>
-                <p><button onclick="location.href='index.html'">EXIT</button></p>
+                <p><button onmouseover="play()" onclick="location.href='index.html'">EXIT</button></p>
             </div>
         </section>
     </div>
@@ -36,6 +37,11 @@
     setTimeout(function(){
         document.getElementById("my_audio").play();
     }, 2000)
+
+    function play() { 
+        let audio = document.getElementById('btnmouseover'); 
+        audio.play(); 
+    }
 </script>
 
 </html>

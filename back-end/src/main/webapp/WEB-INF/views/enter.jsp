@@ -14,10 +14,10 @@
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Fireworks.mp4" type="video/mp4">
   </video>
-   <audio id='donesound' src="music/bgm_done_BtnSoundEffect.mp3"></audio>
   <audio id="my_audio" autoplay>
     <source src="music/bgm_enter_FirecrackSoundEffect.mp3" type="audio/mp3">
   </audio>
+   <audio id='donesound' src="music/bgm_done_BtnSoundEffect.mp3"></audio>
   <h2 id="congrats">CONGRATURATION !</h2>
   <!-- Ranking 추가 -->
   <div id="addRanking">
@@ -64,11 +64,18 @@
       document.getElementById("my_audio").play();
     }, 1000)
     
+       //뒤로가기 막기
+       history.pushState(null, null, location.href);
+       window.onpopstate = function () {
+         history.go(1);
+        };
+    
     function numberMaxLength(e){
         if(e.value.length > e.maxLength){
             e.value = e.value.slice(0, e.maxLength);
         }
     }
+    
 </script>
 <script>
     new Vue({
