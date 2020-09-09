@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { isShow } from './camera';
 
 
 //canvas
@@ -978,6 +979,7 @@ function drawInfo() {
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
+    isShow(pause);
     document.getElementById("pauseBtn").innerHTML = pause && !startLock ? "CONTINUE" : "PAUSE";
     if (pause){
         if(!startLock) {
