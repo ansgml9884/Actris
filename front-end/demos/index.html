@@ -7,11 +7,15 @@
     <audio autoplay id="myaudio">
       <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
-    <audio id='btnaudio' src='music/btn_index_mouseover.mp3'></audio>
+    <audio id='btnmouseover' src='music/btn_index_mouseover.mp3'></audio>
+    <audio id='btnclick' src='music/btn_index_click_gamestart.mp3'></audio>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
 <body>
+  <image id="bgscreen" src="images/tetrisWallpaper.jpg"></image>
+
   <video id="bgvideo" muted autoplay loop>
     <source src="videos/Network.mp4">
   </video>
@@ -22,7 +26,7 @@
 
   <h2 class="contents">Actris</h2>
   <div class="contents">
-    <a class="btn" href="camera.html" onmouseover="play()">START GAME</a><br>
+    <a class="btn" onmouseover="play()" onclick="clickSound();setTimeout('toCamera()', 2000);">START GAME</a><br>
     <a class="btn" href="hinttest.html" onmouseover="play()">HINT TEST</a><br>
     <a class="btn" href="ranking.html" onmouseover="play()">RANKING</a><br>
     <a class="btn" href="help.html" onmouseover="play()">HELP</a><br>
@@ -32,27 +36,40 @@
 
 <script>
   function play() { 
-    let audio = document.getElementById('btnaudio'); 
+    let audio = document.getElementById('btnmouseover'); 
       audio.play(); 
       audio.volume = 0.3
-  } 
+  }
+  function clickSound() {
+    let audio = document.getElementById('btnclick')
+    audio.play();
+  }
+  function toCamera() {
+    location.href="camera.html"
+  }
+  
+  $(".btn").on("click", function() {
+    $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
+    $(".contents").fadeOut(1500);
+  });
+
   new Vue({
     el:"#btnOnOff",
     data: {
       btnOn: true
     },
     methods: {
-    toggleOnOff: function() {
-      let docV = document.documentElement;
-      this.btnOn = !this.btnOn;
-      if (docV.requestFullscreen)
-        docV.requestFullscreen();
-      else if (docV.webkitRequestFullscreen)
-        docV.webkitRequestFullscreen();
-      else if (docV.mozRequestFullScreen)
-        docV.mozRequestFullScreen();
-      else if (docV.msRequestFullscreen)
-        docV.msRequestFullscreen();
+      toggleOnOff: function() {
+        let docV = document.documentElement;
+        this.btnOn = !this.btnOn;
+        if (docV.requestFullscreen)
+          docV.requestFullscreen();
+        else if (docV.webkitRequestFullscreen)
+          docV.webkitRequestFullscreen();
+        else if (docV.mozRequestFullScreen)
+          docV.mozRequestFullScreen();
+        else if (docV.msRequestFullscreen)
+          docV.msRequestFullscreen();
       }
     }
   })
