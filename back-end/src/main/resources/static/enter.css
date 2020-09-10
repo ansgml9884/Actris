@@ -47,6 +47,7 @@ h2 {
 }
 
 #donebtn {
+   cursor: url(images/cur117.cur), pointer;		
    margin-top:1%;
 }
 
