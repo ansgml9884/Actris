@@ -82,6 +82,7 @@ html {
 }
 
 #larrow {
+    cursor: url(images/cur117.cur), pointer;
     width: auto; height: auto;
     margin-top: 20%;
     margin-left:24%;
@@ -90,6 +91,7 @@ html {
     filter: drop-shadow(3px 3px 3px rgb(25, 65, 197)); 
 }
 #rarrow {
+    cursor: url(images/cur117.cur), pointer;
     width: auto; height: auto;
     margin-right:15%;
     max-width: 60px;
@@ -98,6 +100,7 @@ html {
 }
 
 button {
+    cursor: url(images/cur117.cur), pointer;
     font-family:"Tetris";
     font-size: 50px;
     width: 40%;
