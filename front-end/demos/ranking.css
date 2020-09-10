@@ -108,6 +108,7 @@ td {
 
 #replayimg {
   cursor: url(images/cur117.cur), pointer;
+  filter: drop-shadow(4px 4px 4px rgb(13, 54, 141));  
 
 }
 
