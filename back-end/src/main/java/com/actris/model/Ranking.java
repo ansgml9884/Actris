@@ -32,11 +32,12 @@ public class Ranking {
    private Long replay_id;
    
    @Builder
-   public Ranking(String name, int score, String note, Long replay_id) {
+   public Ranking(String name, int score, String note, Long replay_id, Timestamp played_date) {
       this.name = name;
       this.score = score;
       this.note = note;
       this.replay_id = replay_id;
+      this.played_date = played_date;
    }
    
 }

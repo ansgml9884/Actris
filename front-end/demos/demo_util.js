@@ -148,13 +148,12 @@ export function moveBlock(y, x, r, part){
       completeAction("hold");
     }else if(!holdLock){
       if(leftWrist[0]-y>100){
+        holdLock = true;
         if(latestRightWrist[0]<y+20){
-          console.log('hint');
-          holdLock = true;
+          executeAction("hint");
           pauseLock = leftMoveLock = rightMoveLock = true; 
         }else{
           executeAction("hold");
-          holdLock = true;
         }
       }
     }
@@ -169,13 +168,12 @@ export function moveBlock(y, x, r, part){
       holdLock = leftMoveLock = rightMoveLock = false;      
     }else if(!pauseLock){
       if(rightWrist[0]-y>100){
+        pauseLock = true;
         if(latestLeftWrist[0]<y+20){
-          console.log('hint');
-          pauseLock = true;
+          executeAction("hint");
           holdLock = leftMoveLock = rightMoveLock = true; 
         }else{
           executeAction("pause");
-          pauseLock = true;
         }
       }
     }
