@@ -45,11 +45,12 @@ function toTuple({y, x}) {
 let leftShoulder = null;
 let leftWrist = null;
 let rightWrist = null;
+
 //latest value
 let latestLeftWrist = null;
 let latestRightWrist = null;
 
-//excute 이후 complete 이전까지 lock
+//excute 최초 실행 이후 complete 이전까지 lock
 let dropLock = false;
 let fastDownLock = false;
 let leftMoveLock = false;

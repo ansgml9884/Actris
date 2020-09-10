@@ -85,7 +85,7 @@ async function loadVideo() {
 const defaultQuantBytes = 2;
 const defaultMobileNetMultiplier = 0.75; //0.50
 const defaultMobileNetStride = 16;
-const defaultMobileNetInputResolution = 500;
+const defaultMobileNetInputResolution = 400;
 
 export const guiState = {
   algorithm: 'single-pose',

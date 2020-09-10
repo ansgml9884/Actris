@@ -32,7 +32,7 @@ public class Ranking {
    private Long replay_id;
    
    @Builder
-   public Ranking(int score, String name, String note, Long replay_id) {
+   public Ranking(String name, int score, String note, Long replay_id) {
       this.name = name;
       this.score = score;
       this.note = note;
