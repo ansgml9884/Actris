@@ -30,12 +30,12 @@
       <tr>
         <th class="inputconts">NAME</th>
         <th><input class="inputconts" type="text" v-model="name" placeholder="Enter your name"
-        			maxlength="8" oninput="numberMaxLength(this)"></input></th>
+        			maxlength="7" oninput="numberMaxLength(this)"></input></th>
       </tr>
       <tr>
         <th class="inputconts">COMMENT</th>
         <th><input class="inputconts" type="text" v-model="note" placeholder="Leave your comment" 
-        			maxlength="15" oninput="numberMaxLength(this)"></input></th>
+        			maxlength="14" oninput="numberMaxLength(this)"></input></th>
       </tr>
     </table>
     <br> <button class="done" onmouseenter="donesound()" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
