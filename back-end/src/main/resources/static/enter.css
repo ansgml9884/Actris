@@ -47,7 +47,6 @@ h2 {
 }
 
 #donebtn {
-   cursor: url(images/cur117.cur), pointer;		
    margin-top:1%;
 }
 
@@ -132,6 +131,8 @@ th {
 
 
 button {
+	  cursor: url(images/cur117.cur), pointer;
+	
     font-family: "proxima-nova", sans-serif;
     font-size: 30px;
     width: 20%;

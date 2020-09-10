@@ -105,6 +105,12 @@ td {
     color: rgba(47, 79, 79, 0.4);
     text-shadow: 1px 1px 1px rgb(80, 77, 77);
 }
+
+#replayimg {
+  cursor: url(images/cur117.cur), pointer;
+
+}
+
 #btnLR { 
     margin-top:2%;
 }

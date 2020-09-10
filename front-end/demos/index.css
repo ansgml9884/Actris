@@ -59,7 +59,6 @@ body {
 }
 
 .btn{
-  cursor: url(images/cur117.cur), pointer;
   top: 250px;
   font-family: "Tetris";
   font-size: 50px!important;
@@ -76,6 +75,8 @@ body {
   background: transparent;
 }
 .btn:hover{
+  cursor: url(images/cur117.cur), pointer;
+
   border-radius:7px;
   color: #80ffd3!important;
 }
