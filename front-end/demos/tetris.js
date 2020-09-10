@@ -1,6 +1,7 @@
+import clonedeep from "lodash.clonedeep";
+
 import { isShow } from './camera';
 import Swal from 'sweetalert2';
-
 
 //canvas
 let canvas = document.getElementById("gameCanvas");
@@ -99,6 +100,51 @@ const DROP_IMMEDIATELY = 16;
 const DROP_FAST = 32;
 const HOLD = 64;
 
+
+//AI score criterion------------------------------
+//제거 가능한 라인에 대한 가치 기준
+const AI_CLEAR = 9;
+
+//주변 요소들과의 밀착도에 대한 가치 기준
+const AI_BLOCK_ADHESION = 4;
+const AI_WALL_ADHESION = 3;
+const AI_BOTTOM_ADHESION = 5;
+
+//전체적인 풍경 형태에 대한 가치 기준
+const AI_CUMULATION = -5;
+const AI_BLANK = -10;
+const AI_ROOF = -1;
+
+const BasisForJudge = function() {
+    this.method = 0;
+
+    this.clears = 0;
+
+    this.blockAdhesion = 0;
+    this.wallAdhesion = 0;
+    this.bottomAdhesion = 0;
+
+    this.cumulations = 0;
+    this.blanks = 0;
+    this.roofs = 0;
+
+    this.judgeScore = 0;
+
+    this.makeJudgeScore = function() {
+        this.judgeScore = this.clears;
+
+        this.judgeScore += this.blockAdhesion;
+        this.judgeScore += this.wallAdhesion;
+        this.judgeScore += this.bottomAdhesion;
+
+        this.judgeScore += this.cumulations;
+        this.judgeScore += this.blanks;
+        this.judgeScore += this.roofs;
+    }
+}
+//------------------------------------------------
+
+
 //실제 게임 판
 let data = [];
 for (let y = 0; y < BOARD_HEIGHT; y++) {
@@ -151,6 +197,9 @@ let mine = {
 
 let holdFlag = 0;
 let holdPatIndex = -1;
+
+
+
 
 
 //replay 관련

@@ -1,4 +1,4 @@
-const clonedeep = require("lodash.clonedeep");
+import clonedeep from "lodash.clonedeep";
 
 //canvas
 let canvas = document.getElementById("gameCanvas");
@@ -98,50 +98,6 @@ const DROP_FAST = 32;
 const HOLD = 64;
 
 
-//AI score criterion------------------------------
-//제거 가능한 라인에 대한 가치 기준
-const AI_CLEAR = 9;
-
-//주변 요소들과의 밀착도에 대한 가치 기준
-const AI_BLOCK_ADHESION = 4;
-const AI_WALL_ADHESION = 3;
-const AI_BOTTOM_ADHESION = 5;
-
-//전체적인 풍경 형태에 대한 가치 기준
-const AI_CUMULATION = -5;
-const AI_BLANK = -10;
-const AI_ROOF = -1;
-
-const BasisForJudge = function() {
-    this.method = 0;
-
-    this.clears = 0;
-
-    this.blockAdhesion = 0;
-    this.wallAdhesion = 0;
-    this.bottomAdhesion = 0;
-
-    this.cumulations = 0;
-    this.blanks = 0;
-    this.roofs = 0;
-
-    this.judgeScore = 0;
-
-    this.makeJudgeScore = function() {
-        this.judgeScore = this.clears;
-
-        this.judgeScore += this.blockAdhesion;
-        this.judgeScore += this.wallAdhesion;
-        this.judgeScore += this.bottomAdhesion;
-
-        this.judgeScore += this.cumulations;
-        this.judgeScore += this.blanks;
-        this.judgeScore += this.roofs;
-    }
-}
-//------------------------------------------------
-
-
 //실제 게임 판
 let data = [];
 for (let y = 0; y < BOARD_HEIGHT; y++) {
@@ -196,6 +152,48 @@ let holdFlag = 0;
 let holdPatIndex = -1;
 
 
+//AI score criterion------------------------------------
+//제거 가능한 라인에 대한 가치 기준
+const AI_CLEAR = 9;
+
+//주변 요소들과의 밀착도에 대한 가치 기준
+const AI_BLOCK_ADHESION = 4;
+const AI_WALL_ADHESION = 3;
+const AI_BOTTOM_ADHESION = 5;
+
+//전체적인 풍경 형태에 대한 가치 기준
+const AI_CUMULATION = -5;
+const AI_BLANK = -10;
+const AI_ROOF = -1;
+
+const BasisForJudge = function() {
+    this.method = 0;
+
+    this.clears = 0;
+
+    this.blockAdhesion = 0;
+    this.wallAdhesion = 0;
+    this.bottomAdhesion = 0;
+
+    this.cumulations = 0;
+    this.blanks = 0;
+    this.roofs = 0;
+
+    this.judgeScore = 0;
+
+    this.makeJudgeScore = function() {
+        this.judgeScore = this.clears;
+
+        this.judgeScore += this.blockAdhesion;
+        this.judgeScore += this.wallAdhesion;
+        this.judgeScore += this.bottomAdhesion;
+
+        this.judgeScore += this.cumulations;
+        this.judgeScore += this.blanks;
+        this.judgeScore += this.roofs;
+    }
+}
+//------------------------------------------------------
 //AI Brain----------------------------------------------
 const Brain = function() {
     this.basisForJudges = [];
@@ -362,6 +360,275 @@ const Brain = function() {
         }
     }
     //------------------------------------------------------------
+
+    this.scanHorizontalExtent = function(patIndex) {
+        let xLCut = this.x;
+        let xRCut = this.x;
+    
+        while (true) {
+            if (this.moveToLeft(patIndex) == false) {
+                break;
+            }
+            xLCut--;
+        }
+        this.x = 5;
+    
+        while (true) {
+            if (this.moveToRight(patIndex) == false) {
+                break;
+            }
+            xRCut++;
+        }
+        this.x = 5;
+    
+        return [xLCut, xRCut];
+    }
+    
+    this.scanVerticalExtent = function(yCut) {
+        for (let x = 1; x < BOARD_WIDTH - 1; x++) {
+            for (yCut[x] = -(VIRTUAL_HEIGHT - 1); yCut[x] < (BOARD_HEIGHT - 1); yCut[x]++) {
+                if (0 < yCut[x]) {
+                    if (this.data[yCut[x]][x] != BLANK) {
+                        break;
+                    }
+                }
+                else if (this.virData[Math.abs(yCut[x])][x] != BLANK) {
+                    break;
+                }
+            }
+        }
+    }
+    
+    this.feelSurround = function(patIndex) {
+        let Point = function(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        let checkedPoints = [];
+    
+        for (let i = 0; i < 4; i++) {
+            let x = this.x + SHAPE[patIndex][this.dir][i].x;
+            let y = this.y + SHAPE[patIndex][this.dir][i].y;
+    
+            for (let j = 0; j < 4; j++) {
+                let tempX;
+                let tempY;
+    
+                if (j == 0) {
+                    tempX = x - 1;
+                }
+                else if (j == 1) {
+                    tempX = x + 1;
+                }
+                else {
+                    tempX = x;
+                }
+    
+                if (j == 2) {
+                    tempY = y - 1;
+                }
+                else if (j == 3) {
+                    tempY = y + 1;
+                }
+                else {
+                    tempY = y;
+                }
+    
+                if (checkedPoints.length != 0) {
+                    let samePoint = false;
+    
+                    for (let k = 0; k < checkedPoints.length; k++) {
+                        if (tempX == checkedPoints[k].x && tempY == checkedPoints[k].y) {
+                            samePoint = true;
+                            break;
+                        }
+                    }
+    
+                    if (samePoint) {
+                        continue;
+                    }
+                }
+    
+                checkedPoints.push(new Point(tempX, tempY));
+    
+                if (0 < tempY) {
+                    if (this.data[tempY][tempX] % 5 == BLOCK) {
+                        this.basisForJudges[this.judge].blockAdhesion++;
+                    }
+                    else if (tempX == 0 || tempX == BOARD_WIDTH - 1) {
+                        this.basisForJudges[this.judge].wallAdhesion++;
+                    }
+                    else if (tempY == BOARD_HEIGHT - 1) {
+                        this.basisForJudges[this.judge].bottomAdhesion++;
+                    }
+                }
+                else if (this.data[Math.abs(tempY)][tempX] % 5 == BLOCK) {
+                    this.basisForJudges[this.judge].blockAdhesion++;
+                }
+                else if (tempX == 0 || tempX == BOARD_WIDTH - 1) {
+                    this.basisForJudges[this.judge].wallAdhesion++;
+                }
+            }
+        }
+        
+        this.basisForJudges[this.judge].blockAdhesion *= AI_BLOCK_ADHESION;
+        this.basisForJudges[this.judge].wallAdhesion *= AI_WALL_ADHESION;
+        this.basisForJudges[this.judge].bottomAdhesion *= AI_BOTTOM_ADHESION;
+    }
+    
+    this.countRoof = function(yCut, x, y) {
+        for (y = y - 1; yCut < y; y--) {
+            if (0 < y) {
+                if (this.data[y][x] == BLANK) {
+                    break;
+                }
+                else {
+                    this.basisForJudges[this.judge].roofs++;
+                }
+            }
+            else if (this.virData[Math.abs(y)][x] == BLANK) {
+                break;
+            }
+            else {
+                this.basisForJudges[this.judge].roofs++;
+            }
+        }
+    }
+    
+    this.feelLandScape = function(yCut) {
+        let mostHeight = yCut[1];
+        for (let i = 1; i < BOARD_WIDTH - 1; i++) {
+            if (yCut[i] < mostHeight) {
+                mostHeight = yCut[i];
+            }
+        }
+    
+        let floor = 1;
+        for (let y = BOARD_HEIGHT - 2; mostHeight <= y; y--) {
+            for (let x = 1; x < BOARD_WIDTH - 1; x++) {
+                if (y < yCut[x]) {
+                    continue;
+                }
+    
+                if (0 < y) {
+                    if (this.data[y][x] == BLANK) {
+                        this.basisForJudges[this.judge].blanks++;
+                        this.countRoof(yCut[x], x, y);
+                    }
+                    else {
+                        this.basisForJudges[this.judge].cumulations += floor;
+                    }
+                }
+                else {
+                    if (this.virData[Math.abs(y)][x] == BLANK) {
+                        this.basisForJudges[this.judge].blanks++;
+                        this.countRoof(yCut[x], x, y);
+                    }
+                    else {
+                        this.basisForJudges[this.judge].cumulations += floor;
+                    }
+                }
+            }
+    
+            floor++;
+        }
+    
+        this.basisForJudges[this.judge].cumulations *= AI_CUMULATION;
+        this.basisForJudges[this.judge].blanks *= AI_BLANK;
+        this.basisForJudges[this.judge].roofs *= AI_ROOF;
+    }
+    
+    this.feel = function(patIndex) {
+        this.feelSurround(patIndex);
+    
+        this.copyMineToData(patIndex);
+        this.basisForJudges[this.judge].clears = this.checkSameBlock() * AI_CLEAR;
+    
+        let yCut = [];
+        this.scanVerticalExtent(yCut);
+        this.feelLandScape(yCut);
+    
+        this.basisForJudges[this.judge].makeJudgeScore();
+        this.judge++;
+    }
+    
+    this.getTopBasisForJudge = function() {
+        let topScore = 0;
+        for (let i = 1; i < this.judge; i++) {
+            if (this.basisForJudges[topScore].judgeScore < this.basisForJudges[i].judgeScore) {
+                topScore = i;
+            }
+        }
+        return this.basisForJudges[topScore];
+    }
+    
+    this.think = function() {
+        if (this.problem == false) {
+            return;
+        }
+        if (holdPatIndex == -1) {
+            this.method = -1;
+            return;
+        }
+    
+        let equal = false;
+        if (holdPatIndex == mine.patIndex) {
+            equal = true;
+        }
+    
+        let topBasisForJudges = [];
+        let patIndex;
+    
+        for (let i = 0; i < 2; i++) {
+            if (i == 0) {
+                patIndex = mine.patIndex;
+            }
+            else {
+                patIndex = holdPatIndex;
+            }
+    
+            this.initBasisForJudges();
+            this.judge = 0;
+    
+            for (this.dir = 0; this.dir < 4; this.dir++) {
+                this.x = 5;
+                this.y = 1;
+    
+                let [xLCut, xRCut] = this.scanHorizontalExtent(patIndex);
+    
+                for (let x = xLCut; x <= xRCut; x++) {
+                    this.copyDataFromGameData();
+    
+                    this.x = x;
+                    this.y = 1;
+    
+                    this.moveToEnd(patIndex);
+    
+                    this.feel(patIndex);
+                }
+            }
+    
+            topBasisForJudges[i] = clonedeep(this.getTopBasisForJudge());
+    
+            if (equal || holdFlag == 1) {
+                break;
+            }
+        }
+    
+        this.method = 0;
+        if (equal || holdFlag == 1) {
+            this.method |= topBasisForJudges[0].method;
+        }
+        else if (topBasisForJudges[0].judgeScore < topBasisForJudges[1].judgeScore) {
+            this.method |= HOLD;
+            this.method |= topBasisForJudges[1].method;
+        }
+        else {
+            this.method |= topBasisForJudges[0].method;
+        }
+    
+        this.problem = false;
+    }
 }
 const brain = new Brain();
 //-----------------------------------------------------
@@ -968,276 +1235,6 @@ function manipulate() {
     return true;
 }
 
-
-function scanHorizontalExtent(patIndex) {
-    let xLCut = brain.x;
-    let xRCut = brain.x;
-
-    while (true) {
-        if (brain.moveToLeft(patIndex) == false) {
-            break;
-        }
-        xLCut--;
-    }
-    brain.x = 5;
-
-    while (true) {
-        if (brain.moveToRight(patIndex) == false) {
-            break;
-        }
-        xRCut++;
-    }
-    brain.x = 5;
-
-    return [xLCut, xRCut];
-}
-
-function scanVerticalExtent(yCut) {
-    for (let x = 1; x < BOARD_WIDTH - 1; x++) {
-        for (yCut[x] = -(VIRTUAL_HEIGHT - 1); yCut[x] < (BOARD_HEIGHT - 1); yCut[x]++) {
-            if (0 < yCut[x]) {
-                if (brain.data[yCut[x]][x] != BLANK) {
-                    break;
-                }
-            }
-            else if (brain.virData[Math.abs(yCut[x])][x] != BLANK) {
-                break;
-            }
-        }
-    }
-}
-
-function feelSurround(patIndex) {
-    let Point = function(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-    let checkedPoints = [];
-
-    for (let i = 0; i < 4; i++) {
-        let x = brain.x + SHAPE[patIndex][brain.dir][i].x;
-        let y = brain.y + SHAPE[patIndex][brain.dir][i].y;
-
-        for (let j = 0; j < 4; j++) {
-            let tempX;
-            let tempY;
-
-            if (j == 0) {
-                tempX = x - 1;
-            }
-            else if (j == 1) {
-                tempX = x + 1;
-            }
-            else {
-                tempX = x;
-            }
-
-            if (j == 2) {
-                tempY = y - 1;
-            }
-            else if (j == 3) {
-                tempY = y + 1;
-            }
-            else {
-                tempY = y;
-            }
-
-            if (checkedPoints.length != 0) {
-                let samePoint = false;
-
-                for (let k = 0; k < checkedPoints.length; k++) {
-                    if (tempX == checkedPoints[k].x && tempY == checkedPoints[k].y) {
-                        samePoint = true;
-                        break;
-                    }
-                }
-
-                if (samePoint) {
-                    continue;
-                }
-            }
-
-            checkedPoints.push(new Point(tempX, tempY));
-
-            if (0 < tempY) {
-                if (brain.data[tempY][tempX] % 5 == BLOCK) {
-                    brain.basisForJudges[brain.judge].blockAdhesion++;
-                }
-                else if (tempX == 0 || tempX == BOARD_WIDTH - 1) {
-                    brain.basisForJudges[brain.judge].wallAdhesion++;
-                }
-                else if (tempY == BOARD_HEIGHT - 1) {
-                    brain.basisForJudges[brain.judge].bottomAdhesion++;
-                }
-            }
-            else if (brain.data[Math.abs(tempY)][tempX] % 5 == BLOCK) {
-                brain.basisForJudges[brain.judge].blockAdhesion++;
-            }
-            else if (tempX == 0 || tempX == BOARD_WIDTH - 1) {
-                brain.basisForJudges[brain.judge].wallAdhesion++;
-            }
-        }
-    }
-    
-    brain.basisForJudges[brain.judge].blockAdhesion *= AI_BLOCK_ADHESION;
-    brain.basisForJudges[brain.judge].wallAdhesion *= AI_WALL_ADHESION;
-    brain.basisForJudges[brain.judge].bottomAdhesion *= AI_BOTTOM_ADHESION;
-}
-
-function countRoof(yCut, x, y) {
-    for (y = y - 1; yCut < y; y--) {
-        if (0 < y) {
-            if (brain.data[y][x] == BLANK) {
-                break;
-            }
-            else {
-                brain.basisForJudges[brain.judge].roofs++;
-            }
-        }
-        else if (brain.virData[Math.abs(y)][x] == BLANK) {
-            break;
-        }
-        else {
-            brain.basisForJudges[brain.judge].roofs++;
-        }
-    }
-}
-
-function feelLandScape(yCut) {
-    let mostHeight = yCut[1];
-    for (let i = 1; i < BOARD_WIDTH - 1; i++) {
-        if (yCut[i] < mostHeight) {
-            mostHeight = yCut[i];
-        }
-    }
-
-    let floor = 1;
-    for (let y = BOARD_HEIGHT - 2; mostHeight <= y; y--) {
-        for (let x = 1; x < BOARD_WIDTH - 1; x++) {
-            if (y < yCut[x]) {
-                continue;
-            }
-
-            if (0 < y) {
-                if (brain.data[y][x] == BLANK) {
-                    brain.basisForJudges[brain.judge].blanks++;
-                    countRoof(yCut[x], x, y);
-                }
-                else {
-                    brain.basisForJudges[brain.judge].cumulations += floor;
-                }
-            }
-            else {
-                if (brain.virData[Math.abs(y)][x] == BLANK) {
-                    brain.basisForJudges[brain.judge].blanks++;
-                    countRoof(yCut[x], x, y);
-                }
-                else {
-                    brain.basisForJudges[brain.judge].cumulations += floor;
-                }
-            }
-        }
-
-        floor++;
-    }
-
-    brain.basisForJudges[brain.judge].cumulations *= AI_CUMULATION;
-    brain.basisForJudges[brain.judge].blanks *= AI_BLANK;
-    brain.basisForJudges[brain.judge].roofs *= AI_ROOF;
-}
-
-function feel(patIndex) {
-    feelSurround(patIndex);
-
-    brain.copyMineToData(patIndex);
-    brain.basisForJudges[brain.judge].clears = brain.checkSameBlock() * AI_CLEAR;
-
-    let yCut = [];
-    scanVerticalExtent(yCut);
-    feelLandScape(yCut);
-
-    brain.basisForJudges[brain.judge].makeJudgeScore();
-    brain.judge++;
-}
-
-function getTopBasisForJudge() {
-    let topScore = 0;
-    for (let i = 1; i < brain.judge; i++) {
-        if (brain.basisForJudges[topScore].judgeScore < brain.basisForJudges[i].judgeScore) {
-            topScore = i;
-        }
-    }
-    return brain.basisForJudges[topScore];
-}
-
-function think() {
-    if (brain.problem == false) {
-        return;
-    }
-    if (holdPatIndex == -1) {
-        brain.method = -1;
-        return;
-    }
-
-    let equal = false;
-    if (holdPatIndex == mine.patIndex) {
-        equal = true;
-    }
-
-    topBasisForJudges = [];
-    let patIndex;
-
-    for (let i = 0; i < 2; i++) {
-        if (i == 0) {
-            patIndex = mine.patIndex;
-        }
-        else {
-            patIndex = holdPatIndex;
-        }
-
-        brain.initBasisForJudges();
-        brain.judge = 0;
-
-        for (brain.dir = 0; brain.dir < 4; brain.dir++) {
-            brain.x = 5;
-            brain.y = 1;
-
-            let [xLCut, xRCut] = scanHorizontalExtent(patIndex);
-
-            for (let x = xLCut; x <= xRCut; x++) {
-                brain.copyDataFromGameData();
-
-                brain.x = x;
-                brain.y = 1;
-
-                brain.moveToEnd(patIndex);
-
-                feel(patIndex);
-            }
-        }
-
-        topBasisForJudges[i] = clonedeep(getTopBasisForJudge());
-
-        if (equal || holdFlag == 1) {
-            break;
-        }
-    }
-
-    brain.method = 0;
-    if (equal || holdFlag == 1) {
-        brain.method |= topBasisForJudges[0].method;
-    }
-    else if (topBasisForJudges[0].judgeScore < topBasisForJudges[1].judgeScore) {
-        brain.method |= HOLD;
-        brain.method |= topBasisForJudges[1].method;
-    }
-    else {
-        brain.method |= topBasisForJudges[0].method;
-    }
-
-    brain.problem = false;
-}
-
 function playGame() {
     if (pause) {
         return;
@@ -1247,7 +1244,7 @@ function playGame() {
         return;
     }
 
-    think();
+    brain.think();
     
     if (!manipulate()) {
         gameOver = true;
