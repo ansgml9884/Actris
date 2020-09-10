@@ -15,8 +15,6 @@
  * =============================================================================
  */
 import * as posenet from '@tensorflow-models/posenet';
-import * as tf from '@tensorflow/tfjs';
-
 import {executeAction, completeAction} from './tetris.js'
 
 const color = 'aqua';
@@ -42,12 +40,16 @@ export function toggleLoadingUI(
 function toTuple({y, x}) {
   return [y, x];
 }
+
+//first value
 let leftShoulder = null;
 let leftWrist = null;
 let rightWrist = null;
+//latest value
 let latestLeftWrist = null;
 let latestRightWrist = null;
 
+//excute 이후 complete 이전까지 lock
 let dropLock = false;
 let fastDownLock = false;
 let leftMoveLock = false;
@@ -65,7 +67,7 @@ export function moveBlock(y, x, r, part){
       leftShoulder = [y,x];
     }
     //fastDown - 자리에 앉기
-    else if(fastDownLock && y-50<=leftShoulder[0]){
+    if(fastDownLock && y-50<=leftShoulder[0]){
       fastDownLock = false;
       rotateLock = false;
       completeAction("fastDown");
@@ -78,10 +80,10 @@ export function moveBlock(y, x, r, part){
       }
     }
     //drop - 제자리 뛰기
-    else if(dropLock && y>=leftShoulder[0]-20){
+    if(dropLock && y>=leftShoulder[0]-20){
       dropLock = false;
       completeAction("drop");
-    }else if(!dropLock && y+50<leftShoulder[0]){
+    }else if(!dropLock && y<leftShoulder[0]-50){
       executeAction("drop");
       dropLock = true;
     }
@@ -93,7 +95,7 @@ export function moveBlock(y, x, r, part){
       leftWrist = [y,x];
     }
     //moveLeft - 왼손 왼쪽으로
-    else if(leftMoveLock && x+50>=leftWrist[1]){
+    if(leftMoveLock && x+50>=leftWrist[1]){
       leftMoveLock = false;
       completeAction("moveLeft");
     }else if(!leftMoveLock && leftWrist[1]-x>100){
@@ -101,7 +103,7 @@ export function moveBlock(y, x, r, part){
       leftMoveLock = true;
     }
     //rotateLeft - 왼손 아래로
-    else if(leftRotateLock && y<=leftWrist[0]+50){
+    if(leftRotateLock && y<=leftWrist[0]+50){
       leftRotateLock = false;
       completeAction("rotateLeft");
     }else if(!rotateLock && !leftRotateLock && y-leftWrist[0]>100){
@@ -116,7 +118,7 @@ export function moveBlock(y, x, r, part){
       rightWrist = [y,x];
     }
     //moveRight - 오른손 오른쪽으로
-    else if(rightMoveLock && x<=rightWrist[1]+50){
+    if(rightMoveLock && x<=rightWrist[1]+50){
       rightMoveLock = false;
       completeAction("moveRight");
     }else if(!rightMoveLock && x-rightWrist[1]>100){
@@ -124,7 +126,7 @@ export function moveBlock(y, x, r, part){
       rightMoveLock = true;
     }
     //rotateRight - 오른손 아래로
-    else if(rightRotateLock && y<=rightWrist[0]+50){
+    if(rightRotateLock && y<=rightWrist[0]+50){
       rightRotateLock = false;
       completeAction("rotateRight");
     }else if(!rotateLock && !rightRotateLock && y-rightWrist[0]>100){
@@ -138,13 +140,14 @@ export function moveBlock(y, x, r, part){
     latestLeftWrist = [y,x];
     if(leftWrist==null){
       leftWrist = [y,x];
-    }else if(holdLock && y+50>=leftWrist[0]){
+    }
+    if(holdLock && y+50>=leftWrist[0]){
       holdLock = false;
       pauseLock = leftMoveLock = rightMoveLock = false;      
       completeAction("hold");
     }else if(!holdLock){
       if(leftWrist[0]-y>100){
-        if(latestRightWrist[0]<y+30){
+        if(latestRightWrist[0]<y+20){
           console.log('hint');
           holdLock = true;
           pauseLock = leftMoveLock = rightMoveLock = true; 
@@ -165,7 +168,7 @@ export function moveBlock(y, x, r, part){
       holdLock = leftMoveLock = rightMoveLock = false;      
     }else if(!pauseLock){
       if(rightWrist[0]-y>100){
-        if(latestLeftWrist[0]<y+30){
+        if(latestLeftWrist[0]<y+20){
           console.log('hint');
           pauseLock = true;
           holdLock = leftMoveLock = rightMoveLock = true; 
@@ -188,9 +191,6 @@ export function drawPoint(ctx, y, x, r, color, part) {
   ctx.fill();
 }
 
-/**
- * Draws a line on a canvas, i.e. a joint
- */
 export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
   ctx.beginPath();
   ctx.moveTo(ax * scale, ay * scale);
@@ -200,9 +200,6 @@ export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
   ctx.stroke();
 }
 
-/**
- * Draws a pose skeleton by looking up all adjacent keypoints/joints
- */
 export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   const adjacentKeyPoints =
       posenet.getAdjacentKeyPoints(keypoints, minConfidence);
@@ -214,9 +211,6 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
   });
 }
 
-/**
- * Draw pose keypoints onto a canvas
- */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i];
@@ -227,75 +221,5 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
     const {y, x} = keypoint.position;
     drawPoint(ctx, y * scale, x * scale, 3, color, keypoint.part);
     moveBlock(y * scale, x * scale, 3, keypoint.part);
-  }
-}
-
-export async function renderToCanvas(a, ctx) {
-  const [height, width] = a.shape;
-  const imageData = new ImageData(width, height);
-
-  const data = await a.data();
-
-  for (let i = 0; i < height * width; ++i) {
-    const j = i * 4;
-    const k = i * 3;
-
-    imageData.data[j + 0] = data[k + 0];
-    imageData.data[j + 1] = data[k + 1];
-    imageData.data[j + 2] = data[k + 2];
-    imageData.data[j + 3] = 255;
-  }
-
-  ctx.putImageData(imageData, 0, 0);
-}
-
-export function renderImageToCanvas(image, size, canvas) {
-  canvas.width = size[0];
-  canvas.height = size[1];
-  const ctx = canvas.getContext('2d');
-
-  ctx.drawImage(image, 0, 0);
-}
-
-export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
-  const ctx = canvas.getContext('2d');
-  const radius = 5;
-  const scaledValues = heatMapValues.mul(tf.scalar(outputStride, 'int32'));
-
-  drawPoints(ctx, scaledValues, radius, color);
-}
-
-function drawPoints(ctx, points, radius, color) {
-  const data = points.buffer().values;
-
-  for (let i = 0; i < data.length; i += 2) {
-    const pointY = data[i];
-    const pointX = data[i + 1];
-
-    if (pointX !== 0 && pointY !== 0) {
-      ctx.beginPath();
-      ctx.arc(pointX, pointY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
-      ctx.fill();
-    }
-  }
-}
-
-export function drawOffsetVectors(
-    heatMapValues, offsets, outputStride, scale = 1, ctx) {
-  const offsetPoints =
-      posenet.singlePose.getOffsetPoints(heatMapValues, outputStride, offsets);
-
-  const heatmapData = heatMapValues.buffer().values;
-  const offsetPointsData = offsetPoints.buffer().values;
-
-  for (let i = 0; i < heatmapData.length; i += 2) {
-    const heatmapY = heatmapData[i] * outputStride;
-    const heatmapX = heatmapData[i + 1] * outputStride;
-    const offsetPointY = offsetPointsData[i];
-    const offsetPointX = offsetPointsData[i + 1];
-
-    drawSegment(
-        [heatmapY, heatmapX], [offsetPointY, offsetPointX], color, scale, ctx);
   }
 }
