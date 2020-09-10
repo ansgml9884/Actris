@@ -854,7 +854,7 @@ function showTimer(){
         completeAction("pause");
     }
 }
-var startInterval = setInterval(showTimer, 1000);
+let startInterval = setInterval(showTimer, 1000);
 
 //게임 시작
 let gameOver = false;
