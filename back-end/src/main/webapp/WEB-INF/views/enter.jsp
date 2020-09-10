@@ -17,6 +17,7 @@
   <audio id="my_audio" autoplay>
     <source src="music/bgm_enter_FirecrackSoundEffect.mp3" type="audio/mp3">
   </audio>
+   <audio id='donesound' src="music/bgm_done_BtnSoundEffect.mp3"></audio>
   <h2 id="congrats">CONGRATURATION !</h2>
   <!-- Ranking 추가 -->
   <div id="addRanking">
@@ -37,7 +38,7 @@
         			maxlength="15" oninput="numberMaxLength(this)"></input></th>
       </tr>
     </table>
-    <br> <button class="done" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
+    <br> <button class="done" onmouseenter="donesound()" v-on:click="insert('${param.record}',${param.score})" >DONE</button>
   </div>
   <footer>
 	<img id="crown" src="images/crown.png" />
@@ -57,16 +58,24 @@
 	function donesound() {
     let audio = document.getElementById("donesound");
     audio.play();
+    audio.volume = 0.6;
 }
     setTimeout(function(){
       document.getElementById("my_audio").play();
     }, 1000)
+    
+       //뒤로가기 막기
+       history.pushState(null, null, location.href);
+       window.onpopstate = function () {
+         history.go(1);
+        };
     
     function numberMaxLength(e){
         if(e.value.length > e.maxLength){
             e.value = e.value.slice(0, e.maxLength);
         }
     }
+    
 </script>
 <script>
     new Vue({

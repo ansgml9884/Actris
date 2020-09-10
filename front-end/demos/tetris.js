@@ -1,7 +1,6 @@
 import { isShow } from './camera';
 import Swal from 'sweetalert2';
 
-
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -389,6 +388,8 @@ document.addEventListener("keyup", (e) => {
 
 document.getElementById("pauseBtn").onclick = function() {
     pause = !pause;
+    let audio = document.getElementById('btnclick');
+    audio.play();
 }
 
 function showTimer(){
@@ -542,6 +543,7 @@ function removeCompleteLine() {
 
     if (goal <= 0) {
         if (level == 15) {
+            goal = 0;
             return false;
         }
         else {
@@ -991,6 +993,16 @@ function drawInfo() {
             }else{ 
                 drawText("Game Start!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
             }
+        }
+    }
+
+    //Game over
+    if (gameOver) {
+        if (level == 15 && goal == 0) {
+            drawText("You win!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
+        else {
+            drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
         }
     }
 }

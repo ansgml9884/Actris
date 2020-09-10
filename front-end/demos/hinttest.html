@@ -9,8 +9,8 @@
     <audio autoplay id="my_audio">
         <source src="music/bgm_play_Tenvi.mp3">
     </audio>
-    <audio id='btnaudio1' src='music/pause (mp3cut.net).mp3'></audio>
-    <audio id='btnaudio2' src='music/exit (mp3cut.net).mp3'></audio>
+    <audio id='btnaudio1' src='music/btn_pause.mp3'></audio>
+    <audio id='btnaudio2' src='music/btn_exit.mp3'></audio>
 </head>
 
 <body class="body">
@@ -20,7 +20,8 @@
     </video>
 
     <section class="sec1">
-        <img class="game" id="gameCanvas" width="550px" height="600px" src="images/제목 없음.png" />
+        <!-- <img class="game" id="gameCanvas" width="550px" height="600px" src="images/제목 없음.png" /> -->
+        <canvas class="game" id="gameCanvas" width="550px" height="680px" />
     </section>
 
     <section class="sec2">
@@ -46,6 +47,7 @@
             history.go(1);
         };
     </script>
+    <script src="hintplay.js"></script>
 </body>
 
 </html>

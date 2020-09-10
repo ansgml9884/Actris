@@ -119,11 +119,6 @@ function setupGui(cameras, net) {
   guiState.architecture = guiState.input.architecture;
 }
 
-function setupFPS() {
-  stats.showPanel(0);  // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.getElementById('main').appendChild(stats.dom);
-}
-
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
@@ -210,7 +205,6 @@ export async function bindPage() {
     throw e;
   }
   setupGui([], net);
-  setupFPS();
   detectPoseInRealTime(video, net);
 }
 

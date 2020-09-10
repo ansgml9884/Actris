@@ -1,5 +1,4 @@
-import Swal from 'sweetalert2';
-
+const clonedeep = require("lodash.clonedeep");
 
 //canvas
 let canvas = document.getElementById("gameCanvas");
@@ -113,7 +112,7 @@ const AI_CUMULATION = -5;
 const AI_BLANK = -10;
 const AI_ROOF = -1;
 
-let BasisForJudge = function() {
+const BasisForJudge = function() {
     this.method = 0;
 
     this.clears = 0;
@@ -728,6 +727,7 @@ function removeCompleteLine() {
 
     if (goal <= 0) {
         if (level == 15) {
+            goal = 0;
             return false;
         }
         else {
@@ -927,14 +927,15 @@ function moveToEnd() {
 }
 
 function manipulate() {
-    if (brain.method == -1) {
-        brain.problem = true;
-        return true;
-    }
-    if ((brain.method & HOLD) == HOLD) {
+    if ((brain.method == -1) || ((brain.method & HOLD) == HOLD)) {
         if (!holdThisBlock()) {
             return false;
         }
+        
+        if (brain.method == -1) {
+            brain.problem = true;
+            return true;
+        }        
     }
 
     //destination direction
@@ -1045,7 +1046,7 @@ function feelSurround(patIndex) {
                 let samePoint = false;
 
                 for (let k = 0; k < checkedPoints.length; k++) {
-                    if (brain.x == checkedPoints[k].x && brain.y == checkedPoints[k].y) {
+                    if (tempX == checkedPoints[k].x && tempY == checkedPoints[k].y) {
                         samePoint = true;
                         break;
                     }
@@ -1079,8 +1080,8 @@ function feelSurround(patIndex) {
     }
     
     brain.basisForJudges[brain.judge].blockAdhesion *= AI_BLOCK_ADHESION;
-    brain.basisForJudges[brain.judge].blockAdhesion *= AI_WALL_ADHESION;
-    brain.basisForJudges[brain.judge].blockAdhesion *= AI_BOTTOM_ADHESION;
+    brain.basisForJudges[brain.judge].wallAdhesion *= AI_WALL_ADHESION;
+    brain.basisForJudges[brain.judge].bottomAdhesion *= AI_BOTTOM_ADHESION;
 }
 
 function countRoof(yCut, x, y) {
@@ -1155,7 +1156,7 @@ function feel(patIndex) {
     scanVerticalExtent(yCut);
     feelLandScape(yCut);
 
-    brain.makeJudgeScore();
+    brain.basisForJudges[brain.judge].makeJudgeScore();
     brain.judge++;
 }
 
@@ -1183,7 +1184,7 @@ function think() {
         equal = true;
     }
 
-    let topBasisForJudges = [];
+    topBasisForJudges = [];
     let patIndex;
 
     for (let i = 0; i < 2; i++) {
@@ -1215,7 +1216,8 @@ function think() {
             }
         }
 
-        topBasisForJudges[i] = getTopBasisForJudge();
+        topBasisForJudges[i] = clonedeep(getTopBasisForJudge());
+
         if (equal || holdFlag == 1) {
             break;
         }
@@ -1225,16 +1227,16 @@ function think() {
     if (equal || holdFlag == 1) {
         brain.method |= topBasisForJudges[0].method;
     }
+    else if (topBasisForJudges[0].judgeScore < topBasisForJudges[1].judgeScore) {
+        brain.method |= HOLD;
+        brain.method |= topBasisForJudges[1].method;
+    }
     else {
-        if (topBasisForJudges[0].judgeScore < topBasisForJudges[1].judgeScore) {
-            brain.method |= HOLD;
-            brain.method |= topBasisForJudges[1].method;
-        }
+        brain.method |= topBasisForJudges[0].method;
     }
 
     brain.problem = false;
 }
-
 
 function playGame() {
     if (pause) {
@@ -1244,6 +1246,8 @@ function playGame() {
         clearInterval(gameInterval);
         return;
     }
+
+    think();
     
     if (!manipulate()) {
         gameOver = true;
@@ -1405,7 +1409,12 @@ function drawInfo() {
 
     //Game over
     if (gameOver) {
-        drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        if (level == 15 && goal == 0) {
+            drawText("You win!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
+        else {
+            drawText("Game over!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
+        }
     }
 }
 
