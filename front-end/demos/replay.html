@@ -39,7 +39,7 @@
             <img id="rarrow" src="images/right_arrow.png" width="40px" onmouseup="faster()">
         </form>
         <br><br>
-        <p><button class="control" id="pauseBtn" onmouseover="pause()">PAUSE</button></p>
+        <p><button class="control" id="pauseBtn">PAUSE</button></p>
         <p><button class="control" onclick="location.href='ranking.html'" onmouseover="exit()">EXIT</button></p>
     </section>
     <script>
@@ -52,10 +52,6 @@
             let audio = document.getElementById('slower');
             audio.play();
             audio.volume = 0.5
-        }
-        function pause() {
-            let audio = document.getElementById('btnaudio1');
-            audio.play();
         }
         function exit() {
             let audio = document.getElementById('btnaudio2');

@@ -14,6 +14,7 @@ html {
 }
 
 #backbtn {
+    cursor: url(images/cur117.cur), pointer;
     position: fixed;
     margin-left: 40px;
     margin-top: 30px;
@@ -104,11 +105,19 @@ td {
     color: rgba(47, 79, 79, 0.4);
     text-shadow: 1px 1px 1px rgb(80, 77, 77);
 }
+
+#replayimg {
+  cursor: url(images/cur117.cur), pointer;
+  filter: drop-shadow(4px 4px 4px rgb(13, 54, 141));  
+
+}
+
 #btnLR { 
     margin-top:2%;
 }
 
 #btnleft {
+    cursor: url(images/cur117.cur), pointer;
     float: left;
     margin-left: 15%;
     height: 80px;
@@ -122,6 +131,7 @@ td {
 }
 
 #btnright {
+    cursor: url(images/cur117.cur), pointer;
     float: right;
     margin-right: 15%;
     height: 80px;

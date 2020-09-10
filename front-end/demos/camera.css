@@ -132,6 +132,7 @@ html {
 }  
 
 button {
+  cursor: url(images/cur117.cur), pointer;
   font-family: "Tetris";
   font-size: 50px;
   width: 50%;

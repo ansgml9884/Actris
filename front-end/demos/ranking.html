@@ -46,7 +46,7 @@
           <td>{{pageNo*5+index+1}}</td>
           <td id="name">{{ranking.name}}</td>
           <td id="note">{{ranking.note}}</td>
-          <td><img id="replayimg" src="images/replay.png" width="40px" height="40px"
+          <td><img id="replayimg" src="images/play.png" width="40px" height="40px"
               v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
           <td>{{ranking.score}}</td>
           <td id="date">{{convertDate(ranking.played_date)}}</td>

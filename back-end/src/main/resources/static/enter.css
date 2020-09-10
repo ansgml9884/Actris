@@ -131,6 +131,8 @@ th {
 
 
 button {
+	  cursor: url(images/cur117.cur), pointer;
+	
     font-family: "proxima-nova", sans-serif;
     font-size: 30px;
     width: 20%;

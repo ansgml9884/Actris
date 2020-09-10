@@ -703,6 +703,7 @@ function completeAction(action) {
     }
 }
 
+
 //키감 조절기
 let KeyInfo = function(key, hesitate, delay, press) {
     this.key = key;
@@ -842,8 +843,10 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
-document.getElementById("pauseBtn").onclick = function() {
+document.getElementById("pauseBtn").onclick = function () {
     pause = !pause;
+    let audio = document.getElementById('btnaudio1')
+    audio.play()
 }
 
 function showTimer(){
@@ -1389,6 +1392,7 @@ function drawInfo() {
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
+    document.getElementById("pauseBtn").innerHTML = pause && !startLock ? "CONTINUE" : "PAUSE";
     if (pause){
         if(!startLock) {
             drawText("Pause", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
