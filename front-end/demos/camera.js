@@ -15,28 +15,28 @@
  * =============================================================================
  */
 
-  // Input resolution:  Internally, this parameter affects the height and width
-  // of the layers in the neural network. The higher the value of the input
-  // resolution the better the accuracy but slower the speed.
+// Input resolution:  Internally, this parameter affects the height and width
+// of the layers in the neural network. The higher the value of the input
+// resolution the better the accuracy but slower the speed.
 
-  // Output stride:  Internally, this parameter affects the height and width of
-  // the layers in the neural network. The lower the value of the output stride
-  // the higher the accuracy but slower the speed, the higher the value the
-  // faster the speed but lower the accuracy.
+// Output stride:  Internally, this parameter affects the height and width of
+// the layers in the neural network. The lower the value of the output stride
+// the higher the accuracy but slower the speed, the higher the value the
+// faster the speed but lower the accuracy.
 
-  // Multiplier: this parameter affects the number of feature map channels in
-  // the MobileNet. The higher the value, the higher the accuracy but slower the
-  // speed, the lower the value the faster the speed but lower the accuracy.
+// Multiplier: this parameter affects the number of feature map channels in
+// the MobileNet. The higher the value, the higher the accuracy but slower the
+// speed, the lower the value the faster the speed but lower the accuracy.
 
-  // QuantBytes: this parameter affects weight quantization in the ResNet50
-  // model. The available options are 1 byte, 2 bytes, and 4 bytes. The higher
-  // the value, the larger the model size and thus the longer the loading time,
-  // the lower the value, the shorter the loading time but lower the accuracy.
+// QuantBytes: this parameter affects weight quantization in the ResNet50
+// model. The available options are 1 byte, 2 bytes, and 4 bytes. The higher
+// the value, the larger the model size and thus the longer the loading time,
+// the lower the value, the shorter the loading time but lower the accuracy.
   
-  // Pose confidence: the overall confidence in the estimation of a person's
-  // pose (i.e. a person detected in a frame)
-  // Min part confidence: the confidence that a particular estimated keypoint
-  // position is accurate (i.e. the elbow's position)
+// Pose confidence: the overall confidence in the estimation of a person's
+// pose (i.e. a person detected in a frame)
+// Min part confidence: the confidence that a particular estimated keypoint
+// position is accurate (i.e. the elbow's position)
 
 import * as posenet from '@tensorflow-models/posenet';
 import Stats from 'stats.js';
@@ -119,18 +119,10 @@ function setupGui(cameras, net) {
   guiState.architecture = guiState.input.architecture;
 }
 
-/**
- * Feeds an image to posenet to estimate poses - this is where the magic
- * happens. This function loops with a requestAnimationFrame method.
- */
-function detectPoseInRealTime(video, net) {
+function detectPoseInRealTime(video) {
   const canvas = document.getElementById('output');
   const ctx = canvas.getContext('2d');
 
-  // since images are being fed from a webcam, we want to feed in the
-  // original image and then just flip the keypoints' x coordinates. If instead
-  // we flip the image, then correcting left-right keypoint pairs requires a
-  // permutation on all the keypoints.
   const flipPoseHorizontal = true;
 
   canvas.width = videoWidth;
