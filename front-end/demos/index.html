@@ -46,18 +46,6 @@
   function toCamera() {
     location.href="camera.html"
   }
-  let fs = document.getElementById("fsGuide")
-  document.addEventListener("keydown", (e) => {
-    if (e.keyCode == 122) {
-      console.log(fs.style.display)
-      if(fs.style.display == 'block'){
-        fs.style.display = 'none';
-      }else{
-        fs.style.display = 'block';
-      }
-    }
-  })
-
   $(".btn").on("click", function() {
     $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
     $(".contents").fadeOut(1500);
@@ -65,9 +53,18 @@
   });
 </script>
 <script>
-  $(document).keyup(function(k){
-    if(k.keyCode == 122) 
+  $(document).ready(function(){
+    if(window.innerWidth == 1920 && window.innerHeight == 1080)
       $("#fsGuide").hide();
-    })
+  })
+</script>
+<script>
+  $( window ).resize(function() {
+    if(window.innerWidth == 1920 && window.innerHeight ==1080){
+      $("#fsGuide").hide();
+    }else{
+      $("#fsGuide").show();
+    }
+  });
 </script>
 </html>
