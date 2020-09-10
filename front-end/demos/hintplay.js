@@ -252,7 +252,6 @@ const Brain = function() {
     this.y = mine.y;
     this.dir = mine.dir;
 
-    //내부 재정의 함수들-------------------------------------------
     this.canMove = function(dx, dy, dir, patIndex) {
         for (let i = 0; i < 4; i++) {
             let x = dx + SHAPE[patIndex][dir][i].x;
@@ -359,7 +358,6 @@ const Brain = function() {
             }
         }
     }
-    //------------------------------------------------------------
 
     this.scanHorizontalExtent = function(patIndex) {
         let xLCut = this.x;
