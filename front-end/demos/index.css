@@ -26,6 +26,15 @@ body {
   margin: 0px; 
 } 
 
+#fsGuide {
+  position: fixed;
+  margin-top: 2%;
+  margin-left: 2%;
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px 2px rgb(40, 40, 40);
+}
+
 .contents {
   position: fixed; 
   width: 100%;
