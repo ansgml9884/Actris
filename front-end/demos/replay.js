@@ -1,3 +1,4 @@
+
 //canvas
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
@@ -18,55 +19,55 @@ const BLOCK_SIZE = 25;
 //SHAPE
 const NUM_OF_PAT = 7;   //PAT = PATTERN
 const SHAPE = [
-	//ㅣ
-	[
-		[{x:-1, y:0}, {x:0, y:0}, {x:1, y:0}, {x:2, y:0}],
-		[{x:1, y:-1}, {x:1, y:0}, {x:1, y:1}, {x:1, y:2}],
-		[{x:-1, y:1}, {x:0, y:1}, {x:1, y:1}, {x:2, y:1}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:0, y:1}, {x:0, y:2}]
-	],
-	//ㅁ
-	[
-		[{x:0, y:-1}, {x:1, y:-1}, {x:0, y:0}, {x:1, y:0}],
-		[{x:0, y:-1}, {x:1, y:-1}, {x:0, y:0}, {x:1, y:0}],
-		[{x:0, y:-1}, {x:1, y:-1}, {x:0, y:0}, {x:1, y:0}],
-		[{x:0, y:-1}, {x:1, y:-1}, {x:0, y:0}, {x:1, y:0}]
-	],
-	//ㅗ
-	[
-		[{x:-1, y:0}, {x:0, y:0}, {x:1, y:0}, {x:0, y:-1}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:0, y:1}, {x:1, y:0}],
-		[{x:-1, y:0}, {x:0, y:0}, {x:1, y:0}, {x:0, y:1}],
-		[{x:-1, y:0}, {x:0, y:-1}, {x:0, y:0}, {x:0, y:1}]
-	],
-	//ㄹ
-	[
-		[{x:-1, y:-1}, {x:0, y:-1}, {x:0, y:0}, {x:1, y:0}],
-		[{x:1, y:-1}, {x:1, y:0}, {x:0, y:0}, {x:0, y:1}],
-		[{x:-1, y:0}, {x:0, y:0}, {x:0, y:1}, {x:1, y:1}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:-1, y:0}, {x:-1, y:1}]
-	],
-	//ㄹ반대
-	[
-		[{x:1, y:-1}, {x:0, y:-1}, {x:0, y:0}, {x:-1, y:0}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:1, y:0}, {x:1, y:1}],
-		[{x:1, y:0}, {x:0, y:0}, {x:0, y:1}, {x:-1, y:1}],
-		[{x:-1, y:-1}, {x:-1, y:0}, {x:0, y:0}, {x:0, y:1}]
-	],
-	//ㄴ
-	[
-		[{x:-1, y:-1}, {x:-1, y:0}, {x:0, y:0}, {x:1, y:0}],
-		[{x:1, y:-1}, {x:0, y:-1}, {x:0, y:0}, {x:0, y:1}],
-		[{x:-1, y:0}, {x:0, y:0}, {x:1, y:0}, {x:1, y:1}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:0, y:1}, {x:-1, y:1}],
-	],
-	//ㄴ반대
-	[
-		[{x:1, y:-1}, {x:1, y:0}, {x:0, y:0}, {x:-1, y:0}],
-		[{x:0, y:-1}, {x:0, y:0}, {x:0, y:1}, {x:1, y:1}],
-		[{x:1, y:0}, {x:0, y:0}, {x:-1, y:0}, {x:-1, y:1}],
-		[{x:-1, y:-1}, {x:0, y:-1}, {x:0, y:0}, {x:0, y:1}]
-	]
+    //ㅣ
+    [
+        [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }],
+        [{ x: 1, y: -1 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }],
+        [{ x: -1, y: 1 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 1 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }]
+    ],
+    //ㅁ
+    [
+        [{ x: 0, y: -1 }, { x: 1, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }],
+        [{ x: 0, y: -1 }, { x: 1, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }],
+        [{ x: 0, y: -1 }, { x: 1, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }],
+        [{ x: 0, y: -1 }, { x: 1, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }]
+    ],
+    //ㅗ
+    [
+        [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 0 }],
+        [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }],
+        [{ x: -1, y: 0 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }]
+    ],
+    //ㄹ
+    [
+        [{ x: -1, y: -1 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }],
+        [{ x: 1, y: -1 }, { x: 1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }],
+        [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: 1 }]
+    ],
+    //ㄹ반대
+    [
+        [{ x: 1, y: -1 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: -1, y: 0 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }],
+        [{ x: 1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 1 }],
+        [{ x: -1, y: -1 }, { x: -1, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 1 }]
+    ],
+    //ㄴ
+    [
+        [{ x: -1, y: -1 }, { x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }],
+        [{ x: 1, y: -1 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }],
+        [{ x: -1, y: 0 }, { x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 1 }],
+    ],
+    //ㄴ반대
+    [
+        [{ x: 1, y: -1 }, { x: 1, y: 0 }, { x: 0, y: 0 }, { x: -1, y: 0 }],
+        [{ x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }],
+        [{ x: 1, y: 0 }, { x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: 1 }],
+        [{ x: -1, y: -1 }, { x: 0, y: -1 }, { x: 0, y: 0 }, { x: 0, y: 1 }]
+    ]
 ];
 
 //data
@@ -151,12 +152,12 @@ let holdPatIndex = -1;
 
 //replay 관련
 let gameTime = 0;
-let PlayRecord = function(cutTime, pat, keys) {
+let PlayRecord = function (cutTime, pat, keys) {
     this.cutTime = cutTime;
     this.pat = pat;
     this.keys = keys;
 
-    this.empty = function() {
+    this.empty = function () {
         if (this.cutTime == 0 && this.pat == 0 && this.keys == 0) {
             return true;
         }
@@ -181,64 +182,64 @@ let startLock = true; //5초 뒤 false;
 let startTimer = 5;
 
 function executeAction(action) {
-    switch(action) {
-    case "moveRight":
-        rightPressed = true;
-        break;
-    case "moveLeft":
-        leftPressed = true;
-        break;
-    case "rotateRight":
-        upPressed = true;
-        break;
-    case "rotateLeft":
-        downPressed = true;
-        break;
-    case "drop":
-        spacePressed = true;
-        break;
-    case "fastDown":
-        fPressed = true;
-        break;
-    case "hold":
-        dPressed = true;
-        break;
-    case "pause":
-        pause = true;
-        break;
+    switch (action) {
+        case "moveRight":
+            rightPressed = true;
+            break;
+        case "moveLeft":
+            leftPressed = true;
+            break;
+        case "rotateRight":
+            upPressed = true;
+            break;
+        case "rotateLeft":
+            downPressed = true;
+            break;
+        case "drop":
+            spacePressed = true;
+            break;
+        case "fastDown":
+            fPressed = true;
+            break;
+        case "hold":
+            dPressed = true;
+            break;
+        case "pause":
+            pause = true;
+            break;
     }
 }
 function completeAction(action) {
-    switch(action) {
-    case "moveRight":
-        rightPressed = false;
-        break;
-    case "moveLeft":
-        leftPressed = false;
-        break;
-    case "rotateRight":
-        upPressed = false;
-        break;
-    case "rotateLeft":
-        downPressed = false;
-        break;
-    case "drop":
-        spacePressed = false;
-        break;
-    case "fastDown":
-        fPressed = false;
-        break;
-    case "hold":
-        dPressed = false;
-        break;
-    case "pause":
-        pause = false;
-        break;
+    switch (action) {
+        case "moveRight":
+            rightPressed = false;
+            break;
+        case "moveLeft":
+            leftPressed = false;
+            break;
+        case "rotateRight":
+            upPressed = false;
+            break;
+        case "rotateLeft":
+            downPressed = false;
+            break;
+        case "drop":
+            spacePressed = false;
+            break;
+        case "fastDown":
+            fPressed = false;
+            break;
+        case "hold":
+            dPressed = false;
+            break;
+        case "pause":
+            pause = false;
+            break;
     }
 }
 
 //키감 조절기
-let KeyInfo = function(key, hesitate, delay, press) {
+let KeyInfo = function (key, hesitate, delay, press) {
     this.key = key;
     this.hesitate = hesitate;
     this.delay = delay;
@@ -247,41 +248,41 @@ let KeyInfo = function(key, hesitate, delay, press) {
 let keySet = [];
 function checkKeyPressed(key) {
     switch (key) {
-    case MOVE_RIGHT:
-        if (rightPressed) {
-            return true;
-        }
-        break;
-    case MOVE_LEFT:
-        if (leftPressed) {
-            return true;
-        }
-        break;
-    case ROTATE_RIGHT:
-        if (upPressed) {
-            return true;
-        }
-        break;
-    case ROTATE_LEFT:
-        if (downPressed) {
-            return true;
-        }
-        break;
-    case DROP_IMMEDIATELY:
-        if (spacePressed) {
-            return true;
-        }
-        break;
-    case DROP_FAST:
-        if (fPressed) {
-            return true;
-        }
-        break;
-    case HOLD:
-        if (dPressed) {
-            return true;
-        }
-        break;
+        case MOVE_RIGHT:
+            if (rightPressed) {
+                return true;
+            }
+            break;
+        case MOVE_LEFT:
+            if (leftPressed) {
+                return true;
+            }
+            break;
+        case ROTATE_RIGHT:
+            if (upPressed) {
+                return true;
+            }
+            break;
+        case ROTATE_LEFT:
+            if (downPressed) {
+                return true;
+            }
+            break;
+        case DROP_IMMEDIATELY:
+            if (spacePressed) {
+                return true;
+            }
+            break;
+        case DROP_FAST:
+            if (fPressed) {
+                return true;
+            }
+            break;
+        case HOLD:
+            if (dPressed) {
+                return true;
+            }
+            break;
     }
 
     return false;
@@ -376,26 +377,29 @@ document.addEventListener("keyup", (e) => {
     }
 });
 
-document.getElementById("pauseBtn").onclick = function() {
+document.getElementById("pauseBtn").onclick = function () {
     pause = !pause;
+    let audio = document.getElementById('btnaudio1')
+    audio.play();
+
 }
 
 let speedText = document.getElementById("speed");
-document.getElementById("larrow").onclick = function() {
+document.getElementById("larrow").onclick = function () {
     if (1 < speedText.value) {
         speedText.value /= 2;
     }
 }
-document.getElementById("rarrow").onclick = function() {
+document.getElementById("rarrow").onclick = function () {
     if (speedText.value < 8) {
         speedText.value *= 2;
     }
 }
 
 //게임 시작 관련
-function showTimer(){
+function showTimer() {
     startTimer--;
-    if(startTimer < 0){
+    if (startTimer < 0) {
         startLock = false;
         clearInterval(startInterval);
         completeAction("pause");
@@ -406,7 +410,7 @@ let startInterval = null;
 let gameOver = false;
 let gameInterval = null;
 
-axios.get('http://127.0.0.1:80/replay/'+ replay_id)
+axios.get('http://127.0.0.1:80/replay/' + replay_id)
     .then(response => {
         let records = response.data.record;
         let recordStrings = records.split(' ');
@@ -548,18 +552,18 @@ function removeCompleteLine() {
     let removeLine = checkSameBlock();
 
     switch (removeLine) {
-    case 1:
-        score += 100 * level;
-        break;
-    case 2:
-        score += 300 * level;
-        break;
-    case 3:
-        score += 500 * level;
-        break;
-    case 4:
-        score += 800 * level;
-        break;
+        case 1:
+            score += 100 * level;
+            break;
+        case 2:
+            score += 300 * level;
+            break;
+        case 3:
+            score += 500 * level;
+            break;
+        case 4:
+            score += 800 * level;
+            break;
     }
 
     goal -= removeLine;
@@ -669,18 +673,18 @@ function canRotate(dir) {
     }
     else {
         switch (mine.dir) {
-        case 0:
-            y--;
-            break;
-        case 1:
-            x++;
-            break;
-        case 2:
-            y++;
-            break;
-        case 3:
-            x--;
-            break;
+            case 0:
+                y--;
+                break;
+            case 1:
+                x++;
+                break;
+            case 2:
+                y++;
+                break;
+            case 3:
+                x--;
+                break;
         }
 
         if (canMove(x, y, dir)) {
@@ -812,7 +816,7 @@ function playGame() {
         clearInterval(gameInterval);
         return;
     }
-    
+
     for (let i = 0; i < speedText.value; i++) {
         if (!manipulate()) {
             gameOver = true;
@@ -820,7 +824,7 @@ function playGame() {
         if (!goToWork()) {
             gameOver = true;
         }
-    
+
         if (playRecords[recordIndex].cutTime == gameTime) {
             recordIndex++;
         }
@@ -833,46 +837,46 @@ function drawRect(xpos, ypos, what) {
     ctx.beginPath();
 
     switch (what) {
-    case BLANK:
-        ctx.fillStyle = "#C8C8C8";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case WALL:
-        ctx.fillStyle = "#000000";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case CEILING:
-        ctx.fillStyle = "#FFFFFF";
-        ctx.strokeStyle = "#FF0000";
-        break;
-    case STICK:
-        ctx.fillStyle = "#00D8FF";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case BOX:
-        ctx.fillStyle = "#FFE400";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case HAT:
-        ctx.fillStyle = "#660058";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case LCLIP:
-        ctx.fillStyle = "#FF0000";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case RCLIP:
-        ctx.fillStyle = "#1DDB16";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case LCHAIR:
-        ctx.fillStyle = "#0000FF";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
-    case RCHAIR:
-        ctx.fillStyle = "#FF8224";
-        ctx.strokeStyle = "#FFFFFF";
-        break;
+        case BLANK:
+            ctx.fillStyle = "#C8C8C8";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case WALL:
+            ctx.fillStyle = "#000000";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case CEILING:
+            ctx.fillStyle = "#FFFFFF";
+            ctx.strokeStyle = "#FF0000";
+            break;
+        case STICK:
+            ctx.fillStyle = "#00D8FF";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case BOX:
+            ctx.fillStyle = "#FFE400";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case HAT:
+            ctx.fillStyle = "#660058";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case LCLIP:
+            ctx.fillStyle = "#FF0000";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case RCLIP:
+            ctx.fillStyle = "#1DDB16";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case LCHAIR:
+            ctx.fillStyle = "#0000FF";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
+        case RCHAIR:
+            ctx.fillStyle = "#FF8224";
+            ctx.strokeStyle = "#FFFFFF";
+            break;
     }
 
     ctx.rect(xpos, ypos, BLOCK_SIZE, BLOCK_SIZE);
@@ -894,7 +898,7 @@ function drawData() {
         for (let x = 0; x < BOARD_WIDTH; x++) {
             let xpos = BOARD_MARGIN_LEFT + (x * BLOCK_SIZE);
             let ypos = BOARD_MARGIN_TOP + (y * BLOCK_SIZE);
-            
+
             drawRect(xpos, ypos, data[y][x]);
         }
     }
@@ -951,7 +955,7 @@ function drawHold() {
 
 function drawInfo() {
     drawNext();
-    drawHold();    
+    drawHold();
 
     //점수
     drawText(score, "55px Arial", "#FF9600", BOARD_MARGIN_LEFT + 300, BOARD_MARGIN_TOP - 10, "right");
@@ -965,14 +969,15 @@ function drawInfo() {
     drawText(level, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT + 360, BOARD_MARGIN_TOP + 550, "center");
 
     //pause
-    if (pause){
-        if(!startLock) {
+    document.getElementById("pauseBtn").innerHTML = pause && !startLock ? "CONTINUE" : "PAUSE";
+    if (pause) {
+        if (!startLock) {
             drawText("Pause", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
             drawText("ESC to continue", "20px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 230, "center");
-        }else{
-            if(0 < startTimer){
+        } else {
+            if (0 < startTimer) {
                 drawText(startTimer, "90px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
-            }else{ 
+            } else {
                 drawText("Game Start!", "40px Arial", "#4B6464", BOARD_MARGIN_LEFT + 150, BOARD_MARGIN_TOP + 200, "center");
             }
         }
