@@ -1,5 +1,6 @@
 package com.actris.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,6 @@ import lombok.Setter;
 @SequenceGenerator(name = "REPLAY_SEQ_GENERATOR", sequenceName = "REPLAY_SEQ", initialValue = 1, allocationSize = 1)
 
 public class Replay {
-	
 	   @Id
 	   @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "REPLAY_SEQ_GENERATOR")
 	   private Long id;

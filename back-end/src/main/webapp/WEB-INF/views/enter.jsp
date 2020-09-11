@@ -82,11 +82,9 @@
         el : "#addRanking",
         data : {
             rankings: null,
-            ranking : null,
             order : ["1ST", "2ND", "3RD"],
             name: "",
             note: "",
-            replay : null
         },
         created : function() {
           axios.get('http://127.0.0.1:80/rankings/0')
@@ -98,28 +96,19 @@
         },
         methods : {
             insert: function(record, score) {
-                axios.post('http://127.0.0.1:80/replay', { 
+            	axios.post('http://127.0.0.1:80/rankings', { 
                     headers: {
-                        'Content-type': 'application/x-www-form-urlencoded'
+                        'Content-type': 'application/json'
                     },
-                    record : record
+                    record : record,
+                    ranking : JSON.stringify({
+               			"name" : this.name,
+               			"score" : score,
+                    	"note" : this.note
+                    })
                 })
                 .then(response => {
-                    this.replay = response.data;
-                    axios.post('http://127.0.0.1:80/rankings', { 
-                        headers: {
-                            'Content-type': 'application/x-www-form-urlencoded'
-                        },
-                          name : this.name,
-                   score : score,
-                        note : this.note,
-                        replay_id : this.replay.id
-                    })
-                    .then(response => {
-                        this.ranking = response.data;
-                        location.href="http://127.0.0.1:1234/ranking.html"
-                    })
-                    .catch(error => console.log(error));
+                	location.href="http://127.0.0.1:1234/ranking.html"
                 })
                 .catch(error => console.log(error));
             }
