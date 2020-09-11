@@ -93,7 +93,6 @@ export function moveBlock(y, x, part){
   }
   
   if(part=='leftWrist'){
-    latestLeftWrist = [y,x];
     if(leftWrist==null){
       leftWrist = [y,x];
     }
@@ -112,6 +111,7 @@ export function moveBlock(y, x, part){
     //hold - 왼손 위로//hint - 양손
     if(y+50>leftWrist[0]){
       completeAction("hold");
+      completeAction("hint");
     }else if(leftWrist[0]-y>100){
       if(latestRightElbow[0]>rightElbow[0]-20){
         executeAction("hold");
@@ -122,7 +122,6 @@ export function moveBlock(y, x, part){
   }
 
   if(part=='rightWrist'){
-    latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
     }
@@ -139,7 +138,9 @@ export function moveBlock(y, x, part){
       executeAction("rotateRight");
     }
     //pause - 오른손 위로//hint - 양손
-    if(rightWrist[0]-y>100){
+    if(y+50>rightWrist[0]){
+      completeAction("hint");
+    }else if(rightWrist[0]-y>100){
       if(latestLeftElbow[0]>leftElbow[0]-20){
         executeAction("pause");
       }else if(latestLeftElbow[0]+50<leftElbow[0]){
