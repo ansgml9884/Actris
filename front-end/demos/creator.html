@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="creator.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <audio autoplay id="myaudio">
+        <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
+    </audio>
+    <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
+</head>
+
+<body>
+    <video id="bgvideo" muted autoplay loop>
+        <source src="videos/team1.mp4">
+    </video>
+
+    <section class="sec1">
+        <img id="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="backsound()">
+        <video id="video1" src="videos/Actris.mp4" width="740px" height="420px" poster="images/main.png"
+            controls></video>
+    </section>
+
+    <section class="sec2">
+        <div id="name">
+            <h2>♪ CREATOR ♬</h2>
+            <h1>KIM YONG SU</h1>
+            <h1>MUNHEE KIM</h1>
+            <h1>HEEYOUNG YANG</h1>
+            <h1>OH NA YOUNG</h1>
+    </section>
+
+
+    </div>
+
+
+
+    <script>
+        function backsound() {
+            let audio = document.getElementById('backsound');
+            audio.play();
+            audio.volume = 0.6
+        }
+    </script>
+
+
+</body>
+
+
+</html>

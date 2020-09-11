@@ -27,6 +27,8 @@ body {
 } 
 
 #fsGuide {
+  height: auto;
+  width: auto;
   position: fixed;
   margin-top: 2%;
   margin-left: 2%;
@@ -35,9 +37,17 @@ body {
   text-shadow: 2px 2px 2px rgb(40, 40, 40);
 }
 
+#creator {
+    float: right;
+    height: 80px;
+    width: 80px;
+    margin-top: 330px;
+    margin-right: 2%;
+  }
 .contents {
   position: fixed; 
   width: 100%;
+  height: 100%;
   margin-top: 12%;
   text-align: center;
   font-size: 120px; 
@@ -76,7 +86,6 @@ body {
 }
 .btn:hover{
   cursor: url(images/cur117.cur), pointer;
-
   border-radius:7px;
   color: #80ffd3!important;
 }

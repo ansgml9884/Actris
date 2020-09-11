@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <link rel="stylesheet" href="index.css">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <audio autoplay id="myaudio">
-      <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
-    </audio>
-    <audio id='btnmouseover' src='music/btn_index_mouseover.mp3'></audio>
-    <audio id='btnclick' src='music/btn_index_click_gamestart.mp3'></audio>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+  <audio autoplay id="myaudio">
+    <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
+  </audio>
+  <audio id='btnmouseover' src='music/btn_index_mouseover.mp3'></audio>
+  <audio id='btnclick' src='music/btn_index_click_gamestart.mp3'></audio>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
 <body>
   <a href="camera.html"></a>
@@ -19,52 +20,56 @@
     <source src="videos/Network.mp4">
   </video>
   <div id="fsGuide">
-  본 게임은 [전체화면모드]에 최적화되어 있습니다<br>
-  원활한 플레이를 위해 [F11]키를 입력하고 진행해주세요<br><br>
-  Actris is optimized for [Fullscreen Mode]<br>
-  Please press the button [F11]
+    본 게임은 [전체화면모드]에 최적화되어 있습니다<br>
+    원활한 플레이를 위해 [F11]키를 입력하고 진행해주세요<br><br>
+    Actris is optimized for [Fullscreen Mode]<br>
+    Please press the button [F11]
   </div>
-
   <h2 class="contents">Actris</h2>
   <div class="contents">
     <a class="btn" onmouseover="play()" onclick="clickSound();setTimeout('toCamera()', 2000);">START GAME</a><br>
     <a class="btn" href="hinttest.html" onmouseover="play()">HINT TEST</a><br>
     <a class="btn" href="ranking.html" onmouseover="play()">RANKING</a><br>
     <a class="btn" href="help.html" onmouseover="play()">HELP</a><br>
-   </div>
+    
+    <div>
+      <img id="creator" src="images/console.png" onclick="location.href='creator.html'">
+    </div>
+  </div>
 </body>
 <script>
-  function play() { 
-    let audio = document.getElementById('btnmouseover'); 
-      audio.play(); 
-      audio.volume = 0.3
+  function play() {
+    let audio = document.getElementById('btnmouseover');
+    audio.play();
+    audio.volume = 0.3
   }
   function clickSound() {
     let audio = document.getElementById('btnclick')
     audio.play();
   }
   function toCamera() {
-    location.href="camera.html"
+    location.href = "camera.html"
   }
-  $(".btn").on("click", function() {
+  $(".btn").on("click", function () {
     $("#bgvideo").fadeOut(2000);  // id가 "divBox"인 요소를 2초에 걸쳐 점점 사라지게 함.
     $(".contents").fadeOut(1500);
-    $("#myaudio").animate({volume: 0},2000);
+    $("#myaudio").animate({ volume: 0 }, 2000);
   });
 </script>
 <script>
-  $(document).ready(function(){
-    if(window.innerWidth == 1920 && window.innerHeight == 1080)
+  $(document).ready(function () {
+    if (window.innerWidth == 1920 && window.innerHeight == 1080)
       $("#fsGuide").hide();
   })
 </script>
 <script>
-  $( window ).resize(function() {
-    if(window.innerWidth == 1920 && window.innerHeight ==1080){
+  $(window).resize(function () {
+    if (window.innerWidth == 1920 && window.innerHeight == 1080) {
       $("#fsGuide").hide();
-    }else{
+    } else {
       $("#fsGuide").show();
     }
   });
 </script>
+
 </html>
