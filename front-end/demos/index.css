@@ -38,11 +38,13 @@ body {
 }
 
 #creator {
+  cursor: url(images/cur117.cur), pointer;
     float: right;
     height: 80px;
     width: 80px;
     margin-top: 330px;
     margin-right: 2%;
+    filter: drop-shadow(1px 1px 1px rgb(218, 211, 211)); 
   }
 .contents {
   position: fixed; 
