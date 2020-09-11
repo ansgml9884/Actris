@@ -4,8 +4,8 @@ import { isShow } from './camera';
 import Swal from 'sweetalert2';
 
 //canvas
-let canvas = document.getElementById("gameCanvas");
-let ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
 //BOARD
 const BOARD_WIDTH = 12;
@@ -159,7 +159,7 @@ let hint = {
     dir: mine.dir,
     patIndex: mine.patIndex,
 
-    maxCount: 500,
+    maxCount: 5,
     count: 0,
 }
 
@@ -972,7 +972,7 @@ function moveToDown(increaseScore) {
     if (canMove(mine.x, mine.y + 1, mine.dir)) {
         mine.y++;
 
-        if (increaseScore) {
+        if (increaseScore && hint.count == 0) {
             score += 1;
         }
 
@@ -1062,16 +1062,24 @@ function removeCompleteLine() {
 
     switch (removeLine) {
     case 1:
-        score += 100 * level;
+        if (hint.count == 0) {
+            score += 100 * level;
+        }
         break;
     case 2:
-        score += 300 * level;
+        if (hint.count == 0) {
+            score += 300 * level;
+        }
         break;
     case 3:
-        score += 500 * level;
+        if (hint.count == 0) {
+            score += 500 * level;
+        }
         break;
     case 4:
-        score += 800 * level;
+        if (hint.count == 0) {
+            score += 800 * level;
+        }
         break;
     }
 
@@ -1274,7 +1282,7 @@ function moveToEnd() {
 
             break;
         }
-        else {
+        else if (hint.count == 0) {
             score += 2;
         }
     }
@@ -1336,9 +1344,7 @@ function playGame() {
         Swal.fire({
             title: 'Game Over!',
             text: "Your score is " + score
-        }).then((result)=>{
-            sendPost("http://localhost:80/enter");
-        });
+        }).then(sendPost("http://localhost:80/enter"));
         return;
     }
     
