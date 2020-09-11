@@ -1303,11 +1303,11 @@ function manipulate() {
         }
     }
 
-    if (controllKey(ROTATE_RIGHT, 20, 10)) {
+    if (controllKey(ROTATE_RIGHT, 30, 10)) {
         playRecord.keys |= ROTATE_RIGHT;
         rotateRight();
     }
-    if (controllKey(ROTATE_LEFT, 20, 10)) {
+    if (controllKey(ROTATE_LEFT, 30, 10)) {
         playRecord.keys |= ROTATE_LEFT;
         rotateLeft();
     }

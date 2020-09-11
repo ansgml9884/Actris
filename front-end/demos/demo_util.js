@@ -45,48 +45,50 @@ function toTuple({y, x}) {
 let leftShoulder = null;
 let leftWrist = null;
 let rightWrist = null;
+let leftElbow = null;
+let rightElbow = null;
 
 //latest value
-let latestLeftWrist = null;
-let latestRightWrist = null;
+let latestLeftElbow = null;
+let latestRightElbow = null;
 
-//excute 최초 실행 이후 complete 이전까지 lock
-let dropLock = false;
-let fastDownLock = false;
-let leftMoveLock = false;
-let rightMoveLock = false;
-let holdLock = false;
-let pauseLock = false;
-let leftRotateLock = false;
-let rightRotateLock = false;
+//downfast시 rotate 방지
 let rotateLock = false;
 
-export function moveBlock(y, x, r, part){
+export function moveBlock(y, x, part){
+
+  if(part=='leftElbow'){
+    latestLeftElbow = [y,x];
+    if(leftElbow==null){
+      leftElbow = [y,x];
+    }
+  }
+
+  if(part=='rightElbow'){
+    latestRightElbow = [y,x];
+    if(rightElbow==null){
+      rightElbow = [y,x];
+    }
+  }
 
   if(part=='leftShoulder'){
     if(leftShoulder==null){
       leftShoulder = [y,x];
     }
     //fastDown - 자리에 앉기
-    if(fastDownLock && y-50<leftShoulder[0]){
-      fastDownLock = false;
+    if(y-50<leftShoulder[0]){
       rotateLock = false;
       completeAction("fastDown");
-    }else if(!fastDownLock){
-      if(y-leftShoulder[0]>100){
-        executeAction("fastDown");
-        fastDownLock = true;
-      }else if(y-leftShoulder[0]>50){
-        rotateLock = true;
-      }
+    }else if(y-leftShoulder[0]>100){
+      executeAction("fastDown");
+    }else if(y-leftShoulder[0]>50){
+      rotateLock = true;
     }
     //drop - 제자리 뛰기
-    if(dropLock && y>leftShoulder[0]-20){
-      dropLock = false;
+    if(y>leftShoulder[0]-20){
       completeAction("drop");
-    }else if(!dropLock && y<leftShoulder[0]-50){
+    }else if(y<leftShoulder[0]-50){
       executeAction("drop");
-      dropLock = true;
     }
   }
   
@@ -96,20 +98,26 @@ export function moveBlock(y, x, r, part){
       leftWrist = [y,x];
     }
     //moveLeft - 왼손 왼쪽으로
-    if(leftMoveLock && x+50>leftWrist[1]){
-      leftMoveLock = false;
+    if(x+50>leftWrist[1]){
       completeAction("moveLeft");
-    }else if(!leftMoveLock && leftWrist[1]-x>100){
+    }else if(leftWrist[1]-x>100){
       executeAction("moveLeft");
-      leftMoveLock = true;
     }
     //rotateLeft - 왼손 아래로
-    if(leftRotateLock && y<leftWrist[0]+50){
-      leftRotateLock = false;
+    if(y<leftWrist[0]+50){
       completeAction("rotateLeft");
-    }else if(!rotateLock && !leftRotateLock && y-leftWrist[0]>100){
+    }else if(!rotateLock && y-leftWrist[0]>100){
       executeAction("rotateLeft");
-      leftRotateLock = true;
+    }
+    //hold - 왼손 위로//hint - 양손
+    if(y+50>leftWrist[0]){
+      completeAction("hold");
+    }else if(leftWrist[0]-y>100){
+      if(latestRightElbow[0]>rightElbow[0]-20){
+        executeAction("hold");
+      }else if(latestRightElbow[0]+50<rightElbow[0]){
+        executeAction("hint");
+      }
     }
   }
 
@@ -119,62 +127,23 @@ export function moveBlock(y, x, r, part){
       rightWrist = [y,x];
     }
     //moveRight - 오른손 오른쪽으로
-    if(rightMoveLock && x<rightWrist[1]+50){
-      rightMoveLock = false;
+    if(x<rightWrist[1]+50){
       completeAction("moveRight");
-    }else if(!rightMoveLock && x-rightWrist[1]>100){
+    }else if(x-rightWrist[1]>100){
       executeAction("moveRight");
-      rightMoveLock = true;
     }
     //rotateRight - 오른손 아래로
-    if(rightRotateLock && y<rightWrist[0]+50){
-      rightRotateLock = false;
+    if(y<rightWrist[0]+50){
       completeAction("rotateRight");
-    }else if(!rotateLock && !rightRotateLock && y-rightWrist[0]>100){
+    }else if(!rotateLock && y-rightWrist[0]>100){
       executeAction("rotateRight");
-      rightRotateLock = true;
     }
-  }
-  //hint - 양손 들기
-  //hold - 왼손 들기 hold
-  if(part=='leftWrist'){
-    latestLeftWrist = [y,x];
-    if(leftWrist==null){
-      leftWrist = [y,x];
-    }
-    if(holdLock && y+50>leftWrist[0]){
-      holdLock = false;
-      pauseLock = leftMoveLock = rightMoveLock = false;      
-      completeAction("hold");
-    }else if(!holdLock){
-      if(leftWrist[0]-y>100){
-        holdLock = true;
-        if(latestRightWrist[0]<y+20){
-          executeAction("hint");
-          pauseLock = leftMoveLock = rightMoveLock = true; 
-        }else{
-          executeAction("hold");
-        }
-      }
-    }
-  }
-  //pause - 오른손 들기 
-  if(part=='rightWrist'){
-    latestRightWrist = [y,x];
-    if(rightWrist==null){
-      rightWrist = [y,x];
-    }else if(pauseLock && y+50>rightWrist[0]){
-      pauseLock = false;
-      holdLock = leftMoveLock = rightMoveLock = false;      
-    }else if(!pauseLock){
-      if(rightWrist[0]-y>100){
-        pauseLock = true;
-        if(latestLeftWrist[0]<y+20){
-          executeAction("hint");
-          holdLock = leftMoveLock = rightMoveLock = true; 
-        }else{
-          executeAction("pause");
-        }
+    //pause - 오른손 위로//hint - 양손
+    if(rightWrist[0]-y>100){
+      if(latestLeftElbow[0]>leftElbow[0]-20){
+        executeAction("pause");
+      }else if(latestLeftElbow[0]+50<leftElbow[0]){
+        executeAction("hint");
       }
     }
   }
@@ -219,6 +188,6 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
 
     const {y, x} = keypoint.position;
     drawPoint(ctx, y * scale, x * scale, 3, color, keypoint.part);
-    moveBlock(y * scale, x * scale, 3, keypoint.part);
+    moveBlock(y * scale, x * scale, keypoint.part);
   }
 }
