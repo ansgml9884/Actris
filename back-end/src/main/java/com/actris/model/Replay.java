@@ -19,10 +19,8 @@ import lombok.Setter;
 @SequenceGenerator(name = "REPLAY_SEQ_GENERATOR", sequenceName = "REPLAY_SEQ", initialValue = 1, allocationSize = 1)
 
 public class Replay {
-	
 	   @Id
 	   @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "REPLAY_SEQ_GENERATOR")
-	   @Column(name="replay_id")
 	   private Long id;
 	   @Lob
 	   private String record;
