@@ -189,7 +189,7 @@ const BasisForJudge = function() {
     this.x = 0;
     this.y = 0;
 
-    //가중치 값들
+    //각 요소별 점수
     this.clears = 0;
 
     this.blockAdhesion = 0;
