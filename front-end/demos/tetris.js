@@ -160,7 +160,7 @@ let hint = {
     patIndex: mine.patIndex,
 
     maxCount: 5,
-    count: 0,
+    count: 0
 }
 
 let holdFlag = 0;
@@ -701,6 +701,7 @@ let dPressed = false;
 let hPressed = false;
 
 let pause = false;
+let pauseUndone = false;
 let startLock = true; //5초 뒤 false;
 let startTimer = 5;
 
@@ -760,7 +761,11 @@ export function completeAction(action) {
         dPressed = false;
         break;
     case "pause":
-        pause = false;
+        if (pause && startLock == false) {
+            startLock = true;
+            startTimer = 5;
+            startInterval = setInterval(showTimer, 1000);
+        }
         break;
 
     case "hint":
@@ -886,7 +891,14 @@ document.addEventListener("keydown", (e) => {
         dPressed = true;
     }
     else if (e.keyCode == 27) {
-        pause = !pause;
+        if (!pause) {
+            pause = true;
+        }
+        else if (pause && startLock == false) {
+            startLock = true;
+            startTimer = 5;
+            startInterval = setInterval(showTimer, 1000);
+        }
     }
     else if (e.keyCode == 72) {
         hPressed = true;
@@ -920,17 +932,24 @@ document.addEventListener("keyup", (e) => {
 });
 
 document.getElementById("pauseBtn").onclick = function() {
-    pause = !pause;
+    if (!pause) {
+        pause = true;
+    }
+    else if (pause && startLock == false) {
+        startLock = true;
+        startTimer = 5;
+        startInterval = setInterval(showTimer, 1000);
+    }
     let audio = document.getElementById('btnclick');
     audio.play();
 }
 
 function showTimer(){
     startTimer--;
-    if(startTimer < 0){
-        startLock = false;
+    if (startTimer < 0){
+        pause = false;
         clearInterval(startInterval);
-        completeAction("pause");
+        startLock = false;
     }
 }
 let startInterval = setInterval(showTimer, 1000);
@@ -938,7 +957,7 @@ let startInterval = setInterval(showTimer, 1000);
 //게임 시작
 let gameOver = false;
 let gameInterval = null;
-export function startGame(){
+export function startGame() {
     executeAction("pause");
     draw();
     gameInterval = setInterval(playGame, 25);
