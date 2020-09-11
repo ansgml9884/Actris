@@ -20,6 +20,7 @@ public class ReplayController {
 
    @PostMapping("/replay")
    Replay newEmployee(@RequestBody Replay newReplay) {
+	   System.out.println(newReplay.getRecord());
       return repository.save(newReplay);
    }
 

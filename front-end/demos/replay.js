@@ -391,7 +391,7 @@ document.getElementById("larrow").onclick = function () {
     }
 }
 document.getElementById("rarrow").onclick = function () {
-    if (speedText.value < 8) {
+    if (speedText.value < 32) {
         speedText.value *= 2;
     }
 }
@@ -818,14 +818,18 @@ function playGame() {
     }
 
     for (let i = 0; i < speedText.value; i++) {
-        if (!manipulate()) {
-            gameOver = true;
-        }
+        if (recordIndex < playRecords.length) {
+            if (!manipulate()) {
+                gameOver = true;
+                break;
+            }
+        }        
         if (!goToWork()) {
             gameOver = true;
+            break;
         }
 
-        if (playRecords[recordIndex].cutTime == gameTime) {
+        if (recordIndex < playRecords.length && playRecords[recordIndex].cutTime == gameTime) {
             recordIndex++;
         }
         gameTime++;

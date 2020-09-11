@@ -159,7 +159,7 @@ let hint = {
     dir: mine.dir,
     patIndex: mine.patIndex,
 
-    max_count: 5,
+    maxCount: 500,
     count: 0,
 }
 
@@ -1320,7 +1320,7 @@ function manipulate() {
     }
 
     if (controllKey(HINT, 1000, 1000)) {
-        hint.count = hint.max_count;
+        hint.count = hint.maxCount;
     }
 
     return true;
