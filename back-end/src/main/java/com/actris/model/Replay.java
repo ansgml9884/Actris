@@ -1,5 +1,6 @@
 package com.actris.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Replay {
 	
 	   @Id
 	   @GeneratedValue(strategy = GenerationType. SEQUENCE, generator = "REPLAY_SEQ_GENERATOR")
+	   @Column(name="replay_id")
 	   private Long id;
 	   @Lob
 	   private String record;

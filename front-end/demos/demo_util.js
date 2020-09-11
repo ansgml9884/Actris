@@ -68,7 +68,7 @@ export function moveBlock(y, x, r, part){
       leftShoulder = [y,x];
     }
     //fastDown - 자리에 앉기
-    if(fastDownLock && y-50<=leftShoulder[0]){
+    if(fastDownLock && y-50<leftShoulder[0]){
       fastDownLock = false;
       rotateLock = false;
       completeAction("fastDown");
@@ -81,7 +81,7 @@ export function moveBlock(y, x, r, part){
       }
     }
     //drop - 제자리 뛰기
-    if(dropLock && y>=leftShoulder[0]-20){
+    if(dropLock && y>leftShoulder[0]-20){
       dropLock = false;
       completeAction("drop");
     }else if(!dropLock && y<leftShoulder[0]-50){
@@ -96,7 +96,7 @@ export function moveBlock(y, x, r, part){
       leftWrist = [y,x];
     }
     //moveLeft - 왼손 왼쪽으로
-    if(leftMoveLock && x+50>=leftWrist[1]){
+    if(leftMoveLock && x+50>leftWrist[1]){
       leftMoveLock = false;
       completeAction("moveLeft");
     }else if(!leftMoveLock && leftWrist[1]-x>100){
@@ -104,7 +104,7 @@ export function moveBlock(y, x, r, part){
       leftMoveLock = true;
     }
     //rotateLeft - 왼손 아래로
-    if(leftRotateLock && y<=leftWrist[0]+50){
+    if(leftRotateLock && y<leftWrist[0]+50){
       leftRotateLock = false;
       completeAction("rotateLeft");
     }else if(!rotateLock && !leftRotateLock && y-leftWrist[0]>100){
@@ -119,7 +119,7 @@ export function moveBlock(y, x, r, part){
       rightWrist = [y,x];
     }
     //moveRight - 오른손 오른쪽으로
-    if(rightMoveLock && x<=rightWrist[1]+50){
+    if(rightMoveLock && x<rightWrist[1]+50){
       rightMoveLock = false;
       completeAction("moveRight");
     }else if(!rightMoveLock && x-rightWrist[1]>100){
@@ -127,7 +127,7 @@ export function moveBlock(y, x, r, part){
       rightMoveLock = true;
     }
     //rotateRight - 오른손 아래로
-    if(rightRotateLock && y<=rightWrist[0]+50){
+    if(rightRotateLock && y<rightWrist[0]+50){
       rightRotateLock = false;
       completeAction("rotateRight");
     }else if(!rotateLock && !rightRotateLock && y-rightWrist[0]>100){
@@ -142,7 +142,7 @@ export function moveBlock(y, x, r, part){
     if(leftWrist==null){
       leftWrist = [y,x];
     }
-    if(holdLock && y+50>=leftWrist[0]){
+    if(holdLock && y+50>leftWrist[0]){
       holdLock = false;
       pauseLock = leftMoveLock = rightMoveLock = false;      
       completeAction("hold");
@@ -163,7 +163,7 @@ export function moveBlock(y, x, r, part){
     latestRightWrist = [y,x];
     if(rightWrist==null){
       rightWrist = [y,x];
-    }else if(pauseLock && y+50>=rightWrist[0]){
+    }else if(pauseLock && y+50>rightWrist[0]){
       pauseLock = false;
       holdLock = leftMoveLock = rightMoveLock = false;      
     }else if(!pauseLock){
