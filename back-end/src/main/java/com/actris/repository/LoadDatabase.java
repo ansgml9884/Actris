@@ -31,9 +31,9 @@ public class LoadDatabase {
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("쪼렙이다말로해").score(11300).note("ㅇㅈ?ㅇㅇㅈ").replay_id(10L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("김용수").score(2020).note("다함께차차차").replay_id(11L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("3대500").score(8274).note("딱대").replay_id(12L).played_date(new Timestamp(System.currentTimeMillis())).build()));
-			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("홍석천").score(7000).note("우리사랑영원히..").replay_id(13L).played_date(new Timestamp(System.currentTimeMillis())).build()));
+			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("개").score(7000).note("멍멍멍멍멍멍멍멍").replay_id(13L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("박준수").score(5854).note("뭉게뭉게열매능력자").replay_id(14L).played_date(new Timestamp(System.currentTimeMillis())).build()));
-			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("나사실좋아해").score(43156).note("석천아..-빌리-").replay_id(15L).played_date(new Timestamp(System.currentTimeMillis())).build()));
+			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("개고수").score(43156).note("나 개잘하지?").replay_id(15L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("트롤맨").score(588).note("닐릴릴리릴").replay_id(16L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("일출민").score(1218).note("없어요.아니,없었어요.").replay_id(17L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			
