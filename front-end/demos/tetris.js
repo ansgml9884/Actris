@@ -667,7 +667,7 @@ const brain = new Brain();
 
 
 //replay 관련 -----------------------------------------
-let myTime = 0;
+let gameTime = 0;
 let PlayRecord = function() {
     this.cutTime = 0;
     this.pat = 0;
@@ -1385,11 +1385,11 @@ function playGame() {
     }
 
     if (!playRecord.empty()) {
-        playRecord.cutTime = myTime;
+        playRecord.cutTime = gameTime;
         playRecords.push(playRecord);
     }
 
-    myTime++;
+    gameTime++;
 }
 function sendPost(url) {
     let myForm = document.createElement('form');
