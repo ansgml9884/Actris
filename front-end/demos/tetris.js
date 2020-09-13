@@ -585,6 +585,20 @@ const Brain = function() {
         }
         return this.basisForJudges[topScore];
     }
+
+    this.decide = function(topBasisForJudges, index) {
+        hint.needToHold = index;    //javascript에선 0: false, 1: true
+        hint.patIndex = topBasisForJudges[index].patIndex;
+        hint.dir = topBasisForJudges[index].dir;
+        hint.x = topBasisForJudges[index].x;
+        hint.y = topBasisForJudges[index].y;
+
+        playRecord.hint = hint.needToHold << 3;
+        playRecord.hint = (playRecord.hint | hint.patIndex) << 2;
+        playRecord.hint = (playRecord.hint | hint.dir) << 4;
+        playRecord.hint = (playRecord.hint | hint.x) << 5;
+        playRecord.hint |= hint.y;
+    }
     
     this.think = function() {
         if (this.problem == false) {
@@ -636,25 +650,13 @@ const Brain = function() {
         }
     
         if (equal || holdFlag == 1) {
-            hint.needToHold = false;
-            hint.patIndex = topBasisForJudges[0].patIndex;
-            hint.dir = topBasisForJudges[0].dir;
-            hint.x = topBasisForJudges[0].x;
-            hint.y = topBasisForJudges[0].y;
+            this.decide(topBasisForJudges, 0);
         }
         else if (topBasisForJudges[0].judgeScore < topBasisForJudges[1].judgeScore) {
-            hint.needToHold = true;
-            hint.patIndex = topBasisForJudges[1].patIndex;
-            hint.dir = topBasisForJudges[1].dir;
-            hint.x = topBasisForJudges[1].x;
-            hint.y = topBasisForJudges[1].y;
+            this.decide(topBasisForJudges, 1);
         }
         else {
-            hint.needToHold = false;
-            hint.patIndex = topBasisForJudges[0].patIndex;
-            hint.dir = topBasisForJudges[0].dir;
-            hint.x = topBasisForJudges[0].x;
-            hint.y = topBasisForJudges[0].y;
+            this.decide(topBasisForJudges, 0);
         }
     
         this.problem = false;
@@ -669,10 +671,11 @@ let myTime = 0;
 let PlayRecord = function() {
     this.cutTime = 0;
     this.pat = 0;
+    this.hint = 0;
     this.keys = 0;
 
     this.empty = function() {
-        if (this.cutTime == 0 && this.pat == 0 && this.keys == 0) {
+        if (this.cutTime == 0 && this.pat == 0 && this.hint == 0 && this.keys == 0) {
             return true;
         }
         return false;
@@ -701,7 +704,6 @@ let dPressed = false;
 let hPressed = false;
 
 let pause = false;
-let pauseUndone = false;
 let startLock = true; //5초 뒤 false;
 let startTimer = 5;
 
@@ -1347,6 +1349,7 @@ function manipulate() {
     }
 
     if (controllKey(HINT, 1000, 1000)) {
+        playRecord.keys |= HINT;
         hint.count = hint.maxCount;
     }
 
@@ -1407,6 +1410,7 @@ function sendPost(url) {
     for (let i = 0; i < playRecords.length; i++) {
         recordString += playRecords[i].cutTime + " ";
         recordString += playRecords[i].pat + " ";
+        recordString += playRecords[i].hint + " ";
         recordString += playRecords[i].keys + " ";
     }
     recordString = recordString.slice(0, -1);

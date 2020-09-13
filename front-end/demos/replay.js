@@ -95,6 +95,7 @@ const ROTATE_LEFT = 8;
 const DROP_IMMEDIATELY = 16;
 const DROP_FAST = 32;
 const HOLD = 64;
+const HINT = 128;
 
 //실제 게임 판
 let data = [];
@@ -146,19 +147,31 @@ let mine = {
     survival: MAX_SURVIVAL
 }
 
+let hint = {
+    needToHold: false,
+    x: mine.x,
+    y: mine.y,
+    dir: mine.dir,
+    patIndex: mine.patIndex,
+
+    maxCount: 5,
+    count: 0
+}
+
 let holdFlag = 0;
 let holdPatIndex = -1;
 
 
 //replay 관련
 let gameTime = 0;
-let PlayRecord = function (cutTime, pat, keys) {
+let PlayRecord = function (cutTime, pat, hint, keys) {
     this.cutTime = cutTime;
     this.pat = pat;
+    this.hint = hint;
     this.keys = keys;
 
     this.empty = function () {
-        if (this.cutTime == 0 && this.pat == 0 && this.keys == 0) {
+        if (this.cutTime == 0 && this.pat == 0 && this.hint == 0 && this.keys == 0) {
             return true;
         }
         return false;
@@ -415,12 +428,13 @@ axios.get('http://127.0.0.1:80/replay/' + replay_id)
         let records = response.data.record;
         let recordStrings = records.split(' ');
 
-        for (let i = 0; i < recordStrings.length; i += 3) {
+        for (let i = 0; i < recordStrings.length; i += 4) {
             playRecords.push(
                 new PlayRecord(
                     Number(recordStrings[i]),
                     Number(recordStrings[i + 1]),
-                    Number(recordStrings[i + 2])
+                    Number(recordStrings[i + 2]),
+                    Number(recordStrings[i + 3])
                 )
             );
         }
@@ -453,17 +467,19 @@ function getNewBlock() {
     holdFlag = 0;
     mine.survival = MAX_SURVIVAL;
 
-    if (canMove(mine.x, mine.y, mine.dir)) {
-        return true;
+    if (0 < hint.count) {
+        hint.needToHold = false;
+        hint.count--;
     }
-    return false;
+
+    return canMove(mine.x, mine.y, mine.dir);
 }
 
 function moveToDown(increaseScore) {
     if (canMove(mine.x, mine.y + 1, mine.dir)) {
         mine.y++;
 
-        if (increaseScore) {
+        if (increaseScore && hint.count == 0) {
             score += 1;
         }
 
@@ -552,18 +568,26 @@ function removeCompleteLine() {
     let removeLine = checkSameBlock();
 
     switch (removeLine) {
-        case 1:
+    case 1:
+        if (hint.count == 0) {
             score += 100 * level;
-            break;
-        case 2:
+        }
+        break;
+    case 2:
+        if (hint.count == 0) {
             score += 300 * level;
-            break;
-        case 3:
+        }
+        break;
+    case 3:
+        if (hint.count == 0) {
             score += 500 * level;
-            break;
-        case 4:
+        }
+        break;
+    case 4:
+        if (hint.count == 0) {
             score += 800 * level;
-            break;
+        }
+        break;
     }
 
     goal -= removeLine;
@@ -748,6 +772,10 @@ function holdThisBlock() {
     mine.survival = MAX_SURVIVAL;
     holdFlag = 1;
 
+    if (0 < hint.count) {
+        hint.needToHold = false;
+    }
+
     return true;
 }
 
@@ -761,7 +789,7 @@ function moveToEnd() {
 
             break;
         }
-        else {
+        else if (hint.count == 0) {
             score += 2;
         }
     }
@@ -770,9 +798,6 @@ function moveToEnd() {
 }
 
 function manipulate() {
-    if (playRecords[recordIndex].cutTime != gameTime) {
-        return true;
-    }
     let record = playRecords[recordIndex];
 
     if ((record.keys & MOVE_RIGHT) == MOVE_RIGHT) {
@@ -804,9 +829,24 @@ function manipulate() {
         }
     }
 
+    if ((record.keys & HINT) == HINT) {
+        hint.count = hint.maxCount;
+    }
+
     return true;
 }
 
+function getHint() {
+    if (playRecords[recordIndex].hint == 0) {
+        return;
+    }
+
+    hint.y = playRecords[recordIndex].hint & 31;
+    hint.x = (playRecords[recordIndex].hint >>= 5) & 15;
+    hint.dir = (playRecords[recordIndex].hint >>= 4) & 3;
+    hint.patIndex = (playRecords[recordIndex].hint >>= 2) & 7;
+    hint.needToHold = (playRecords[recordIndex].hint >>= 3) & 1;
+}
 
 function playGame() {
     if (pause) {
@@ -818,7 +858,9 @@ function playGame() {
     }
 
     for (let i = 0; i < speedText.value; i++) {
-        if (recordIndex < playRecords.length) {
+        if (recordIndex < playRecords.length && playRecords[recordIndex].cutTime == gameTime) {
+            getHint();
+
             if (!manipulate()) {
                 gameOver = true;
                 break;
@@ -881,6 +923,59 @@ function drawRect(xpos, ypos, what) {
             ctx.fillStyle = "#FF8224";
             ctx.strokeStyle = "#FFFFFF";
             break;
+    }
+
+    ctx.rect(xpos, ypos, BLOCK_SIZE, BLOCK_SIZE);
+    ctx.stroke();
+
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawTransparentRect(xpos, ypos, what) {
+    ctx.beginPath();
+
+    switch (what) {
+    case BLANK:
+        ctx.fillStyle = "#C8C8C844";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case WALL:
+        ctx.fillStyle = "#00000044";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case CEILING:
+        ctx.fillStyle = "#FFFFFF44";
+        ctx.strokeStyle = "#FF000044";
+        break;
+    case STICK:
+        ctx.fillStyle = "#00D8FF44";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case BOX:
+        ctx.fillStyle = "#FFE40044";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case HAT:
+        ctx.fillStyle = "#66005844";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case LCLIP:
+        ctx.fillStyle = "#FF000044";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case RCLIP:
+        ctx.fillStyle = "#1DDB1644";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case LCHAIR:
+        ctx.fillStyle = "#0000FF44";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
+    case RCHAIR:
+        ctx.fillStyle = "#FF822444";
+        ctx.strokeStyle = "#FFFFFF44";
+        break;
     }
 
     ctx.rect(xpos, ypos, BLOCK_SIZE, BLOCK_SIZE);
@@ -957,9 +1052,45 @@ function drawHold() {
     }
 }
 
+function drawHint() {
+    drawText("Hint", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 360, "center");
+    if (0 < hint.count) {
+        if (hint.needToHold) {
+            drawText("Hold it", "40px Arial", "#FF9600", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 400, "center");
+        }
+        else {
+            for (let i = 0; i < 4; i++) {
+                let x = -3 + SHAPE[hint.patIndex][hint.dir][i].x;
+                let y = 16 + SHAPE[hint.patIndex][hint.dir][i].y;
+                
+                let xpos = BOARD_MARGIN_LEFT + (x * BLOCK_SIZE);
+                let ypos = BOARD_MARGIN_TOP + (y * BLOCK_SIZE);
+                
+                let what = (hint.patIndex + 1) * 5;
+                drawTransparentRect(xpos, ypos, what);
+            }
+            
+            for (let i = 0; i < 4; i++) {
+                let x = hint.x + SHAPE[hint.patIndex][hint.dir][i].x;
+                let y = hint.y + SHAPE[hint.patIndex][hint.dir][i].y;
+                
+                let xpos = BOARD_MARGIN_LEFT + (x * BLOCK_SIZE);
+                let ypos = BOARD_MARGIN_TOP + (y * BLOCK_SIZE);
+                
+                let what = (hint.patIndex + 1) * 5;
+                drawTransparentRect(xpos, ypos, what);
+            }
+        }
+    }
+
+    drawText("Count", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 510, "center");
+    drawText(hint.count, "40px Arial", "#FF9600", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 550, "center");
+}
+
 function drawInfo() {
     drawNext();
     drawHold();
+    drawHint();
 
     //점수
     drawText(score, "55px Arial", "#FF9600", BOARD_MARGIN_LEFT + 300, BOARD_MARGIN_TOP - 10, "right");
