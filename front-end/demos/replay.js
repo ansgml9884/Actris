@@ -831,6 +831,7 @@ function manipulate() {
 
     if ((record.keys & HINT) == HINT) {
         hint.count = hint.maxCount;
+        hint.x = -1;    // 다음 타이머까지의 0.25동안의 깜박임 방지.(임시적인 해결책)
     }
 
     return true;
@@ -1054,7 +1055,7 @@ function drawHold() {
 
 function drawHint() {
     drawText("Hint", "40px Arial", "#C4B73B", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 360, "center");
-    if (0 < hint.count) {
+    if (0 < hint.count && hint.x != -1) {   //hint.x != -1 깜박임 방지를 위한 임시적인 해결책
         if (hint.needToHold) {
             drawText("Hold it", "40px Arial", "#FF9600", BOARD_MARGIN_LEFT - 60, BOARD_MARGIN_TOP + 400, "center");
         }
