@@ -462,7 +462,12 @@ function getNewBlock() {
     for (let i = 0; i < 2; i++) {
         nextPatIndex[i] = nextPatIndex[i + 1];
     }
-    nextPatIndex[2] = playRecords[recordIndex].pat;
+    if (recordIndex < playRecords.length) {
+        nextPatIndex[2] = playRecords[recordIndex].pat;
+    }
+    else {//리플레이 마지막 에러 일단 시간 없어서 일단 임시방편 해결
+        nextPatIndex[2] = Math.floor(Math.random() * NUM_OF_PAT);
+    }
 
     holdFlag = 0;
     mine.survival = MAX_SURVIVAL;
