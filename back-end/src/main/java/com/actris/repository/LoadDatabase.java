@@ -21,7 +21,7 @@ public class LoadDatabase {
 		return args -> {
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("닭").score(1786).note("꼬끼오~~~~").replay_id(1L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("김동주").score(1132).note("☞플레이데이터 귀요미☜").replay_id(2L).played_date(new Timestamp(System.currentTimeMillis())).build()));
-			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("양희영").score(394).note("꿈이생겼다..액트리스정복★").replay_id(3L).played_date(new Timestamp(System.currentTimeMillis())).build()));
+			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("양희영S2김용수").score(394).note("우리사랑 영원히..").replay_id(3L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("오나영").score(16437).note("텐텐 ㄱㄱ??").replay_id(4L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("김문희").score(2198).note("호박고구마아").replay_id(5L).played_date(new Timestamp(System.currentTimeMillis())).build()));
 			log.info("Preloading " + rankingRepository.save(Ranking.builder().name("침착맨").score(970).note("킹받네").replay_id(6L).played_date(new Timestamp(System.currentTimeMillis())).build()));

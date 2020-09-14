@@ -116,10 +116,13 @@ html {
 #hintplay {
         float: right;
         width: 80px;
+        position: absolute;
+
         height: 80px;
         margin-top: -80px;
         cursor: url(images/cur117.cur), pointer;
         filter: drop-shadow(4px 4px 4px rgb(32, 25, 25)); 
         margin-left: 50px;
-
+        margin-left: 130px;
+        margin-bottom: -5px;
  }
