@@ -1349,9 +1349,11 @@ function manipulate() {
     }
 
     if (controllKey(HINT, 1000, 1000)) {
-        playRecord.keys |= HINT;
-        hint.count = hint.maxCount;
-        hint.x = -1;    // 다음 타이머까지의 0.25동안의 깜박임 방지.(임시적인 해결책)
+        if (hint.count == 0) {
+            playRecord.keys |= HINT;
+            hint.count = hint.maxCount;
+            hint.x = -1;    // 다음 타이머까지의 0.25동안의 깜박임 방지.(임시적인 해결책)
+        }
     }
 
     return true;
