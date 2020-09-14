@@ -1367,7 +1367,9 @@ function playGame() {
         Swal.fire({
             title: 'Game Over!',
             text: "Your score is " + score
-        }).then(sendPost("http://localhost:80/enter"));
+        }).then((result)=>{
+            sendPost("http://localhost:80/enter");
+        });
         return;
     }
     
