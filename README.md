@@ -62,24 +62,31 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 
 <img width="413" alt="1" src="https://user-images.githubusercontent.com/56735744/105849410-b1eaa980-6023-11eb-961d-5f02ccf795b4.png">  <img width="413" alt="2" src="https://user-images.githubusercontent.com/56735744/105849414-b3b46d00-6023-11eb-8285-6d99f6e1eef0.png">
 
-## 2. 서버 통신
+### 2. 서버 통신
 <img width="407" alt="3" src="https://user-images.githubusercontent.com/56735744/105851919-14917480-6027-11eb-86d0-210d9a7908e6.png">  <img width="412" alt="4" src="https://user-images.githubusercontent.com/56735744/105851913-12c7b100-6027-11eb-8f15-e1bcf05cc566.png">  <img width="410" alt="5" src="https://user-images.githubusercontent.com/56735744/105851916-13f8de00-6027-11eb-82ed-1cdf6e6843ca.png">  <img width="412" alt="6" src="https://user-images.githubusercontent.com/56735744/105851917-14917480-6027-11eb-8ed4-5439299f7c1a.png">
 
-## 3. 게임 로직
+### 3. 게임 로직
 <img width="407" alt="10" src="https://user-images.githubusercontent.com/56735744/105852965-80281180-6028-11eb-82f2-b136ee3d9b84.png">   
 <img width="402" alt="12" src="https://user-images.githubusercontent.com/56735744/105852971-81f1d500-6028-11eb-8d8c-c6b620d4d8b1.png">   
 <img width="406" alt="11" src="https://user-images.githubusercontent.com/56735744/105852970-81593e80-6028-11eb-98f4-8a3b779c2f7f.png">   
 
-## PoseNet
+
+<br>
+<br>
+
+## :triangular_flag_on_post: 시연 화면   
+<img width="200" alt="1" src="https://user-images.githubusercontent.com/56735744/105855370-59b7a580-602b-11eb-92ed-9c5149b62b82.png"> <img width="160" alt="2" src="https://user-images.githubusercontent.com/56735744/105855343-545a5b00-602b-11eb-976f-fde3bcad8367.png">   
+<img width="131" alt="3" src="https://user-images.githubusercontent.com/56735744/105855338-53292e00-602b-11eb-8b75-e52a7c7462ae.png"> <img width="165" alt="4" src="https://user-images.githubusercontent.com/56735744/105855349-54f2f180-602b-11eb-8ff8-df79b04ff9aa.png"> <img width="166" alt="5" src="https://user-images.githubusercontent.com/56735744/105855354-56241e80-602b-11eb-80b6-2afe3b45f552.png">   
+
+
+<br>
+<br>
+
+## :walking: PoseNet
 ![12](https://user-images.githubusercontent.com/56735744/105853202-c54c4380-6028-11eb-8d54-6ffcec8177a7.jpg)   
 <img width="360" alt="20" src="https://user-images.githubusercontent.com/56735744/105853155-b796be00-6028-11eb-9a59-6485bdcfc86a.png">
 
-
-
-
-
-
-# Pre-trained TensorFlow.js models
+## Pre-trained TensorFlow.js models
 
 This repository hosts a set of pre-trained models that have been ported to
 TensorFlow.js.
