@@ -4,7 +4,9 @@
 <br>
 
 ### :rocket: 팀명: Team Rocket (로켓단)
-### :family: 팀원: 김문희, 김용수, 양희영, 오나영 
+### 김용수(jzqioipst) - 프로젝트 기획 및 관리, 게임 로직 및 AI, 백엔드 일부 서포트
+### 김문희(ansgml9884) - 휴먼포즈 동작인식 AI, 백엔드 전체, 프론트엔드 일부 서포트
+### 양희영(rickcmc02), 오나영(NanaYoungg) - 프론트엔드 전체, 페이지별 각종 UI 기획 및 구성
 
 <br>
 <br>
@@ -22,34 +24,38 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 <br>
 <br>
 
-### :pencil2: 사용언어, 기술스택
+### :pencil2: 개발 환경
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-m9r4">Platform</th>
-    <th class="tg-0lax">Web</th>
+    <th class="tg-m9r4">Categories</th>
+    <th class="tg-0lax">Contents</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-m9r4">Language</td>
-    <td class="tg-0lax">Java, JavaScript, C++, Html, Css</td>
+    <td class="tg-m9r4">Languages</td>
+    <td class="tg-0lax">Java, JavaScript, Html, Css</td>
   </tr>
   <tr>
-    <td class="tg-m9r4">Library</td>
-    <td class="tg-0lax">Vue.js, jQuery, Tensorflow Lite</td>
+    <td class="tg-m9r4">Libraries</td>
+    <td class="tg-0lax">Posenet, jQuery</td>
+  </tr>
+  <tr>
+    <td class="tg-m9r4">Frameworks</td>
+    <td class="tg-0lax">Spring Boot, Vue.js, Tensorflow</td>
+  </tr>
+  <tr>
+    <td class="tg-m9r4">Database</td>
+    <td class="tg-0lax">Oracle</td>
   </tr>
   <tr>
     <td class="tg-m9r4">Server</td>
     <td class="tg-0lax">Apache Tomcat</td>
   </tr>
   <tr>
-    <td class="tg-m9r4">Framework</td>
-    <td class="tg-0lax">Yarn, Eclipse, Visual Studio Code</td>
-  </tr>
-  <tr>
-    <td class="tg-m9r4">Database</td>
-    <td class="tg-0lax">Oracle</td>
+    <td class="tg-m9r4">Tools</td>
+    <td class="tg-0lax">Eclipse, Visual Studio Code, Yarn</td>
   </tr>
 </tbody>
 </table>
