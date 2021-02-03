@@ -83,8 +83,14 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 
 ## :triangular_flag_on_post: 시연 화면   
 <img width="200" alt="1" src="https://user-images.githubusercontent.com/56735744/105855370-59b7a580-602b-11eb-92ed-9c5149b62b82.png"> <img width="160" alt="2" src="https://user-images.githubusercontent.com/56735744/105855343-545a5b00-602b-11eb-976f-fde3bcad8367.png">   
-<img width="131" alt="3" src="https://user-images.githubusercontent.com/56735744/105855338-53292e00-602b-11eb-8b75-e52a7c7462ae.png"> <img width="165" alt="4" src="https://user-images.githubusercontent.com/56735744/105855349-54f2f180-602b-11eb-8ff8-df79b04ff9aa.png"> <img width="166" alt="5" src="https://user-images.githubusercontent.com/56735744/105855354-56241e80-602b-11eb-80b6-2afe3b45f552.png">   
+<img width="131" alt="3" src="https://user-images.githubusercontent.com/56735744/105855338-53292e00-602b-11eb-8b75-e52a7c7462ae.png"> <img width="165" alt="4" src="https://user-images.githubusercontent.com/56735744/105855349-54f2f180-602b-11eb-8ff8-df79b04ff9aa.png"> <img width="166" alt="5" src="https://user-images.githubusercontent.com/56735744/105855354-56241e80-602b-11eb-80b6-2afe3b45f552.png">    
 
+## :raising_hand: 시연 영상
+## https://www.youtube.com/watch?v=lKdI0JDX8is&feature=youtu.be
+
+
+
+<br>
 
 <br>
 <br>
