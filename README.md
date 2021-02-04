@@ -36,7 +36,7 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 <tbody>
   <tr>
     <td class="tg-m9r4">Languages</td>
-    <td class="tg-0lax">Java, JavaScript, Html, Css</td>
+    <td class="tg-0lax">Java, JavaScript, HTML, CSS</td>
   </tr>
   <tr>
     <td class="tg-m9r4">Libraries</td>
@@ -51,8 +51,8 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
     <td class="tg-0lax">Oracle</td>
   </tr>
   <tr>
-    <td class="tg-m9r4">Server</td>
-    <td class="tg-0lax">Apache Tomcat</td>
+    <td class="tg-m9r4">Servers</td>
+    <td class="tg-0lax">Apache Tomcat, Yarn</td>
   </tr>
   <tr>
     <td class="tg-m9r4">Tools</td>
@@ -73,9 +73,9 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 <img width="407" alt="3" src="https://user-images.githubusercontent.com/56735744/105851919-14917480-6027-11eb-86d0-210d9a7908e6.png">  <img width="412" alt="4" src="https://user-images.githubusercontent.com/56735744/105851913-12c7b100-6027-11eb-8f15-e1bcf05cc566.png">  <img width="410" alt="5" src="https://user-images.githubusercontent.com/56735744/105851916-13f8de00-6027-11eb-82ed-1cdf6e6843ca.png">  <img width="412" alt="6" src="https://user-images.githubusercontent.com/56735744/105851917-14917480-6027-11eb-8ed4-5439299f7c1a.png">
 
 ### 3. 게임 로직
-<img width="407" alt="10" src="https://user-images.githubusercontent.com/56735744/105852965-80281180-6028-11eb-82f2-b136ee3d9b84.png">   
-<img width="402" alt="12" src="https://user-images.githubusercontent.com/56735744/105852971-81f1d500-6028-11eb-8d8c-c6b620d4d8b1.png">   
-<img width="406" alt="11" src="https://user-images.githubusercontent.com/56735744/105852970-81593e80-6028-11eb-98f4-8a3b779c2f7f.png">   
+<img width="410" alt="10" src="https://user-images.githubusercontent.com/26108632/106881681-2eb30d00-6721-11eb-97d7-6c6e8c4ad344.png">  <img width="410" alt="11" src="https://user-images.githubusercontent.com/26108632/106881802-530ee980-6721-11eb-9d9e-bc85d27f95a0.png">
+<img width="410" alt="12" src="https://user-images.githubusercontent.com/26108632/106881925-79348980-6721-11eb-9ad2-47f5df97e7ff.png">  <img width="410" alt="13" src="https://user-images.githubusercontent.com/26108632/106881966-89e4ff80-6721-11eb-8074-ccfd75e31ea1.png">
+<img width="410" alt="14" src="https://user-images.githubusercontent.com/26108632/106881356-c532fe80-6720-11eb-8226-025b084cfe73.png">  <img width="410" alt="15" src="https://user-images.githubusercontent.com/26108632/106881410-d8de6500-6720-11eb-921e-918f2dd974ca.png">
 
 
 <br>
