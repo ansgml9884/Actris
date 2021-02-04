@@ -67,7 +67,7 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
 ## :page_with_curl: 프로그램 설계 및 구조
 ### 1. DB 설계
 
-<img width="413" alt="1" src="https://user-images.githubusercontent.com/56735744/105849410-b1eaa980-6023-11eb-961d-5f02ccf795b4.png">  <img width="413" alt="2" src="https://user-images.githubusercontent.com/56735744/105849414-b3b46d00-6023-11eb-8285-6d99f6e1eef0.png">
+<img width="413" alt="1" src="https://user-images.githubusercontent.com/26108632/106877448-1ab8dc80-671c-11eb-8b41-e08ba3a5e936.png">  <img width="413" alt="2" src="https://user-images.githubusercontent.com/26108632/106877653-594e9700-671c-11eb-8300-56d58446add7.png">
 
 ### 2. 서버 통신
 <img width="407" alt="3" src="https://user-images.githubusercontent.com/56735744/105851919-14917480-6027-11eb-86d0-210d9a7908e6.png">  <img width="412" alt="4" src="https://user-images.githubusercontent.com/56735744/105851913-12c7b100-6027-11eb-8f15-e1bcf05cc566.png">  <img width="410" alt="5" src="https://user-images.githubusercontent.com/56735744/105851916-13f8de00-6027-11eb-82ed-1cdf6e6843ca.png">  <img width="412" alt="6" src="https://user-images.githubusercontent.com/56735744/105851917-14917480-6027-11eb-8ed4-5439299f7c1a.png">
