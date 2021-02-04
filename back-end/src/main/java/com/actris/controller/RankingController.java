@@ -45,7 +45,8 @@ public class RankingController {
    public Ranking newRanking(@RequestBody Map<String, Object> param) throws JsonMappingException, JsonProcessingException {
 	   //replay save
 	   Replay newReplay = replayRepository.save(Replay.builder().record((String)param.get("record")).build());
-	   System.out.println((String)param.get("record"));
+	   //System.out.println((String)param.get("record"));
+	   
 	   //ranking save
 	   ObjectMapper mapper = new ObjectMapper();
 	   Ranking newRanking = mapper.readValue((String)(param.get("ranking")), Ranking.class);

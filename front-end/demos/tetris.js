@@ -1312,31 +1312,31 @@ function moveToEnd() {
 }
 
 function manipulate() {
-    if (controllKey(MOVE_RIGHT, 20, 0)) {
+    if (controllKey(MOVE_RIGHT, 50, 20)) {
         playRecord.keys |= MOVE_RIGHT;
         moveToRight();
     }
-    if (controllKey(MOVE_LEFT, 20, 0)) {
+    if (controllKey(MOVE_LEFT, 50, 20)) {
         playRecord.keys |= MOVE_LEFT;
         moveToLeft();
     }
 
-    if (controllKey(DROP_FAST, 10, 0)) {
+    if (controllKey(DROP_FAST, 0, 0)) {
         playRecord.keys |= DROP_FAST;
         moveToDown(true);
     }
-    if (controllKey(DROP_IMMEDIATELY, 20, 5)) {
+    if (controllKey(DROP_IMMEDIATELY, 80, 5)) {
         playRecord.keys |= DROP_IMMEDIATELY;
         if (moveToEnd() == false) {
             return false;
         }
     }
 
-    if (controllKey(ROTATE_RIGHT, 30, 10)) {
+    if (controllKey(ROTATE_RIGHT, 50, 30)) {
         playRecord.keys |= ROTATE_RIGHT;
         rotateRight();
     }
-    if (controllKey(ROTATE_LEFT, 30, 10)) {
+    if (controllKey(ROTATE_LEFT, 50, 30)) {
         playRecord.keys |= ROTATE_LEFT;
         rotateLeft();
     }
