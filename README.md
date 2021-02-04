@@ -55,8 +55,8 @@ Covid19의 범유행으로 인해 마음대로 돌아다닐수도 없는 세상�
     <td class="tg-0lax">Apache Tomcat, Yarn</td>
   </tr>
   <tr>
-    <td class="tg-m9r4">Tools</td>
-    <td class="tg-0lax">Eclipse, Visual Studio Code, Yarn</td>
+    <td class="tg-m9r4">IDEs and Tools</td>
+    <td class="tg-0lax">Eclipse, Spring Tool Suite 4, Visual Studio Code, Yarn</td>
   </tr>
 </tbody>
 </table>
