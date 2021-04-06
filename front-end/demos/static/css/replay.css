@@ -1,153 +1,126 @@
+@font-face {
+  font-family: "Tetris";
+  src: local(※), url("../font/Tetris.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
 html {
-  cursor: url(static/images/cur116.cur), auto;
+  cursor: url(../images/cur116.cur), auto;
 }
 #bgvideo {
-  margin-left: 0;
   min-width: 100%;
   min-height: 100%;
   height: auto;
   position: fixed;
-  background-size: cover;
   top: 0px;
   left: 0px;
   z-index: -10;
 }
 
-body {
-  text-align: center;
+#layer {
+  background-color: rgba(248, 247, 216);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9;
 }
 
-#congrats {
-  margin-top: 5%;
-}
-
-.enter {
-  margin-top: 4%;
-  padding-top: 1%;
-  background-color: rgba(224, 228, 235, 0.2);
-  height: 250px;
-}
-
-h2 {
-  color: white;
-  font-size: 70px;
-  font-family: "Comic Sans", sans-serif;
-  font-weight: bold;
-  text-shadow: 6px 2px 2px rgb(97, 93, 93);
-  margin-bottom: -5px;
-}
-.scoreinputs {
-  margin-top: 1%;
-  color: rgb(247, 246, 242);
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: auto;
-  margin-right: auto;
-  width: 400px;
-  font-size: 30px;
-}
-
-#donebtn {
-  margin-top: 1%;
-}
-
-.inputconts {
-  text-align: left;
-  color: lightgray;
-  font-size: 30px;
-  margin-left: 28%;
-  border: 1px;
-  background-color: transparent !important;
-}
-
-#comment {
-  text-align: left;
-  color: lightgray;
-  font-size: 30px;
+.game {
   margin-left: 10%;
-  border: 1px;
-  background-color: transparent !important;
-}
-
-#crown {
-  width: 100px;
-  height: 100px;
-  margin-bottom: -50px;
-}
-
-#top3 {
-  margin-top: 2%;
-  color: white;
-  font-size: 40px;
-  font-family: "Comic Sans", sans-serif;
-  font-weight: bold;
-  text-shadow: 6px 2px 2px rgb(97, 93, 93);
-}
-
-#top3table {
-  margin-top: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 40%;
+  width: 90%;
   height: auto;
-  border-radius: 20px;
-  border-spacing: 10px;
-  font-size: 30px;
-  background-color: rgba(224, 228, 235, 0.8);
+  margin-bottom: 5%;
 }
-.tablehead {
-  color: darkgray;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
-  font-family: "Comic Sans", sans-serif;
+
+.sec1 {
+  position: fixed;
+  width: 50%;
+  left: 0;
+}
+.sec2 {
+  position: fixed;
+  width: 50%;
+  right: 0;
+}
+
+#title {
+  color: white;
+  font-family: "Tetris";
+  font-size: 70px;
   font-weight: bold;
-  text-shadow: 2px 2px 2px rgb(97, 93, 93);
-}
-#tableRow {
-  box-shadow: 0px 0px 15px gray;
+  margin-top: 5%;
+  margin-left: 25%;
+  text-shadow: 8px 5px 3px rgb(40, 40, 40);
 }
 
 .rank {
-  color: rgb(223, 23, 23);
+  color: white;
+  font-size: 50px;
+  margin-left: 25%;
   font-family: "Comic Sans", sans-serif;
   font-weight: bold;
-  color: purple;
-  text-transform: lowercase;
-  text-shadow: 2px 2px 2px rgb(97, 93, 93);
-}
-.rankconts {
-  font-family: "Comic Sans", sans-serif;
-  font-weight: bold;
-  text-shadow: 2px 2px 2px rgb(97, 93, 93);
-  color: darkslategray;
+  text-shadow: 2px 2px 2px rgb(40, 40, 40);
 }
 
-th {
+#speed {
+  height: auto;
+  line-height: normal;
+  position: relative;
+  width: 20%;
+  text-align: center;
+  font-size: 60pt;
   font-family: "Comic Sans", sans-serif;
+  font-weight: bold;
+  border: 1px;
+  color: white;
+  background-color: transparent;
+  text-shadow: 8px 5px 3px rgb(40, 40, 40);
+  margin-bottom: 5%;
+}
+
+#larrow {
+  cursor: url(../images/cur117.cur), pointer;
+  width: auto;
+  height: auto;
+  margin-top: 20%;
+  margin-left: 24%;
+  max-width: 60px;
+  max-height: 60px;
+  filter: drop-shadow(3px 3px 3px rgb(25, 65, 197));
+}
+#rarrow {
+  cursor: url(../images/cur117.cur), pointer;
+  width: auto;
+  height: auto;
+  margin-right: 15%;
+  max-width: 60px;
+  max-height: 60px;
+  filter: drop-shadow(3px 3px 3px rgb(141, 138, 158));
 }
 
 button {
-  cursor: url(static/images/cur117.cur), pointer;
-  font-family: "proxima-nova", sans-serif;
-  font-size: 30px;
-  width: 20%;
-  text-transform: uppercase !important;
+  cursor: url(../images/cur117.cur), pointer;
+  font-family: "Tetris";
+  font-size: 50px;
+  width: 40%;
+  margin-left: 22%;
   letter-spacing: 2px;
-  color: white;
+  color: #fff;
   cursor: hand;
   text-align: center;
   text-transform: capitalize;
-  border: 1px solid white;
+  border: 1px solid #fff;
   border-radius: 50px;
   position: relative;
+  margin-bottom: 3%;
   overflow: hidden !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background: transparent !important;
-  z-index: 10;
 }
 
 button:hover {
@@ -174,7 +147,6 @@ button::before {
   transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
   box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
 }
-
 button::after {
   content: "";
   width: 0%;

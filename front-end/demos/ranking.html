@@ -4,29 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="ranking.css">
+  <link rel="stylesheet" href="static/css/ranking.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="http://code.jquery.com/jquery.min.js"></script>
 
   <audio id="myaudio" autoplay>
-    <source src="music/bgm_ranking_TalesWeaverOST.mp3">
+    <source src="static/music/bgm_ranking_TalesWeaverOST.mp3">
   </audio>
-  <audio id='leftsound' src='music/left.mp3'></audio>
-  <audio id='rightsound' src='music/right.mp3'></audio>
-  <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
+  <audio id='leftsound' src='static/music/left.mp3'></audio>
+  <audio id='rightsound' src='static/music/right.mp3'></audio>
+  <audio id='backsound' src='static/music/back (mp3cut.net).mp3'></audio>
 </head>
 
 <body>
   <video id="bgvideo" muted autoplay loop>
-    <source src="videos/ranking.mp4" type="video/mp4">
+    <source src="static/videos/ranking.mp4" type="video/mp4">
   </video>
 
   <div>
-    <img id="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="backsound()">
+    <img id="backbtn" src="static/images/back.png" onclick="location.href='index.html'" onmouseover="backsound()">
 
   </div>
-  <img id="cup" src="images/podium.png" />
+  <img id="cup" src="static/images/podium.png" />
   <h2 class="title">- RANKING -</h2>
   <!-- build용 임시 태그 -->
   <a href="replay.html"></a>
@@ -47,7 +47,7 @@
           <td>{{pageNo*5+index+1}}</td>
           <td id="name">{{ranking.name}}</td>
           <td id="note">{{ranking.note}}</td>
-          <td><img id="replayimg" src="images/play.png" width="40px" height="40px"
+          <td><img id="replayimg" src="static/images/play.png" width="40px" height="40px"
               v-on:click="showReplay(ranking.replay_id, ranking.name, ranking.score)"></td>
           <td>{{ranking.score}}</td>
           <td id="date">{{convertDate(ranking.played_date)}}</td>
@@ -56,8 +56,8 @@
     </table>
     <!--앞뒤로 넘기기 버튼-->
     <div id="btnLR">
-      <img id="btnleft" src="images/left.png" v-on:click="movePage('left')" onmouseup="leftsound()">
-      <img id="btnright" src="images/right.png" v-on:click="movePage('right')" onmouseup="rightsound()">
+      <img id="btnleft" src="static/images/left.png" v-on:click="movePage('left')" onmouseup="leftsound()">
+      <img id="btnright" src="static/images/right.png" v-on:click="movePage('right')" onmouseup="rightsound()">
     </div>
   </div>
   </div>
@@ -90,16 +90,16 @@
   //버튼 img바뀌기
   $(function() { 
     $("#btnleft").hover(function(){ 
-        $(this).attr("src", $(this).attr("src").replace("images/left.png", "images/leftover.png")); 
+        $(this).attr("src", $(this).attr("src").replace("static/images/left.png", "static/images/leftover.png")); 
     }, function(){ 
-        $(this).attr("src", $(this).attr("src").replace("images/leftover.png", "images/left.png")); 
+        $(this).attr("src", $(this).attr("src").replace("static/images/leftover.png", "static/images/left.png")); 
     }); 
 });
   $(function() { 
     $("#btnright").hover(function(){ 
-        $(this).attr("src", $(this).attr("src").replace("images/right.png", "images/rightover.png")); 
+        $(this).attr("src", $(this).attr("src").replace("static/images/right.png", "static/images/rightover.png")); 
     }, function(){ 
-        $(this).attr("src", $(this).attr("src").replace("images/rightover.png", "images/right.png")); 
+        $(this).attr("src", $(this).attr("src").replace("static/images/rightover.png", "static/images/right.png")); 
     }); 
 });
 </script>

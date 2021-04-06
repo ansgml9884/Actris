@@ -2,14 +2,14 @@
 <html lang="ko">
 
 <head>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="static/css/index.css">
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 
   <audio autoplay id="myaudio">
-    <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
+    <source src="static/music/bgm_index_happylife.mp3" type="audio/mp3">
   </audio>
-  <audio id='btnmouseover' src='music/btn_index_mouseover.mp3'></audio>
-  <audio id='btnclick' src='music/btn_index_click_gamestart.mp3'></audio>
+  <audio id='btnmouseover' src='static/music/btn_index_mouseover.mp3'></audio>
+  <audio id='btnclick' src='static/music/btn_index_click_gamestart.mp3'></audio>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -17,7 +17,7 @@
 <body>
   <a href="camera.html"></a>
   <video id="bgvideo" muted autoplay loop>
-    <source src="videos/Network.mp4">
+    <source src="static/videos/Network.mp4">
   </video>
   <div id="fsGuide">
     본 게임은 [전체화면모드]에 최적화되어 있습니다<br>
@@ -33,7 +33,7 @@
     
     <div>
       <a href="creator.html"></a>
-      <img id="creator" src="images/console.png" onclick="location.href='creator.html'">
+      <img id="creator" src="static/images/console.png" onclick="location.href='creator.html'">
     </div>
   </div>
 </body>

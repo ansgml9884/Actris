@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "Tetris";
+  src: local(※), url("../font/Tetris.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+html {
+  cursor: url(../images/cur116.cur), auto;
+  background-color: black;
+}
+
+#bgvideo {
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  position: fixed;
+  z-index: -10;
+}
+
+#layer {
+  background-color: rgba(248, 247, 216);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9;
+}
+
+.game {
+  margin-left: 10%;
+  width: 90%;
+  height: auto;
+  margin-bottom: 5%;
+}
+
+.sec1 {
+  position: fixed;
+  width: 50%;
+  left: 0;
+}
+.sec2 {
+  position: fixed;
+  width: 50%;
+  right: 0;
+}
+
+#title {
+  color: white;
+  font-family: "Tetris";
+  font-size: 70px;
+  font-weight: bold;
+  margin-top: 5%;
+  margin-left: 35%;
+  text-shadow: 8px 5px 3px rgb(40, 40, 40);
+}
+
+#pauseBtn {
+  margin-top: 60%;
+}
+
+button {
+  cursor: url(../images/cur117.cur), pointer;
+  font-family: "Tetris";
+  font-size: 50px;
+  width: 40%;
+  margin-left: 37%;
+  letter-spacing: 2px;
+  color: #fff;
+  cursor: hand;
+  text-align: center;
+  text-transform: capitalize;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  position: relative;
+  margin-bottom: 3%;
+  overflow: hidden !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: transparent !important;
+}
+
+button:hover {
+  border: 1px solid #071982;
+  color: #80ffd3 !important;
+}
+button::before {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #071982;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 1;
+  top: 0;
+  z-index: -12;
+  -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+button::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #80ffd3;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 0;
+  top: 0;
+  z-index: -15;
+  -webkit-transition: all 0.94s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -moz-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+button:hover::before,
+.btn1O:hover::before {
+  opacity: 1;
+  width: 116%;
+}
+button:hover::after,
+.btn1O:hover::after {
+  opacity: 1;
+  width: 120%;
+}

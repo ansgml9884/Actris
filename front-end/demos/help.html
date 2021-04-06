@@ -3,20 +3,20 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="help.css" />
+    <link rel="stylesheet" href="static/css/help.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <audio autoplay id="myaudio">
-        <source src="music/bgm_index_happylife.mp3" type="audio/mp3">
+        <source src="static/music/bgm_index_happylife.mp3" type="audio/mp3">
     </audio>
-    <audio id='leftsound' src='music/left.mp3'></audio>
-    <audio id='rightsound' src='music/right.mp3'></audio>
-    <audio id='backsound' src='music/back (mp3cut.net).mp3'></audio>
+    <audio id='leftsound' src='static/music/left.mp3'></audio>
+    <audio id='rightsound' src='static/music/right.mp3'></audio>
+    <audio id='backsound' src='static/music/back (mp3cut.net).mp3'></audio>
     <h1>- HELP -</h1>
     <div>
-        <img class="backbtn" src="images/back.png" onclick="location.href='index.html'" onmouseover="backsound()" />
+        <img class="backbtn" src="static/images/back.png" onclick="location.href='index.html'" onmouseover="backsound()" />
     </div>
 </head>
 
@@ -28,26 +28,26 @@
             <div class="pose">
                 <br><br>
                 <h1>Basic Pose</h1>
-                <img src="images/basic.png" width="350px">
+                <img src="static/images/basic.png" width="350px">
             </div>
-            <img id="left" class="left" src="images/left1.png" onclick="move('left')" onmouseup="leftsound()" />
+            <img id="left" class="left" src="static/images/left1.png" onclick="move('left')" onmouseup="leftsound()" />
         </section>
         <section class="sec2">
             <div class="pose">
                 <br><br>
                 <h1>Move</h1><br>
-                <img class="block" src="images/moveblock.png" width="250px" />
-                <img src="images/move.gif" width="280px" />
+                <img class="block" src="static/images/moveblock.png" width="250px" />
+                <img src="static/images/move.gif" width="280px" />
             </div>
         </section>
         <section class="sec3">
             <div class="pose">
                 <br><br>
                 <h1>Rotate</h1><br>
-                <img class="block" src="images/rotate.png" width="250px" />
-                <img src="images/rotate.gif" width="280px" />
+                <img class="block" src="static/images/rotate.png" width="250px" />
+                <img src="static/images/rotate.gif" width="280px" />
             </div>
-            <img id="right" class="right" src="images/right1.png" onclick="move('right')" onmouseup="rightsound()" />
+            <img id="right" class="right" src="static/images/right1.png" onclick="move('right')" onmouseup="rightsound()" />
         </section>
     </div>
     <script>

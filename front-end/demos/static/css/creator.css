@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Tetris";
+  src: local(※), url("../font/Tetris.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+html {
+  cursor: url(../images/cur116.cur), auto;
+}
+
+#bgvideo {
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -10;
+}
+
+#video1 {
+  cursor: url(../images/cur117.cur), pointer;
+  border: 10px solid #82ee43;
+  border-radius: 30px;
+  transform: rotate(-10deg);
+  outline: none;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  margin-top: 33%;
+  margin-left: 5%;
+}
+
+.sec1 {
+  position: fixed;
+  width: 50%;
+  left: 0;
+}
+
+.sec2 {
+  position: fixed;
+  width: 50%;
+  right: 0;
+}
+
+#backbtn {
+  cursor: url(../images/cur117.cur), pointer;
+  position: fixed;
+  margin-left: 40px;
+  margin-top: 30px;
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(4px 4px 4px rgb(32, 25, 25));
+}
+
+#backbtn:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#bgvideo {
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  position: fixed;
+}
+
+#name {
+  margin-right: 20%;
+  width: auto;
+  height: auto;
+  margin-top: 7%;
+  text-align: center;
+  font-size: 120px;
+  color: #ffffff;
+  text-shadow: 5px 5px 3px rgb(40, 40, 40);
+  float: right;
+  font-size: 50px !important;
+}
+
+h2 {
+  color: #b5c0b7;
+  font-family: "Tetris";
+}

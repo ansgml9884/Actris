@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="replay.css">
+    <link rel="stylesheet" href="static/css/replay.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <audio id="my_audio">
-        <source src="music/bgm_play_Tenvi.mp3">
+        <source src="static/music/bgm_play_Tenvi.mp3">
     </audio>
-    <audio id='btnaudio1' src='music/btn_pause.mp3'></audio>
-    <audio id='btnaudio2' src='music/btn_exit.mp3'></audio>
-    <audio id='faster' src='music/right.mp3'></audio>
-    <audio id='slower' src='music/left.mp3'></audio>
+    <audio id='btnaudio1' src='static/music/btn_pause.mp3'></audio>
+    <audio id='btnaudio2' src='static/music/btn_exit.mp3'></audio>
+    <audio id='faster' src='static/music/right.mp3'></audio>
+    <audio id='slower' src='static/music/left.mp3'></audio>
 </head>
 
 <body class="body">
     <video id="bgvideo" muted autoplay loop>
-        <source src="videos/Playgame.mp4" type="video/mp4">
+        <source src="static/videos/Playgame.mp4" type="video/mp4">
         <div id="layer"></div>
     </video>
 
@@ -34,9 +34,9 @@
         <div class="rank" id="score"></div>
 
         <form>
-            <img id="larrow" src="images/left_arrow.png" width="40px" onmouseup="slower()">
+            <img id="larrow" src="static/images/left_arrow.png" width="40px" onmouseup="slower()">
             <input id="speed" type=text name=amount value=1 readonly;>
-            <img id="rarrow" src="images/right_arrow.png" width="40px" onmouseup="faster()">
+            <img id="rarrow" src="static/images/right_arrow.png" width="40px" onmouseup="faster()">
         </form>
         <br><br>
         <p><button class="control" id="pauseBtn">PAUSE</button></p>

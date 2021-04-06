@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "Tetris";
+  src: local(※), url("../font/Tetris.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+html {
+  cursor: url(../images/cur116.cur), auto;
+}
+
+body {
+  background-image: url("../images/tetrisWallpaperBW.jpg");
+}
+
+#bgvideo {
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  position: fixed;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+#fsGuide {
+  height: auto;
+  width: auto;
+  position: fixed;
+  margin-top: 2%;
+  margin-left: 2%;
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px 2px rgb(40, 40, 40);
+}
+
+#creator {
+  cursor: url(../images/cur117.cur), pointer;
+  float: right;
+  height: 80px;
+  width: 80px;
+  margin-top: 330px;
+  margin-right: 2%;
+  filter: drop-shadow(1px 1px 1px rgb(218, 211, 211));
+}
+.contents {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin-top: 15%;
+  text-align: center;
+  font-size: 130px;
+  line-height: 100px;
+  color: #ffffff;
+  font-family: "Tetris";
+  text-shadow: 5px 5px 3px rgb(40, 40, 40);
+}
+#btns {
+  text-align: center;
+  font-size: 50px;
+  color: #ffffff;
+  font-family: "Tetris";
+  text-shadow: 8px 5px 3px rgb(40, 40, 40);
+}
+
+.container {
+  position: relative;
+}
+
+.btn {
+  top: 250px;
+  font-family: "Tetris";
+  font-size: 50px !important;
+  letter-spacing: 3px;
+  color: #fff;
+  cursor: hand;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+}
+.btn:hover {
+  cursor: url(../images/cur117.cur), pointer;
+  border-radius: 7px;
+  color: #80ffd3 !important;
+}
+.btn::before {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #071982;
+  border-radius: 7px;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 1;
+  top: 0;
+  z-index: -12;
+  -moz-transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+.btn::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  display: block;
+  background: #80ffd3;
+  border-radius: 7px;
+  position: absolute;
+  -ms-transform: skewX(-20deg);
+  -webkit-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+  left: -10%;
+  opacity: 0;
+  top: 0;
+  z-index: -15;
+  -webkit-transition: all 0.94s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -moz-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+  box-shadow: 2px 0px 14px rgba(0, 0, 0, 0.6);
+}
+.btn:hover::before,
+.btn1O:hover::before {
+  opacity: 1;
+  width: 120%;
+}
+.btn:hover::after,
+.btn1O:hover::after {
+  opacity: 1;
+  width: 120%;
+}
